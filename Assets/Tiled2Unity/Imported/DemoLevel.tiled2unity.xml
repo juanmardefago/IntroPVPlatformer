@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 01/09/2016 06:23:42-->
+<!--Last exported: 01/09/2016 15:48:56-->
 <Tiled2Unity version="1.0.7.8">
   <AssignMaterial mesh="mesh_0001" material="bg" />
   <AssignMaterial mesh="mesh_0002" material="baseTileSheet" />
@@ -33,116 +33,285 @@
       <GameObject name="baseTileSheet" copy="mesh_0005" sortingLayerName="" sortingOrder="3" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>41,-10 59,-10 59,-9 41,-9</Path>
-          <Path>5,-11 1,-11 1,-12 5,-12</Path>
-          <Path>32,-14 41,-14 41,-13 32,-13</Path>
-          <Path>44,-17 53,-17 53,-16 44,-16</Path>
-          <Path>5,-17 14,-17 14,-16 5,-16</Path>
-          <Path>29,-16 20,-16 20,-17 29,-17</Path>
-          <Path>37,-16 34,-16 34,-17 37,-17</Path>
-          <Path>27,-18 25,-18 25,-19 27,-19</Path>
-          <Path>39,-20 42,-20 42,-19 39,-19</Path>
-          <Path>4,-20 2,-20 2,-21 4,-21</Path>
-          <Path>49,-21 47,-21 47,-22 49,-22</Path>
-          <Path>32,-21 31,-21 31,-22 32,-22</Path>
-          <Path>22,-21 21,-21 21,-22 22,-22</Path>
-          <Path>12,-21 10,-21 10,-22 12,-22</Path>
+          <Path>54,-16 53,-16 53,-16.5 54,-16.5</Path>
+          <Path>34,-16 33,-16 33,-16.5 34,-16.5</Path>
+          <Path>38,-16 37,-16 37,-16.5 38,-16.5</Path>
+          <Path>25,-18 24,-18 24,-18.5 25,-18.5</Path>
+          <Path>28,-18 27,-18 27,-18.5 28,-18.5</Path>
+          <Path>8,-18 6,-18 6,-18.5 8,-18.5</Path>
+          <Path>43,-19 42,-19 42,-19.5 43,-19.5</Path>
+          <Path>39,-19 38,-19 38,-19.5 39,-19.5</Path>
+          <Path>2,-20 1,-20 1,-20.5 2,-20.5</Path>
+          <Path>5,-20 4,-20 4,-20.5 5,-20.5</Path>
+          <Path>47,-21 46,-21 46,-21.5 47,-21.5</Path>
+          <Path>50,-21 49,-21 49,-21.5 50,-21.5</Path>
+          <Path>31,-21 30,-21 30,-21.5 31,-21.5</Path>
+          <Path>33,-21 32,-21 32,-21.5 33,-21.5</Path>
+          <Path>21,-21 20,-21 20,-21.5 21,-21.5</Path>
+          <Path>23,-21 22,-21 22,-21.5 23,-21.5</Path>
+          <Path>13,-21 12,-21 12,-21.5 13,-21.5</Path>
+          <Path>10,-21 9,-21 9,-21.5 10,-21.5</Path>
         </PolygonCollider2D>
         <EdgeCollider2D>
-          <Points>59,-10 59.44286,-9.914286 59.84286,-9.7 59.98571,-9.442857 60,-9 59,-9</Points>
+          <Points>50,-9 50.1,-9.485714 50.9,-9.485714 51,-9 50,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>5,-12 5.442857,-11.91429 5.842857,-11.7 5.985714,-11.44286 6,-11 5,-11</Points>
+          <Points>51,-9 51.1,-9.485714 51.9,-9.485714 52,-9 51,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>41,-14 41,-15 42,-15 42,-14 41,-14 42,-14 41,-13</Points>
+          <Points>52,-9 52.1,-9.485714 52.9,-9.485714 53,-9 52,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>31.98571,-13 31,-14 32,-14</Points>
+          <Points>53,-9 53.1,-9.485714 53.9,-9.485714 54,-9 53,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>42,-14 42,-15 43,-15 42,-14</Points>
+          <Points>54,-9 54.1,-9.485714 54.9,-9.485714 55,-9 54,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>30.98571,-14 30,-15 31,-15 31,-14 32,-14 32,-15 31,-15 31,-14</Points>
+          <Points>55,-9 55.1,-9.485714 55.9,-9.485714 56,-9 55,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>29.98571,-15 29,-16 30,-16 30,-15 31,-15 31,-16 30,-16 30,-15</Points>
+          <Points>56,-9 56.1,-9.485714 56.9,-9.485714 57,-9 56,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>42,-15 42,-16 43,-16 43,-15 42,-15</Points>
+          <Points>57,-9 57.1,-9.485714 57.9,-9.485714 58,-9 57,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>43,-15 43,-16 44,-16 43,-15</Points>
+          <Points>58,-9 58.1,-9.485714 58.9,-9.485714 59,-9 58,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>53,-17 54,-17 54,-16 53,-16</Points>
+          <Points>59,-9 59,-10 59.65714,-9.728572 59.9,-9.428572 59.9,-9 59,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>14,-17 14.44286,-16.91429 14.84286,-16.7 14.98571,-16.44286 15,-16 14,-16</Points>
+          <Points>60,-9 59.91429,-9 59.92857,-9.442857 59.67143,-9.742857 59,-10 59.12857,-9.985714 59.55714,-9.871428 59.85714,-9.671429 60,-9.414286 60,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>20,-16 19,-16 18.98571,-16.4 19.14286,-16.7 19.54286,-16.9 20,-17 20,-16</Points>
+          <Points>41,-9 41.1,-9.485714 41.9,-9.485714 42,-9 41,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>29,-17 30,-17 30,-16 29,-16</Points>
+          <Points>42,-9 42.1,-9.485714 42.9,-9.485714 43,-9 42,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>44,-17 43,-17 43,-16 44,-16</Points>
+          <Points>43,-9 43.1,-9.485714 43.9,-9.485714 44,-9 43,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>34,-17 33,-17 33,-16 34,-16</Points>
+          <Points>44,-9 44.1,-9.485714 44.9,-9.485714 45,-9 44,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>37,-17 38,-17 38,-16 37,-16</Points>
+          <Points>45,-9 45.1,-9.485714 45.9,-9.485714 46,-9 45,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>25,-19 24,-19 24,-18 25,-18</Points>
+          <Points>46,-9 46.1,-9.485714 46.9,-9.485714 47,-9 46,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>27,-19 28,-19 28,-18 27,-18</Points>
+          <Points>47,-9 47.1,-9.485714 47.9,-9.485714 48,-9 47,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>6,-18 6,-19 7,-19 7,-18 6,-18</Points>
+          <Points>48,-9 48.1,-9.485714 48.9,-9.485714 49,-9 48,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>7,-18 7,-19 8,-19 8,-18 7,-18</Points>
+          <Points>49,-9 49.1,-9.485714 49.9,-9.485714 50,-9 49,-9</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>42,-20 43,-20 43,-19 42,-19</Points>
+          <Points>1,-11 1.1,-11.48571 1.9,-11.48571 2,-11 1,-11</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>39,-20 38,-20 38,-19 39,-19</Points>
+          <Points>2,-11 2.1,-11.48571 2.9,-11.48571 3,-11 2,-11</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>2,-21 1,-21 1,-20 2,-20</Points>
+          <Points>3,-11 3.1,-11.48571 3.9,-11.48571 4,-11 3,-11</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>4,-21 5,-21 5,-20 4,-20</Points>
+          <Points>4,-11 4.1,-11.48571 4.9,-11.48571 5,-11 4,-11</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>47,-22 46,-22 46,-21 47,-21</Points>
+          <Points>5,-11 5,-12 5.657143,-11.72857 5.9,-11.42857 5.9,-11 5,-11</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>49,-22 50,-22 50,-21 49,-21</Points>
+          <Points>6,-11 5.914286,-11 5.928571,-11.44286 5.671429,-11.74286 5,-12 5.128572,-11.98571 5.557143,-11.87143 5.857143,-11.67143 6,-11.41429 6,-11</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>31,-22 30,-22 30,-21 31,-21</Points>
+          <Points>40,-13 40.1,-13.48571 40.9,-13.48571 41,-13 40,-13</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>32,-22 33,-22 33,-21 32,-21</Points>
+          <Points>41,-13 41,-14 42,-14 41,-13</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>21,-22 20,-22 20,-21 21,-21</Points>
+          <Points>31.98571,-13 31,-14 32,-14 32,-13 33,-13 32.9,-13.48571 32.1,-13.48571 32,-13</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>22,-22 23,-22 23,-21 22,-21</Points>
+          <Points>33,-13 33.1,-13.48571 33.9,-13.48571 34,-13 33,-13</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>12,-22 13,-22 13,-21 12,-21</Points>
+          <Points>34,-13 34.1,-13.48571 34.9,-13.48571 35,-13 34,-13</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>10,-21 9,-21 9,-22 10,-22</Points>
+          <Points>35,-13 35.1,-13.48571 35.9,-13.48571 36,-13 35,-13</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>36,-13 36.1,-13.48571 36.9,-13.48571 37,-13 36,-13</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>37,-13 37.1,-13.48571 37.9,-13.48571 38,-13 37,-13</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>38,-13 38.1,-13.48571 38.9,-13.48571 39,-13 38,-13</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>39,-13 39.1,-13.48571 39.9,-13.48571 40,-13 39,-13</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>42,-14 41.42857,-14 41.98571,-14.54286 42,-14 43,-15 42,-15 42,-14</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>30.98571,-14 30,-15 31,-15 31,-14 31.54286,-14 31,-14.54286 31,-14</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>29.98571,-15 29,-16 30,-16 30,-15 30.54286,-15 30,-15.54286 30,-15</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>43,-15 42.42857,-15 42.98571,-15.54286 43,-15 44,-16 43,-16 43,-15</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>50,-16 50.1,-16.48571 50.9,-16.48571 51,-16 50,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>51,-16 51.1,-16.48571 51.9,-16.48571 52,-16 51,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>52,-16 52.1,-16.48571 52.9,-16.48571 53,-16 52,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>10,-16 10.1,-16.48571 10.9,-16.48571 11,-16 10,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>11,-16 11.1,-16.48571 11.9,-16.48571 12,-16 11,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>12,-16 12.1,-16.48571 12.9,-16.48571 13,-16 12,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>13,-16 13.1,-16.48571 13.9,-16.48571 14,-16 13,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>14,-16 14,-17 14.65714,-16.72857 14.9,-16.42857 14.9,-16 14,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>15,-16 14.91429,-16 14.92857,-16.44286 14.67143,-16.74286 14,-17 14.12857,-16.98571 14.55714,-16.87143 14.85714,-16.67143 15,-16.41429 15,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>20,-16 19.08571,-16 19.08571,-16.38571 20,-17 20,-16 21,-16 20.9,-16.48571 20.1,-16.48571 20,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>19,-16 19,-16.4 19.07143,-16.61429 19.31429,-16.81429 19.6,-16.94286 20,-17 19.05714,-16.38571 19.08571,-16 19,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>21,-16 21.1,-16.48571 21.9,-16.48571 22,-16 21,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>22,-16 22.1,-16.48571 22.9,-16.48571 23,-16 22,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>23,-16 23.1,-16.48571 23.9,-16.48571 24,-16 23,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>24,-16 24.1,-16.48571 24.9,-16.48571 25,-16 24,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>25,-16 25.1,-16.48571 25.9,-16.48571 26,-16 25,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>26,-16 26.1,-16.48571 26.9,-16.48571 27,-16 26,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>27,-16 27.1,-16.48571 27.9,-16.48571 28,-16 27,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>28,-16 28.1,-16.48571 28.9,-16.48571 29,-16 28,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>29,-16 29,-16.54286 29.54286,-16 29,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>44,-16 43.42857,-16 43.98571,-16.54286 44,-16 45,-16 44.9,-16.48571 44.1,-16.48571 44,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>45,-16 45.1,-16.48571 45.9,-16.48571 46,-16 45,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>46,-16 46.1,-16.48571 46.9,-16.48571 47,-16 46,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>47,-16 47.1,-16.48571 47.9,-16.48571 48,-16 47,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>48,-16 48.1,-16.48571 48.9,-16.48571 49,-16 48,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>49,-16 49.1,-16.48571 49.9,-16.48571 50,-16 49,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>34,-16 34.1,-16.48571 34.9,-16.48571 35,-16 34,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>35,-16 35.1,-16.48571 35.9,-16.48571 36,-16 35,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>36,-16 36.1,-16.48571 36.9,-16.48571 37,-16 36,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>5,-16 5.1,-16.48571 5.9,-16.48571 6,-16 5,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>6,-16 6.1,-16.48571 6.9,-16.48571 7,-16 6,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>7,-16 7.1,-16.48571 7.9,-16.48571 8,-16 7,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>8,-16 8.1,-16.48571 8.9,-16.48571 9,-16 8,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>9,-16 9.1,-16.48571 9.9,-16.48571 10,-16 9,-16</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>25,-18 25.1,-18.48571 25.9,-18.48571 26,-18 25,-18</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>26,-18 26.1,-18.48571 26.9,-18.48571 27,-18 26,-18</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>40,-19 40.1,-19.48571 40.9,-19.48571 41,-19 40,-19</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>41,-19 41.1,-19.48571 41.9,-19.48571 42,-19 41,-19</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>39,-19 39.1,-19.48571 39.9,-19.48571 40,-19 39,-19</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>2,-20 2.1,-20.48571 2.9,-20.48571 3,-20 2,-20</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>3,-20 3.1,-20.48571 3.9,-20.48571 4,-20 3,-20</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>47,-21 47.1,-21.48571 47.9,-21.48571 48,-21 47,-21</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>48,-21 48.1,-21.48571 48.9,-21.48571 49,-21 48,-21</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>31,-21 31.1,-21.48571 31.9,-21.48571 32,-21 31,-21</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>21,-21 21.1,-21.48571 21.9,-21.48571 22,-21 21,-21</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>10,-21 10.1,-21.48571 10.9,-21.48571 11,-21 10,-21</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>11,-21 11.1,-21.48571 11.9,-21.48571 12,-21 11,-21</Points>
         </EdgeCollider2D>
       </GameObject>
     </GameObject>
@@ -284,7 +453,10 @@
           <Points>74,-2 73,-2 73,-3 74,-3 74,-2 75,-2 74.98572,-2.328572 74.55714,-2.657143 74.32858,-2.985714 74,-3 74,-2</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>70,-6 69,-6 69,-6.385715 69.07143,-6.585714 69.25714,-6.785714 69.54285,-6.914286 70,-7 70,-6 71,-6 71,-7 70,-7 70,-6</Points>
+          <Points>69,-6 69,-6.4 69.07143,-6.614286 69.31429,-6.814286 69.6,-6.942857 70,-7 69.05714,-6.385715 69.08572,-6 69,-6</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>70,-6 69.08572,-6 69.08572,-6.385715 70,-7 70,-6 71,-6 71,-7 70,-7 70,-6</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
           <Points>72,-6 71,-6 71,-7 72,-7 72,-6</Points>
@@ -293,7 +465,10 @@
           <Points>73,-6 72,-6 72,-7 73,-7 73,-6 74,-6 74,-7 73,-7 73,-6</Points>
         </EdgeCollider2D>
         <EdgeCollider2D>
-          <Points>74,-6 74,-7 74.27143,-6.957143 74.64286,-6.842857 74.9,-6.642857 75,-6.4 75,-6 74,-6</Points>
+          <Points>75,-6 74.91428,-6 74.92857,-6.442857 74.67143,-6.742857 74,-7 74.12857,-6.985714 74.55714,-6.871428 74.85714,-6.671429 75,-6.414286 75,-6</Points>
+        </EdgeCollider2D>
+        <EdgeCollider2D>
+          <Points>74,-6 74,-7 74.65714,-6.728571 74.9,-6.428572 74.9,-6 74,-6</Points>
         </EdgeCollider2D>
       </GameObject>
     </GameObject>

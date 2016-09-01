@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour {
         } else if (m_Jump && jumpTimer < maxTimeJumping && !letGoJump) {
             jumpTimer += Time.deltaTime;
             rBody.velocity += Vector2.up * jumpStrength * 0.1f;
+            letGoJump = false;
         } 
     }
 

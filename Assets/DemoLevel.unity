@@ -99,6 +99,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 42190833}
   - 61: {fileID: 42190834}
+  - 114: {fileID: 42190835}
   m_Layer: 0
   m_Name: WaterCollider1
   m_TagString: Untagged
@@ -128,11 +129,22 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 05a9a2db14f76e3459b4e761b72b95d9, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: -1.3616161, y: -2.4924755}
   serializedVersion: 2
   m_Size: {x: 5.99306, y: 8.54778}
+--- !u!114 &42190835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 42190832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e062efd293a7f040b3b7a7d9bdeb9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &140813958
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +384,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 030441c8f7f89e545af2a55f62736430, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

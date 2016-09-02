@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 02/09/2016 05:06:17-->
+<!--Last exported: 02/09/2016 06:04:17-->
 <Tiled2Unity version="1.0.7.8">
   <AssignMaterial mesh="mesh_0001" material="baseTileSheet" />
   <AssignMaterial mesh="mesh_0002" material="bg" />
@@ -179,7 +179,7 @@
         </EdgeCollider2D>
       </GameObject>
     </GameObject>
-    <GameObject name="Borders" x="0" y="0" z="0">
+    <GameObject name="Borders" x="0" y="0" z="0" tag="Ground">
       <GameObject name="baseTileSheet" copy="mesh_0016" sortingLayerName="" sortingOrder="14" opacity="1" />
     </GameObject>
   </Prefab>

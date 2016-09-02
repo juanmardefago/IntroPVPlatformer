@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Inventory : MonoBehaviour {
 
-    private int coins;
+    public int coins;
+
+    public int Coins { get { return coins;  } }
 
 	// Use this for initialization
 	void Start () {

@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour {
         } else {
             anim.SetBool("isWalking", false);
             anim.SetFloat("speed", 0);
+            rBody.velocity = new Vector2(0, rBody.velocity.y);
         }
 
         CorrectLocalScale(moveX);

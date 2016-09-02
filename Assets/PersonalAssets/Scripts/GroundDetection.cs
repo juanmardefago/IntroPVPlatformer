@@ -16,13 +16,13 @@ public class GroundDetection : MonoBehaviour {
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Ground") {
+        if (other.transform.parent.tag == "Ground") {
             movementScript.IsGrounded(true);
         }
     }
 
     void OnTriggerStay2D(Collider2D other){
-        if (other.tag == "Ground") {
+        if (other.transform.parent.tag == "Ground") {
             movementScript.IsGrounded(true);
         }
     }

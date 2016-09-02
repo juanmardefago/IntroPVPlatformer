@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 01/09/2016 22:45:23-->
+<!--Last exported: 01/09/2016 23:51:45-->
 <Tiled2Unity version="1.0.7.8">
   <AssignMaterial mesh="mesh_0001" material="baseTileSheet" />
   <AssignMaterial mesh="mesh_0002" material="bg" />
@@ -20,7 +20,7 @@
   <AssignMaterial mesh="mesh_0015" material="baseTileSheet" />
   <AssignMaterial mesh="mesh_0016" material="baseTileSheet" />
   <Prefab name="DemoLevel" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="15" numTilesWide="78" numTilesHigh="25" tileWidth="70" tileHeight="70" exportScale="0.0142857144" mapWidthInPixels="5460" mapHeightInPixels="1750">
-    <GameObject name="SlopePuente" x="0" y="0" z="0">
+    <GameObject name="SlopePuente" x="0" y="0" z="0" tag="Ground">
       <GameObject name="baseTileSheet" copy="mesh_0001" sortingLayerName="" sortingOrder="0" opacity="1" />
       <GameObject name="Collision">
         <EdgeCollider2D>
@@ -41,7 +41,7 @@
       <GameObject name="baseTileSheet" copy="mesh_0004" sortingLayerName="" sortingOrder="3" opacity="1" />
       <GameObject name="metalExpansionSheet" copy="mesh_0005" sortingLayerName="" sortingOrder="3" opacity="1" />
     </GameObject>
-    <GameObject name="GrassComplements" x="0" y="0" z="0">
+    <GameObject name="GrassComplements" x="0" y="0" z="0" tag="Ground">
       <GameObject name="baseTileSheet" copy="mesh_0006" sortingLayerName="" sortingOrder="4" opacity="1" />
       <GameObject name="Collision">
         <PolygonCollider2D>
@@ -330,7 +330,7 @@
     <GameObject name="Building" x="0" y="0" z="0">
       <GameObject name="buildingsSheet" copy="mesh_0007" sortingLayerName="" sortingOrder="5" opacity="1" />
     </GameObject>
-    <GameObject name="Door and window" x="0" y="0" z="0">
+    <GameObject name="Door and window" x="0" y="0" z="0" isTrigger="true">
       <GameObject name="buildingsSheet" copy="mesh_0008" sortingLayerName="" sortingOrder="6" opacity="1" />
       <GameObject name="Collision">
         <EdgeCollider2D>
@@ -344,7 +344,7 @@
     <GameObject name="Cartel" x="0" y="0" z="0">
       <GameObject name="baseTileSheet" copy="mesh_0009" sortingLayerName="" sortingOrder="7" opacity="1" />
     </GameObject>
-    <GameObject name="Plataforma Extraña" x="0" y="0" z="0">
+    <GameObject name="Plataforma Extraña" x="0" y="0" z="0" tag="Ground">
       <GameObject name="baseTileSheet" copy="mesh_0010" sortingLayerName="" sortingOrder="8" opacity="1" />
       <GameObject name="Collision">
         <EdgeCollider2D>
@@ -373,7 +373,7 @@
         </EdgeCollider2D>
       </GameObject>
     </GameObject>
-    <GameObject name="Puente" x="0" y="0" z="0">
+    <GameObject name="Puente" x="0" y="0" z="0" tag="Ground">
       <GameObject name="baseTileSheet" copy="mesh_0011" sortingLayerName="" sortingOrder="9" opacity="1" />
       <GameObject name="Collision">
         <EdgeCollider2D>
@@ -440,7 +440,7 @@
         </EdgeCollider2D>
       </GameObject>
     </GameObject>
-    <GameObject name="Castillo Extraño" x="0" y="0" z="0">
+    <GameObject name="Castillo Extraño" x="0" y="0" z="0" tag="Ground">
       <GameObject name="baseTileSheet" copy="mesh_0013" sortingLayerName="" sortingOrder="11" opacity="1" />
       <GameObject name="Collision">
         <EdgeCollider2D>
@@ -492,7 +492,7 @@
         </EdgeCollider2D>
       </GameObject>
     </GameObject>
-    <GameObject name="End" x="0" y="0" z="0">
+    <GameObject name="End" x="0" y="0" z="0" isTrigger="true">
       <GameObject name="baseTileSheet" copy="mesh_0015" sortingLayerName="" sortingOrder="13" opacity="1" />
       <GameObject name="Collision">
         <EdgeCollider2D>

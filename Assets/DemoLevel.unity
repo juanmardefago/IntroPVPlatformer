@@ -754,9 +754,9 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000012615393542, guid: f7e4cbee560abb0449da37abe524723f, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Ground
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1000011034912914, guid: f7e4cbee560abb0449da37abe524723f, type: 2}
       propertyPath: m_TagString
@@ -813,8 +813,7 @@ Prefab:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
-    - target: {fileID: 68000010374907572, guid: f7e4cbee560abb0449da37abe524723f,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}

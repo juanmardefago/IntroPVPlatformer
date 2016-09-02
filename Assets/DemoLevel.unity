@@ -793,6 +793,41 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000014213537002, guid: f7e4cbee560abb0449da37abe524723f, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012602452122, guid: f7e4cbee560abb0449da37abe524723f, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011200575284, guid: f7e4cbee560abb0449da37abe524723f, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011740388116, guid: f7e4cbee560abb0449da37abe524723f, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011003716982, guid: f7e4cbee560abb0449da37abe524723f, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 68000010374907572, guid: f7e4cbee560abb0449da37abe524723f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68000012554386172, guid: f7e4cbee560abb0449da37abe524723f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68000011410451744, guid: f7e4cbee560abb0449da37abe524723f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}

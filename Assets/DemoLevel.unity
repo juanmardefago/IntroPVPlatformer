@@ -100,7 +100,7 @@ GameObject:
   - 4: {fileID: 140813959}
   - 61: {fileID: 140813960}
   - 114: {fileID: 140813961}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,12 +702,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToInteract: {fileID: 0}
+  interacting: 0
   anim: {fileID: 0}
 --- !u!4 &1403536646 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013778624456, guid: f7e4cbee560abb0449da37abe524723f,
     type: 2}
   m_PrefabInternal: {fileID: 1803449709}
+--- !u!1001 &1575559707
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000012692049476, guid: 9131e28469893fe40b78a8a4c5cb32fa,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -188555031
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1670416371
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,4 +16,9 @@ public class Inventory : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void AddCoins(int coinsToAdd)
+    {
+        coins += coinsToAdd;
+    }
 }

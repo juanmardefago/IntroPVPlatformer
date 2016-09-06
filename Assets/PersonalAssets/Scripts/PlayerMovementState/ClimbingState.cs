@@ -41,11 +41,11 @@ public class ClimbingState : PlayerMovementState
     {
         if (moveY != 0)
         {
-            rBody.velocity = new Vector2(rBody.velocity.x, moveY * speed);
+            rBody.velocity = new Vector2(0, moveY * speed);
         }
         else
         {
-            rBody.velocity = new Vector2(rBody.velocity.x, 0);
+            rBody.velocity = new Vector2(0, 0);
         }
     }
 }

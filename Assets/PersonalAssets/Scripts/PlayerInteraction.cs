@@ -5,7 +5,7 @@ public class PlayerInteraction : MonoBehaviour {
 
     public GameObject objectToInteract;
     private PlayerMovement movementScript;
-    private bool interacting;
+    public bool interacting;
     [HideInInspector]
     public Animator anim;
 
@@ -18,10 +18,13 @@ public class PlayerInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Interact") && CanInteract())
+        if (Input.GetButtonDown("Interact") && CanInteract() && !interacting)
         {
             interacting = true;
             objectToInteract.GetComponent<ObjectInteractionScript>().Interact(this);
+        } else if(Input.GetButtonDown("Interact") && interacting)
+        {
+            objectToInteract.GetComponent<ObjectInteractionScript>().DeInteract(this);
         }
 	}
 
@@ -33,6 +36,17 @@ public class PlayerInteraction : MonoBehaviour {
     public void SwapState(PlayerMovementState pms)
     {
         movementScript.SwapState(pms);
-        interacting = false;
+    }
+
+    public void SetKinematic(bool status)
+    {
+        movementScript.rBody.isKinematic = status;
+    }
+
+    public void ResetAnims()
+    {
+        movementScript.anim.SetBool("isClimbing", false);
+        movementScript.anim.SetBool("isJumping", false);
+        movementScript.anim.SetBool("isSwimming", false);
     }
 }

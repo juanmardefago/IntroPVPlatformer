@@ -13,5 +13,6 @@ public abstract class ObjectInteractionScript : MonoBehaviour {
 	
 	}
 
+    public abstract void DeInteract(PlayerInteraction pi);
     public abstract void Interact(PlayerInteraction pi);
 }

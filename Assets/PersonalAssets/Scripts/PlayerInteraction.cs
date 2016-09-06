@@ -18,21 +18,26 @@ public class PlayerInteraction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Interact") && CanInteract() && !interacting)
+        // Si apreta el boton para interactuar y puede interactuar, pero además no esta interactuando
+        if (Input.GetButtonDown("Interact") && CanInteract())
         {
+            // avisa que empezo a interactuar y llama al metodo de interaccion del script interactivo del objeto.
             interacting = true;
             objectToInteract.GetComponent<ObjectInteractionScript>().Interact(this);
         } else if(Input.GetButtonDown("Interact") && interacting)
         {
+            // Si estaba interactuando entonces avisa al script de desinteraccion del objeto.
             objectToInteract.GetComponent<ObjectInteractionScript>().DeInteract(this);
         }
 	}
 
+    // puede interactuar si esta sobre un objeto para interactuar y si no esta interactuando
     private bool CanInteract()
     {
         return objectToInteract != null && !interacting;
     }
 
+    // estos mensajes estan para simplificar las cosas.
     public void SwapState(PlayerMovementState pms)
     {
         movementScript.SwapState(pms);

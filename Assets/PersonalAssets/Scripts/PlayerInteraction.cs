@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerInteraction : MonoBehaviour {
 
@@ -8,12 +9,15 @@ public class PlayerInteraction : MonoBehaviour {
     public bool interacting;
     [HideInInspector]
     public Animator anim;
+    //[HideInInspector]
+    public Stack<Vector3> goBackPositionStack;
 
 	// Use this for initialization
 	void Start () {
         interacting = false;
         movementScript = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
+        goBackPositionStack = new Stack<Vector3>();
 	}
 	
 	// Update is called once per frame

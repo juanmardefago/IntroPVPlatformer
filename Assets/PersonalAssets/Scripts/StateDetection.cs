@@ -55,24 +55,27 @@ public class StateDetection : MonoBehaviour
     void DetectState(Collider2D other)
     {
         // Si el collider tiene tag Ground, reseteamos las animaciones y cambiamos el estado a Grounded.
-        if (other.transform.parent.tag == "Ground")
+        if (IsTagged("Ground", other))
         {
             ResetAnims();
             movementScript.SwapState(GroundedState.GetInstance());
         }
         // Si el collider tiene tag Rope (Soga), le avisamos al script de interaccion que tiene un objeto
         // para interactuar, y no hacemos nada más.
-        else if (other.transform.parent.tag == "Rope")
+        else if (IsTagged("Rope", other))
         {
             interactionScript.objectToInteract = other.gameObject;
         }
         // Si el collider tiene tag Water, reseteamos las animaciones, cambiamos el estado a Swimming y
         // le avisamos al animatorController que se esta nadando.
-        else if (other.transform.parent.tag == "Water")
+        else if (IsTagged("Water", other))
         {
             ResetAnims();
             movementScript.SwapState(SwimmingState.GetInstance());
             movementScript.anim.SetBool("isSwimming", true);
+        }
+        else if (IsTagged("TeleportInteracter", other)) {
+            interactionScript.objectToInteract = other.gameObject;
         }
     }
 
@@ -80,13 +83,13 @@ public class StateDetection : MonoBehaviour
     {
         // Si sale de un collider de tag Water mientras no interactua cambiamos el estado a midAir para que 
         // pueda saltar y salir del agua.
-        if (other.transform.parent.tag == "Water")
+        if (IsTagged("Water", other))
         {
             movementScript.SwapState(MidAirState.GetInstance());
         }
         // Si no estamos interactuando y salimos de un collider Rope (soga), seteamos en null el objeto
         // interactuable del interaction script, para que no pueda interactuar si no esta sobre la soga.
-        else if (other.transform.parent.tag == "Rope")
+        else if (IsTagged("Rope", other) || IsTagged("TeleportInteracter", other))
         {
             interactionScript.objectToInteract = null;
         }
@@ -97,19 +100,34 @@ public class StateDetection : MonoBehaviour
         // Si salimos de un collider rope mientras interactuaba, resetamos el rigidbody, interaction script, 
         // animaciones y colliders para que esten igual que en un estado previo a la interaccion
         // Luego seteamos el estado por un midAir para poder saltar una vez y tener algo de control en la caida.
-        if (other.transform.parent.tag == "Rope")
+
+        // Quizas para hacerlo más ordenado y objetoso tendríamos que hacer que el mismo objectToInteract limpie todo esto
+        // Onda poniendo interactionScript.CleanInteraction y que eso llame al script de interaccion del objectToInteract
+        // Pasando como parametro todo lo que tiene que limpiar y listo. Por ahora así alcanza, pero puede crecer bastante.
+        if (IsTagged("Rope", other))
         {
             interactionScript.SetKinematic(false);
-            interactionScript.interacting = false;
-            interactionScript.objectToInteract = null;
             ResetAnims();
             movementScript.SetColliderStatus(true);
             movementScript.SwapState(MidAirState.GetInstance());
+            interactionScript.interacting = false;
+            interactionScript.objectToInteract = null;
         }
+        if(IsTagged("TeleportInteracter", other))
+        {
+            interactionScript.interacting = false;
+            interactionScript.objectToInteract = null;
+        }
+
     }
 
     void ResetAnims()
     {
         interactionScript.ResetAnims();
+    }
+
+    private bool IsTagged(string tag, Collider2D other)
+    {
+        return other.tag == tag || other.transform.parent.tag == tag;
     }
 }

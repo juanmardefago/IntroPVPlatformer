@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
     [HideInInspector]
     public Animator anim;
     private bool facingRight = true;
-    [SerializeField]
     private PlayerMovementState playerMovementState;
     private Collider2D playerColl;
 

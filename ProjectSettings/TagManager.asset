@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Rope
   - TeleportInteracter
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Collectables
   - GroundCheck
   - Player
-  - 
+  - PlayerProjectiles
   - 
   - 
   - 
@@ -47,6 +48,9 @@ TagManager:
     locked: 0
   - name: Collectables
     uniqueID: 4106412265
+    locked: 0
+  - name: Projectiles
+    uniqueID: 2838905689
     locked: 0
   - name: Player
     uniqueID: 2829121099

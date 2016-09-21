@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerCombatScript : MonoBehaviour {
 
+    [SerializeField]
     private WeaponScript weapon;
 
 	// Use this for initialization

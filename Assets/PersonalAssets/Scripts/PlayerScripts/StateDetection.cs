@@ -128,6 +128,15 @@ public class StateDetection : MonoBehaviour
 
     private bool IsTagged(string tag, Collider2D other)
     {
-        return other.tag == tag || other.transform.parent.tag == tag;
+        bool res = false;
+        if (other.transform.parent != null)
+        {
+            res = other.tag == tag || other.transform.parent.tag == tag;
+        }
+        else
+        {
+            res = other.tag == tag;
+        }
+        return res;
     }
 }

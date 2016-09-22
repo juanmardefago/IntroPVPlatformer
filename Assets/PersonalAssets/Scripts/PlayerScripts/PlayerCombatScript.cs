@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerCombatScript : MonoBehaviour {
 
-    [SerializeField]
     private WeaponScript weapon;
+    public int health;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +34,11 @@ public class PlayerCombatScript : MonoBehaviour {
             res = -1;
         }
         return res;
+    }
+
+    public void TakeDamage()
+    {
+
     }
 
 }

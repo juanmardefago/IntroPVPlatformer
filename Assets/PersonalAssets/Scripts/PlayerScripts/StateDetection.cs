@@ -55,7 +55,7 @@ public class StateDetection : MonoBehaviour
     void DetectState(Collider2D other)
     {
         // Si el collider tiene tag Ground, reseteamos las animaciones y cambiamos el estado a Grounded.
-        if (IsTagged("Ground", other))
+        if (IsTagged("Ground", other) || IsTagged("Enemy", other))
         {
             ResetAnims();
             movementScript.SwapState(GroundedState.GetInstance());

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyCombatScript : MonoBehaviour {
+public class EnemyCombatScript : MonoBehaviour
+{
 
     public int health;
     public float awarenessDistance;
@@ -17,46 +18,60 @@ public class EnemyCombatScript : MonoBehaviour {
     private float dieDelay = 2f;
     private float dieTimer = 0f;
 
-	// Use this for initialization
-	void Start () {
+    public int damage;
+
+    // Use this for initialization
+    void Start()
+    {
         anim = GetComponent<Animator>();
         myTransform = GetComponent<Transform>();
         movementScript = GetComponent<EnemyMovementBasic>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         playerPos2D = playerTransform.position;
         myPos2D = myTransform.position;
 
-        if(dieTimer == 0f && (aggro > 0 || (Vector2.Distance(playerPos2D, myPos2D) < awarenessDistance && Vector2.Angle(myPos2D, playerPos2D) < awarenessAngle)))
+        if (dieTimer == 0f && (aggro > 0 || (Vector2.Distance(playerPos2D, myPos2D) < awarenessDistance && Vector2.Angle(myPos2D, playerPos2D) < awarenessAngle)))
         {
             movementScript.MoveTowardsPosition(playerPos2D);
-            movementScript.MoveWithDirection((playerPos2D - myPos2D).normalized);
+            movementScript.MoveWithDirection(TransformDistanceToDirection());
         }
 
         DecreaseAggro();
         CheckForDieDelay();
-	}
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Player" && dieTimer == 0f)
+        {
+            collision.transform.gameObject.SendMessage("TakeDamage", damage);
+            collision.transform.gameObject.SendMessage("Pushback", TransformDistanceToDirection());
+        }
+    }
 
     public void TakeDamage(int damage)
     {
         anim.SetTrigger("hit");
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             Die();
         }
         aggro = 3f;
         movementScript.SetRecovering();
-        movementScript.PushbackTo((myPos2D - playerPos2D).normalized);
+        movementScript.PushbackTo(-TransformDistanceToDirection());
     }
 
     private void Die()
     {
         dieTimer += Time.deltaTime;
         anim.SetTrigger("dying");
-        //GetComponent<BoxCollider2D>().enabled = false;
+        movementScript.MakeKinematic();
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     private void DecreaseAggro()
@@ -66,12 +81,30 @@ public class EnemyCombatScript : MonoBehaviour {
 
     private void CheckForDieDelay()
     {
-        if(dieTimer > 0f && dieTimer < dieDelay)
+        if (dieTimer > 0f && dieTimer < dieDelay)
         {
             dieTimer += Time.deltaTime;
-        } else if (dieTimer >= dieDelay)
+        }
+        else if (dieTimer >= dieDelay)
         {
             Destroy(gameObject);
         }
+    }
+
+    private Vector2 TransformDistanceToDirection()
+    {
+        Vector2 res;
+        if (playerPos2D.x > myPos2D.x)
+        {
+            res = Vector2.right;
+        }
+        else if (myPos2D.x > playerPos2D.x)
+        {
+            res = Vector2.left;
+        } else
+        {
+            res = Vector2.zero;
+        }
+        return res;
     }
 }

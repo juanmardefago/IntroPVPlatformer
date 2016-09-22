@@ -79,6 +79,12 @@ public class PlayerMovement : MonoBehaviour {
         playerColl.enabled = status;
     }
 
+    // Habria que agregar un mecanismo para que se evite checkear el movimiento horizontal mientras esta herido para que no se cague este push. Sino no pushea
+    public void Pushback(Vector2 dir)
+    {
+        rBody.AddForce(dir * 10, ForceMode2D.Impulse);
+    }
+
     // DEPRECATED
 
     //hace el checkeo de Jump

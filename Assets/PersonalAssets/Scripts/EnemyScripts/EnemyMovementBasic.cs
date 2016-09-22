@@ -79,4 +79,9 @@ public class EnemyMovementBasic : MonoBehaviour {
     {
         recoveryTimer = recoveryTime;
     }
+
+    public void MakeKinematic()
+    {
+        rBody.isKinematic = true;
+    }
 }

@@ -5,10 +5,12 @@ public class PlayerCombatScript : MonoBehaviour {
 
     private WeaponScript weapon;
     public int health;
+    private Animator anim;
 
 	// Use this for initialization
 	void Start () {
         weapon = GetComponentInChildren<WeaponScript>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -36,9 +38,10 @@ public class PlayerCombatScript : MonoBehaviour {
         return res;
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-
+        health -= damage;
+        anim.SetTrigger("hit");
     }
 
 }

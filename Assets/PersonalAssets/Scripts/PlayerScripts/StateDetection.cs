@@ -6,6 +6,7 @@ public class StateDetection : MonoBehaviour
 
     private PlayerMovement movementScript;
     private PlayerInteraction interactionScript;
+    private bool deInteracting = false;
 
     // Use this for initialization
     void Start()
@@ -32,6 +33,11 @@ public class StateDetection : MonoBehaviour
         // a triggerear un OnTriggerEnter, pero si un OnTriggerStay.
         if (!interactionScript.interacting)
         {
+            DetectState(other);
+        } else if (deInteracting)
+        {
+            deInteracting = false;
+            ExitInteracting(other);
             DetectState(other);
         }
     }
@@ -112,6 +118,7 @@ public class StateDetection : MonoBehaviour
             movementScript.SwapState(MidAirState.GetInstance());
             interactionScript.interacting = false;
             interactionScript.objectToInteract = null;
+            interactionScript.SetWeaponActive(true);
         }
         if(IsTagged("TeleportInteracter", other))
         {
@@ -138,5 +145,10 @@ public class StateDetection : MonoBehaviour
             res = other.tag == tag;
         }
         return res;
+    }
+
+    public void OnDeInteract()
+    {
+        deInteracting = true;
     }
 }

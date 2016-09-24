@@ -221,6 +221,7 @@ MonoBehaviour:
   objectToInteract: {fileID: 0}
   interacting: 0
   anim: {fileID: 0}
+  weapon: {fileID: 1000011618936700}
 --- !u!114 &114000013144064052
 MonoBehaviour:
   m_ObjectHideFlags: 1

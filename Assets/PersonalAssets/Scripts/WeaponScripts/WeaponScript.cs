@@ -25,7 +25,7 @@ public class WeaponScript : MonoBehaviour {
     }
 
     public void Fire(int localScaleFlipFactor) {
-        if (!NormalShotOnCD())
+        if (!NormalShotOnCD() && gameObject.activeSelf)
         {
             Rigidbody2D shot = (Rigidbody2D)Instantiate(laserShot);
             shot.transform.position = transform.position + new Vector3(0.001f * localScaleFlipFactor, 0, 0);
@@ -36,7 +36,7 @@ public class WeaponScript : MonoBehaviour {
 
     public void ChargedFire(int localScaleFlipFactor)
     {
-        if (!ChargedShotOnCD())
+        if (!ChargedShotOnCD() && gameObject.activeSelf)
         {
             Rigidbody2D shot = (Rigidbody2D)Instantiate(laserChargedShot);
             shot.transform.position = transform.position + new Vector3(0.001f * localScaleFlipFactor, 0, 0);

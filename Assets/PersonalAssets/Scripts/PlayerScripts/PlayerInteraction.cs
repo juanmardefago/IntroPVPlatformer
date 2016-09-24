@@ -9,8 +9,10 @@ public class PlayerInteraction : MonoBehaviour {
     public bool interacting;
     [HideInInspector]
     public Animator anim;
-    //[HideInInspector]
+    [HideInInspector]
     public Stack<Vector3> goBackPositionStack;
+    public GameObject weapon;
+    private StateDetection stateDetect;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour {
         movementScript = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
         goBackPositionStack = new Stack<Vector3>();
+        stateDetect = GetComponentInChildren<StateDetection>();
 	}
 	
 	// Update is called once per frame
@@ -57,5 +60,18 @@ public class PlayerInteraction : MonoBehaviour {
         movementScript.anim.SetBool("isClimbing", false);
         movementScript.anim.SetBool("isJumping", false);
         movementScript.anim.SetBool("isSwimming", false);
+    }
+
+    public void SetWeaponActive(bool cond)
+    {
+        if (weapon != null)
+        {
+            weapon.SetActive(cond);
+        }
+    }
+
+    public void OnDeInteract()
+    {
+        stateDetect.OnDeInteract();
     }
 }

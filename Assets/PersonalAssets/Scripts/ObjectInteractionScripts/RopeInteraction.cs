@@ -11,6 +11,8 @@ public class RopeInteraction : ObjectInteractionScript {
         pi.SwapState(MidAirState.GetInstance());
         pi.anim.SetBool("isClimbing", false);
         pi.SetKinematic(false);
+        pi.SetWeaponActive(true);
+        pi.OnDeInteract();
     }
 
     // Al interactuar con la Rope (Soga), se cambia el estado a Climbing, se resetean las animaciones 
@@ -23,5 +25,6 @@ public class RopeInteraction : ObjectInteractionScript {
         pi.ResetAnims();
         pi.anim.SetBool("isClimbing", true);
         pi.SetKinematic(true);
+        pi.SetWeaponActive(false);
     }
 }

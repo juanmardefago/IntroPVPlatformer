@@ -805,6 +805,7 @@ MonoBehaviour:
   speed: 8
   rBody: {fileID: 0}
   anim: {fileID: 0}
+  hitRecoveryTime: 0.15
 --- !u!50 &1382634676
 Rigidbody2D:
   serializedVersion: 2

@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour {
     private bool facingRight = true;
     private PlayerMovementState playerMovementState;
     private Collider2D playerColl;
+    private float hitRecoveryTimer;
+    public float hitRecoveryTime;
 
 
 	// Use this for initialization
@@ -25,8 +27,12 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	void Update () {
-        playerMovementState.KeyPressUpdate();
-        playerMovementState.StateDependentUpdate(this);
+        if (IsNotHit())
+        {
+            playerMovementState.KeyPressUpdate();
+            playerMovementState.StateDependentUpdate(this);
+        }
+        CheckForRecoveryAndRecover();
     }
 
     void FixedUpdate () {
@@ -43,18 +49,24 @@ public class PlayerMovement : MonoBehaviour {
     // Para ser usado por default en los States que lo quieran usar.
     public void CheckHorizontalMovement()
     {
-        moveX = Input.GetAxis("Horizontal");
-        if (moveX != 0) {
-            rBody.velocity = new Vector2(moveX * speed, rBody.velocity.y);
-            anim.SetBool("isWalking", true);
-            anim.SetFloat("speed", Mathf.Abs(moveX));
-        } else {
-            anim.SetBool("isWalking", false);
-            anim.SetFloat("speed", 0);
-            rBody.velocity = new Vector2(0, rBody.velocity.y);
-        }
+        if (IsNotHit())
+        {
+            moveX = Input.GetAxis("Horizontal");
+            if (moveX != 0)
+            {
+                rBody.velocity = new Vector2(moveX * speed, rBody.velocity.y);
+                anim.SetBool("isWalking", true);
+                anim.SetFloat("speed", Mathf.Abs(moveX));
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetFloat("speed", 0);
+                rBody.velocity = new Vector2(0, rBody.velocity.y);
+            }
 
-        CorrectLocalScale(moveX);
+            CorrectLocalScale(moveX);
+        }
     }
 
     // Puede ser usado por los state para corregir el localScale si lo necesitan
@@ -82,7 +94,25 @@ public class PlayerMovement : MonoBehaviour {
     // Habria que agregar un mecanismo para que se evite checkear el movimiento horizontal mientras esta herido para que no se cague este push. Sino no pushea
     public void Pushback(Vector2 dir)
     {
+        hitRecoveryTimer = hitRecoveryTime;
         rBody.AddForce(dir * 10, ForceMode2D.Impulse);
+    }
+
+    private bool IsNotHit()
+    {
+        return hitRecoveryTimer == 0f;
+    }
+
+    private void CheckForRecoveryAndRecover()
+    {
+        // if IsHit.
+        if (!IsNotHit() && hitRecoveryTimer >= Time.deltaTime)
+        {
+            hitRecoveryTimer -= Time.deltaTime;
+        } else if (!IsNotHit() && hitRecoveryTimer < Time.deltaTime)
+        {
+            hitRecoveryTimer = 0f;
+        }
     }
 
     // DEPRECATED

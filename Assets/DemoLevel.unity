@@ -964,6 +964,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1382634669}
+  reloadingColor: {r: 0.9191176, g: 0.16219722, b: 0.16219722, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1204334080
 Prefab:
   m_ObjectHideFlags: 0
@@ -1285,7 +1287,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6db03915338f4d548aaf7515714f655c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0

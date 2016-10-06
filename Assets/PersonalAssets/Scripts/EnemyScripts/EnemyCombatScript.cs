@@ -68,7 +68,7 @@ public class EnemyCombatScript : MonoBehaviour
         movementScript.PushbackTo(-TransformDistanceToDirection());
     }
 
-    private void Die()
+    public void Die()
     {
         playerTransform.SendMessage("AddExperience", expBounty);
         dieTimer += Time.deltaTime;

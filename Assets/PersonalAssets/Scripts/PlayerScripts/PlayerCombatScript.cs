@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+// Estoy es por ahora..
+using UnityEngine.SceneManagement;
 
 public class PlayerCombatScript : MonoBehaviour {
 
@@ -101,8 +103,14 @@ public class PlayerCombatScript : MonoBehaviour {
     // No es la version final ni a palos jajaja
     public void Die()
     {
-        lives--;
-        transform.position = new Vector3(-6f, -1.35f, 0f);
-        health = maxHealth;
+        if(lives == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        } else {
+            lives--;
+            transform.position = new Vector3(-6f, -1.35f, 0f);
+            health = maxHealth;
+        }
+
     }
 }

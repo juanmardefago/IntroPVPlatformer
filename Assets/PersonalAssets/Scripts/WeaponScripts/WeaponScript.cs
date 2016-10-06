@@ -46,9 +46,10 @@ public class WeaponScript : MonoBehaviour {
             shot.GetComponent<Rigidbody2D>().velocity = new Vector2(15 * localScaleFlipFactor, 0);
             normalShotTimer = normalShotCD;
             bullets--;
-        } else if (bullets == 0 && !Reloading())
-        {
-            Reload();
+            if(bullets == 0)
+            {
+                Reload();
+            }
         }
     }
 
@@ -111,7 +112,7 @@ public class WeaponScript : MonoBehaviour {
         return normalShotTimer != 0f;
     }
 
-    private bool Reloading()
+    public bool Reloading()
     {
         return reloadTimer != 0f;
     }

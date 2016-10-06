@@ -58,7 +58,7 @@ public class WeaponScript : MonoBehaviour {
         if (!ChargedShotOnCD() && gameObject.activeSelf)
         {
             GameObject shot = Instantiate(laserChargedShot);
-            shot.GetComponent<ProjectileScript>().damage = damage;
+            shot.GetComponent<ProjectileScript>().damage = damage * 4;
             shot.transform.position = transform.position + new Vector3(0.001f * localScaleFlipFactor, 0, 0);
             shot.GetComponent<Rigidbody2D>().velocity = new Vector2(15 * localScaleFlipFactor, 0);
             chargedShotTimer = chargedShotCD;

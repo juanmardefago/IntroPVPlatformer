@@ -153,6 +153,7 @@ MonoBehaviour:
   objectToInteract: {fileID: 0}
   interacting: 0
   anim: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!114 &114000012543283298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +191,7 @@ MonoBehaviour:
   speed: 8
   rBody: {fileID: 0}
   anim: {fileID: 0}
+  hitRecoveryTime: 0
 --- !u!212 &212000013797873598
 SpriteRenderer:
   m_ObjectHideFlags: 1

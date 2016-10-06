@@ -5,7 +5,7 @@ public class ProjectileScript : MonoBehaviour {
 
     private float timer = 0f;
     public float maxTime;
-    public float damage;
+    public int damage;
     public Sprite explotionSprite;
     private bool shouldBurst = false;
     private float burstTimer = 0f;

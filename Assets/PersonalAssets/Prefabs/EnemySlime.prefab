@@ -211,6 +211,8 @@ MonoBehaviour:
   awarenessDistance: 5
   awarenessAngle: 180
   playerTransform: {fileID: 0}
+  damage: 0
+  expBounty: 100
 --- !u!114 &114000013585095424
 MonoBehaviour:
   m_ObjectHideFlags: 1

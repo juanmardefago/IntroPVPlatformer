@@ -20,6 +20,8 @@ public class EnemyCombatScript : MonoBehaviour
 
     public int damage;
 
+    public int expBounty;
+
     // Use this for initialization
     void Start()
     {
@@ -68,6 +70,7 @@ public class EnemyCombatScript : MonoBehaviour
 
     private void Die()
     {
+        playerTransform.SendMessage("AddExperience", expBounty);
         dieTimer += Time.deltaTime;
         anim.SetTrigger("dying");
         movementScript.MakeKinematic();

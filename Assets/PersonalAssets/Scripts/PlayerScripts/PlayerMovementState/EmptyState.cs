@@ -23,6 +23,6 @@ public class EmptyState : PlayerMovementState {
 
     public void StateDependentUpdate(PlayerMovement pm)
     {
-        pm.CheckHorizontalMovement();
+        // Do nothing, this is an empty state.
     }
 }

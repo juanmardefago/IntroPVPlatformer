@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerInteraction : MonoBehaviour {
 
+    // Este es el script de interacción del player con cosas como sogas y teleporters, el de NPCs se maneja por separado
+
     public GameObject objectToInteract;
     private PlayerMovement movementScript;
     public bool interacting;

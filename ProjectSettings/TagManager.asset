@@ -10,6 +10,7 @@ TagManager:
   - TeleportInteracter
   - Weapon
   - Enemy
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Player
   - PlayerProjectiles
   - Enemy
-  - 
-  - 
+  - PlayerNPCInteract
+  - NPC
   - 
   - 
   - 

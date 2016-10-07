@@ -11,6 +11,7 @@ TagManager:
   - Weapon
   - Enemy
   - NPC
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2829121099
+    locked: 0
+  - name: HUD
+    uniqueID: 1303145705
+    locked: 0
+  - name: Menu
+    uniqueID: 2576244423
     locked: 0

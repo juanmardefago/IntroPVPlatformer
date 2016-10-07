@@ -21,8 +21,6 @@ public class PopupTextHandler : MonoBehaviour
         GameObject popup = Instantiate(popupPrefab);
         popup.GetComponentInChildren<Text>().text = damage.ToString();
         popup.transform.SetParent(canvas.transform, false);
-        //Vector2 screenLocation = Camera.main.WorldToScreenPoint(new Vector2(transform.position.x + Random.Range(-0.2f, 0.2f), transform.position.y + Random.Range(-0.2f, 0.2f)));
-        //popup.transform.position = screenLocation;
         Destroy(popup, clipLength);
     }
 }

@@ -72,8 +72,8 @@ public class PlayerInteraction : MonoBehaviour {
         }
     }
 
-    public void OnDeInteract()
+    public void OnDeInteract(string tag)
     {
-        stateDetect.OnDeInteract();
+        stateDetect.OnDeInteract(tag);
     }
 }

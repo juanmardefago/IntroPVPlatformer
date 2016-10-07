@@ -6,7 +6,6 @@ public class StateDetection : MonoBehaviour
 
     private PlayerMovement movementScript;
     private PlayerInteraction interactionScript;
-    private bool deInteracting = false;
 
     // Use this for initialization
     void Start()
@@ -33,11 +32,6 @@ public class StateDetection : MonoBehaviour
         // a triggerear un OnTriggerEnter, pero si un OnTriggerStay.
         if (!interactionScript.interacting)
         {
-            DetectState(other);
-        } else if (deInteracting)
-        {
-            deInteracting = false;
-            ExitInteracting(other);
             DetectState(other);
         }
     }
@@ -101,31 +95,12 @@ public class StateDetection : MonoBehaviour
         }
     }
 
+    // Lo pase al OnDeInteract porque asi puedo llamar para desinteractuar con un tag especifico desde afuera
+    // lo que me permitio resolver el problema de la interacción con la soga YAY!
+
     void ExitInteracting(Collider2D other)
     {
-        // Si salimos de un collider rope mientras interactuaba, resetamos el rigidbody, interaction script, 
-        // animaciones y colliders para que esten igual que en un estado previo a la interaccion
-        // Luego seteamos el estado por un midAir para poder saltar una vez y tener algo de control en la caida.
-
-        // Quizas para hacerlo más ordenado y objetoso tendríamos que hacer que el mismo objectToInteract limpie todo esto
-        // Onda poniendo interactionScript.CleanInteraction y que eso llame al script de interaccion del objectToInteract
-        // Pasando como parametro todo lo que tiene que limpiar y listo. Por ahora así alcanza, pero puede crecer bastante.
-        if (IsTagged("Rope", other))
-        {
-            interactionScript.SetKinematic(false);
-            ResetAnims();
-            movementScript.SetColliderStatus(true);
-            movementScript.SwapState(MidAirState.GetInstance());
-            interactionScript.interacting = false;
-            interactionScript.objectToInteract = null;
-            interactionScript.SetWeaponActive(true);
-        }
-        if(IsTagged("TeleportInteracter", other))
-        {
-            interactionScript.interacting = false;
-            interactionScript.objectToInteract = null;
-        }
-
+        OnDeInteract(LookupTag(other.transform));
     }
 
     void ResetAnims()
@@ -147,8 +122,42 @@ public class StateDetection : MonoBehaviour
         return res;
     }
 
-    public void OnDeInteract()
+    public void OnDeInteract(string tag)
     {
-        deInteracting = true;
+        // Si salimos de un collider rope mientras interactuaba, resetamos el rigidbody, interaction script, 
+        // animaciones y colliders para que esten igual que en un estado previo a la interaccion
+        // Luego seteamos el estado por un midAir para poder saltar una vez y tener algo de control en la caida.
+
+        // Quizas para hacerlo más ordenado y objetoso tendríamos que hacer que el mismo objectToInteract limpie todo esto
+        // Onda poniendo interactionScript.CleanInteraction y que eso llame al script de interaccion del objectToInteract
+        // Pasando como parametro todo lo que tiene que limpiar y listo. Por ahora así alcanza, pero puede crecer bastante.
+        if (tag == "Rope")
+        {
+            interactionScript.SetKinematic(false);
+            ResetAnims();
+            movementScript.SetColliderStatus(true);
+            movementScript.SwapState(MidAirState.GetInstance());
+            interactionScript.interacting = false;
+            interactionScript.objectToInteract = null;
+            interactionScript.SetWeaponActive(true);
+        }
+        if (tag == "TeleportInteracter")
+        {
+            interactionScript.interacting = false;
+            interactionScript.objectToInteract = null;
+        }
+    }
+
+    private string LookupTag(Transform trans)
+    {
+        string res = "Untagged";
+        if(trans.tag != "Untagged")
+        {
+            res = trans.tag;
+        } else if (trans.parent != null)
+        {
+            res = LookupTag(trans.parent);
+        }
+        return res;
     }
 }

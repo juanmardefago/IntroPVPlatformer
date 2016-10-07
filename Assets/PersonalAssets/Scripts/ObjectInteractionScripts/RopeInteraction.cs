@@ -8,11 +8,11 @@ public class RopeInteraction : ObjectInteractionScript {
     // se desactiva la animacion de Climbing y se vuelve a poner el rigidbody como antes.
     public override void DeInteract(PlayerInteraction pi)
     {
+        pi.OnDeInteract("Rope");
         pi.SwapState(MidAirState.GetInstance());
         pi.anim.SetBool("isClimbing", false);
         pi.SetKinematic(false);
         pi.SetWeaponActive(true);
-        pi.OnDeInteract();
     }
 
     // Al interactuar con la Rope (Soga), se cambia el estado a Climbing, se resetean las animaciones 

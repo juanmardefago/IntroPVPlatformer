@@ -91,7 +91,6 @@ public class PlayerMovement : MonoBehaviour {
         playerColl.enabled = status;
     }
 
-    // Habria que agregar un mecanismo para que se evite checkear el movimiento horizontal mientras esta herido para que no se cague este push. Sino no pushea
     public void Pushback(Vector2 dir)
     {
         hitRecoveryTimer = hitRecoveryTime;

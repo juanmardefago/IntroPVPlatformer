@@ -37,7 +37,7 @@ public class MidAirState : PlayerMovementState {
             pm.rBody.velocity = Vector2.up * jumpStrength;
             wantsToJump = false;
             pm.anim.SetBool("isJumping", true);
-            pm.SwapState(EmptyState.GetInstance());
+            pm.SwapState(FallingState.GetInstance());
         }
         pm.CheckHorizontalMovement();
     }

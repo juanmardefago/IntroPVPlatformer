@@ -8,21 +8,18 @@ public class PlayerInteraction : MonoBehaviour {
 
     public GameObject objectToInteract;
     private PlayerMovement movementScript;
-    public bool interacting;
     [HideInInspector]
     public Animator anim;
     [HideInInspector]
     public Stack<Vector3> goBackPositionStack;
     public GameObject weapon;
-    private StateDetection stateDetect;
+    public ObjectInteractionScript interactingScript;
 
 	// Use this for initialization
 	void Start () {
-        interacting = false;
         movementScript = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
         goBackPositionStack = new Stack<Vector3>();
-        stateDetect = GetComponentInChildren<StateDetection>();
 	}
 	
 	// Update is called once per frame
@@ -31,32 +28,23 @@ public class PlayerInteraction : MonoBehaviour {
         if (Input.GetButtonDown("Interact") && CanInteract())
         {
             // avisa que empezo a interactuar y llama al metodo de interaccion del script interactivo del objeto.
-            interacting = true;
-            objectToInteract.GetComponent<ObjectInteractionScript>().Interact(this);
-        } else if(Input.GetButtonDown("Interact") && interacting)
+            interactingScript = objectToInteract.GetComponent<ObjectInteractionScript>();
+            interactingScript.Interact(this, movementScript);
+        } else if(Input.GetButtonDown("Interact") && Interacting())
         {
             // Si estaba interactuando entonces avisa al script de desinteraccion del objeto.
-            objectToInteract.GetComponent<ObjectInteractionScript>().DeInteract(this);
+            interactingScript.DeInteract(this, movementScript);
+            interactingScript = null;
         }
 	}
 
     // puede interactuar si esta sobre un objeto para interactuar y si no esta interactuando
     private bool CanInteract()
     {
-        return objectToInteract != null && !interacting;
+        return objectToInteract != null && !Interacting();
     }
 
     // estos mensajes estan para simplificar las cosas.
-    public void SwapState(PlayerMovementState pms)
-    {
-        movementScript.SwapState(pms);
-    }
-
-    public void SetKinematic(bool status)
-    {
-        movementScript.rBody.isKinematic = status;
-    }
-
     public void ResetAnims()
     {
         movementScript.anim.SetBool("isClimbing", false);
@@ -72,8 +60,8 @@ public class PlayerInteraction : MonoBehaviour {
         }
     }
 
-    public void OnDeInteract(string tag)
+    public bool Interacting()
     {
-        stateDetect.OnDeInteract(tag);
+        return interactingScript != null;
     }
 }

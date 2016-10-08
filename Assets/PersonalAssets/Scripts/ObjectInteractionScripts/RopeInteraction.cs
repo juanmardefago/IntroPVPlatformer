@@ -6,25 +6,28 @@ public class RopeInteraction : ObjectInteractionScript {
 
     // Al dejar de interactuar se cambia el estado a MidAir (para que pueda saltar una vez y no caer sin control)
     // se desactiva la animacion de Climbing y se vuelve a poner el rigidbody como antes.
-    public override void DeInteract(PlayerInteraction pi)
+    public override void DeInteract(PlayerInteraction pi, PlayerMovement pm)
     {
-        pi.OnDeInteract("Rope");
-        pi.SwapState(MidAirState.GetInstance());
+        pm.rBody.isKinematic = false;
         pi.anim.SetBool("isClimbing", false);
-        pi.SetKinematic(false);
+        pm.SetColliderStatus(true);
+        pm.SwapState(MidAirState.GetInstance());
+        pi.objectToInteract = null;
         pi.SetWeaponActive(true);
+
+        pi.interactingScript = null;
     }
 
     // Al interactuar con la Rope (Soga), se cambia el estado a Climbing, se resetean las animaciones 
     // poniendo los principales bool del animatorController en false, se pone el animatorController
     // para que muestre la animacion de Climbing, y se cambiar el rigidBody a Kinematic
     // para que deje de ser afectado por la gravedad
-    public override void Interact(PlayerInteraction pi)
+    public override void Interact(PlayerInteraction pi, PlayerMovement pm)
     {
-        pi.SwapState(ClimbingState.GetInstance());
+        pm.SwapState(ClimbingState.GetInstance());
         pi.ResetAnims();
         pi.anim.SetBool("isClimbing", true);
-        pi.SetKinematic(true);
+        pm.rBody.isKinematic = true;
         pi.SetWeaponActive(false);
     }
 }

@@ -18,7 +18,7 @@ public class StateDetection : MonoBehaviour
     {
         // Cuando entro al trigger solo detecto cambios de estado al entrar a un trigger si no esta interactuando con algo en particular
         // Por ejemplo, si esta colgado de la soga, no quiero que se cambie el estado hasta que no termine de interactuar con la soga
-        if (!interactionScript.interacting)
+        if (!interactionScript.Interacting())
         {
             DetectState(other);
         }
@@ -30,7 +30,7 @@ public class StateDetection : MonoBehaviour
         // Esto lo hacemos para que si, por ejemplo, esta en el agua, y se pone a interactuar con la soga, y luego
         // deja de interactuar, pueda seguir nadando, dado que nunca salio del collider de agua, y no va a volver
         // a triggerear un OnTriggerEnter, pero si un OnTriggerStay.
-        if (!interactionScript.interacting)
+        if (!interactionScript.Interacting())
         {
             DetectState(other);
         }
@@ -41,12 +41,12 @@ public class StateDetection : MonoBehaviour
         // Cuando se sale de un trigger deberia cambiar el estado dependiendo de si esta interactuando o no
         // Si no esta interactuando, los cambios de estado que me interezan son los de exit que no tengan
         // interaccion, como por ejemplo, nadar, o saltar
-        if (!interactionScript.interacting)
+        if (!interactionScript.Interacting())
         {
             ExitNonInteracting(other);
         }
         // en cambio, si esta interactuando, quiero que se fije si salio de la soga por ejemplo.
-        else
+        else if(IsTagged(LookupTag(interactionScript.interactingScript.transform),other))
         {
             ExitInteracting(other);
         }
@@ -95,12 +95,12 @@ public class StateDetection : MonoBehaviour
         }
     }
 
-    // Lo pase al OnDeInteract porque asi puedo llamar para desinteractuar con un tag especifico desde afuera
-    // lo que me permitio resolver el problema de la interacción con la soga YAY!
+    // Ahora directamente le digo al objeto que esta interactuando con el playerInteraction
+    // que se encargue de hacer el cleanup de la interacción de DeInteract.
 
     void ExitInteracting(Collider2D other)
     {
-        OnDeInteract(LookupTag(other.transform));
+        interactionScript.interactingScript.DeInteract(interactionScript, movementScript);
     }
 
     void ResetAnims()
@@ -120,32 +120,6 @@ public class StateDetection : MonoBehaviour
             res = other.tag == tag;
         }
         return res;
-    }
-
-    public void OnDeInteract(string tag)
-    {
-        // Si salimos de un collider rope mientras interactuaba, resetamos el rigidbody, interaction script, 
-        // animaciones y colliders para que esten igual que en un estado previo a la interaccion
-        // Luego seteamos el estado por un midAir para poder saltar una vez y tener algo de control en la caida.
-
-        // Quizas para hacerlo más ordenado y objetoso tendríamos que hacer que el mismo objectToInteract limpie todo esto
-        // Onda poniendo interactionScript.CleanInteraction y que eso llame al script de interaccion del objectToInteract
-        // Pasando como parametro todo lo que tiene que limpiar y listo. Por ahora así alcanza, pero puede crecer bastante.
-        if (tag == "Rope")
-        {
-            interactionScript.SetKinematic(false);
-            ResetAnims();
-            movementScript.SetColliderStatus(true);
-            movementScript.SwapState(MidAirState.GetInstance());
-            interactionScript.interacting = false;
-            interactionScript.objectToInteract = null;
-            interactionScript.SetWeaponActive(true);
-        }
-        if (tag == "TeleportInteracter")
-        {
-            interactionScript.interacting = false;
-            interactionScript.objectToInteract = null;
-        }
     }
 
     private string LookupTag(Transform trans)

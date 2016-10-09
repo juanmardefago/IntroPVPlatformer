@@ -55,6 +55,7 @@ MonoBehaviour:
   laserShot: {fileID: 1000013194491404, guid: 05bfa86622c561d48a6018ba10b7800e, type: 2}
   laserChargedShot: {fileID: 1000012280153516, guid: bd33282d6603f8a42a92ec365608d9d4,
     type: 2}
+  weaponName: Advanced Laser Pistol
   baseDamage: 30
   damageIncreasePerLevel: 50
   weaponLevel: 1
@@ -62,6 +63,7 @@ MonoBehaviour:
   chargedShotCD: 1.5
   normalShotCD: 0.3
   reloadCD: 1
+  upgrades: []
 --- !u!212 &212000013633016736
 SpriteRenderer:
   m_ObjectHideFlags: 1

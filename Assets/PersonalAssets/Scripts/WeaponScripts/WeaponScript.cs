@@ -7,6 +7,8 @@ public class WeaponScript : MonoBehaviour {
     public GameObject laserShot;
     public GameObject laserChargedShot;
 
+    public string weaponName;
+
     private int damage;
     public int baseDamage;
     public int damageIncreasePerLevel;

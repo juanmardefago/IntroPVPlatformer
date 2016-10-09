@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WeaponScript : MonoBehaviour {
 
@@ -24,9 +25,11 @@ public class WeaponScript : MonoBehaviour {
     public float reloadCD = 0.5f;
     private float reloadTimer = 0f;
 
+    public List<UpgradeScript> upgrades;
+
     // Use this for initialization
     void Start () {
-        damage = baseDamage + (weaponLevel * damageIncreasePerLevel);
+        damage = baseDamage + ((weaponLevel - 1) * damageIncreasePerLevel);
         bullets = maxBullets;
 	}
 	
@@ -40,11 +43,13 @@ public class WeaponScript : MonoBehaviour {
     public void Fire(int localScaleFlipFactor) {
         if (!NormalShotOnCD() && gameObject.activeSelf && bullets > 0 && !Reloading())
         {
+            normalShotTimer = normalShotCD;
             GameObject shot = Instantiate(laserShot);
-            shot.GetComponent<ProjectileScript>().damage = damage;
+            ProjectileScript pScript = shot.GetComponent<ProjectileScript>();
+            pScript.damage = damage;
+            ApplyUpgrades(pScript);
             shot.transform.position = transform.position + new Vector3(0.001f * localScaleFlipFactor, 0, 0);
             shot.GetComponent<Rigidbody2D>().velocity = new Vector2(15 * localScaleFlipFactor, 0);
-            normalShotTimer = normalShotCD;
             bullets--;
             if(bullets == 0)
             {
@@ -57,11 +62,22 @@ public class WeaponScript : MonoBehaviour {
     {
         if (!ChargedShotOnCD() && gameObject.activeSelf && !Reloading())
         {
+            chargedShotTimer = chargedShotCD;
             GameObject shot = Instantiate(laserChargedShot);
-            shot.GetComponent<ProjectileScript>().damage = damage * 4;
+            ProjectileScript pScript = shot.GetComponent<ProjectileScript>();
+            // Aca se podría hacer que en vez de que el chargedShot sea siempre x4, tenga una variable que se puede tocar desde el inspector de unity.
+            pScript.damage = damage * 4;
+            ApplyUpgrades(pScript);
             shot.transform.position = transform.position + new Vector3(0.001f * localScaleFlipFactor, 0, 0);
             shot.GetComponent<Rigidbody2D>().velocity = new Vector2(15 * localScaleFlipFactor, 0);
-            chargedShotTimer = chargedShotCD;
+        }
+    }
+
+    private void ApplyUpgrades(ProjectileScript pScript)
+    {
+        foreach (UpgradeScript upgrade in upgrades)
+        {
+            upgrade.UpgradeProjectile(pScript);
         }
     }
 

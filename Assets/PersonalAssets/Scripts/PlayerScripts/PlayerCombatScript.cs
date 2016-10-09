@@ -42,10 +42,13 @@ public class PlayerCombatScript : MonoBehaviour {
     // Hay que checkear !EventSystem.current.IsPointerOverGameObject() para que si estoy en un button no se pueda disparar cuando clickeo los botones
     private void CheckForShotInput()
     {
-        if (Input.GetButtonDown("Fire1") && !EventSystem.current.IsPointerOverGameObject()) {
+        if (Input.GetButton("Fire1") && !EventSystem.current.IsPointerOverGameObject()) {
             weapon.Fire(OffsetForLocalScale());
-        } else if (Input.GetButtonDown("Fire2") && !EventSystem.current.IsPointerOverGameObject()) {
+        } else if (Input.GetButton("Fire2") && !EventSystem.current.IsPointerOverGameObject()) {
             weapon.ChargedFire(OffsetForLocalScale());
+        } else if (Input.GetButton("Reload"))
+        {
+            weapon.ReloadIfNeeded();
         }
     }
 

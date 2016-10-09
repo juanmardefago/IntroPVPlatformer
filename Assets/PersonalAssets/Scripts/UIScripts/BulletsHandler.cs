@@ -14,6 +14,7 @@ public class BulletsHandler : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         playerWeapon = player.GetComponentInChildren<WeaponScript>();
         textUI = gameObject.GetComponent<Text>();
         textUI.text = "";

@@ -25,6 +25,7 @@ public class EnemyCombatScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playerTransform = GameObject.FindWithTag("Player").transform;
         anim = GetComponent<Animator>();
         myTransform = GetComponent<Transform>();
         movementScript = GetComponent<EnemyMovementBasic>();

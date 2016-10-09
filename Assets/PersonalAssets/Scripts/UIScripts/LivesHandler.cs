@@ -11,6 +11,7 @@ public class LivesHandler : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         combatStats = player.GetComponent<PlayerCombatScript>();
         textUI = gameObject.GetComponent<Text>();
         textUI.text = "";

@@ -10,6 +10,7 @@ public class WeaponImageHandler : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         img = gameObject.GetComponent<Image>();
         img.color = new Color32(255,255,255,255);
         SpriteRenderer[] comps = player.GetComponentsInChildren<SpriteRenderer>();

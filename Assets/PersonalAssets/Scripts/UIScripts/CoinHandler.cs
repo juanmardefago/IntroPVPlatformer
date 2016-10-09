@@ -10,6 +10,7 @@ public class CoinHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        player = GameObject.FindWithTag("Player");
         playerInventory = player.GetComponent<Inventory>();
         textUI = gameObject.GetComponent<Text>();
         textUI.text = "Coins: 0";

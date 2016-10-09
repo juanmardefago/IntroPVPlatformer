@@ -38,7 +38,7 @@ public class WeaponScript : MonoBehaviour {
     }
 
     public void Fire(int localScaleFlipFactor) {
-        if (!NormalShotOnCD() && gameObject.activeSelf && bullets > 0)
+        if (!NormalShotOnCD() && gameObject.activeSelf && bullets > 0 && !Reloading())
         {
             GameObject shot = Instantiate(laserShot);
             shot.GetComponent<ProjectileScript>().damage = damage;
@@ -55,7 +55,7 @@ public class WeaponScript : MonoBehaviour {
 
     public void ChargedFire(int localScaleFlipFactor)
     {
-        if (!ChargedShotOnCD() && gameObject.activeSelf)
+        if (!ChargedShotOnCD() && gameObject.activeSelf && !Reloading())
         {
             GameObject shot = Instantiate(laserChargedShot);
             shot.GetComponent<ProjectileScript>().damage = damage * 4;
@@ -120,5 +120,13 @@ public class WeaponScript : MonoBehaviour {
     private void Reload()
     {
         reloadTimer = reloadCD;
+    }
+
+    public void ReloadIfNeeded()
+    {
+        if(bullets < maxBullets && !Reloading())
+        {
+            Reload();
+        }
     }
 }

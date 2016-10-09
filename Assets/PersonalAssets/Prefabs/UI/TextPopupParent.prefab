@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 224000011344634894}
   - 222: {fileID: 222000011756944654}
+  - 225: {fileID: 225000012965749990}
   m_Layer: 5
   m_Name: TextPopupParent
   m_TagString: Untagged
@@ -159,3 +160,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 5, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225000012965749990
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013115875550}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

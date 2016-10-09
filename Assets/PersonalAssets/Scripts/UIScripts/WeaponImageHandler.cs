@@ -2,24 +2,34 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class WeaponImageHandler : MonoBehaviour {
+public class WeaponImageHandler : MonoBehaviour
+{
 
-    public GameObject player;
+    public Inventory playerInventory;
     private Image img;
+
+    public void Awake()
+    {
+        img = gameObject.GetComponent<Image>();
+    }
 
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        img = gameObject.GetComponent<Image>();
-        img.color = new Color32(255,255,255,255);
-        SpriteRenderer[] comps = player.GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer comp in comps)
+        RefreshWeaponImage();
+    }
+
+    public void RefreshWeaponImage()
+    {
+        WeaponScript weapon = playerInventory.currentWeapon;
+        if (weapon != null)
         {
-            if (comp.gameObject.GetInstanceID() != player.GetInstanceID())
-            {
-                img.sprite = comp.sprite;
-            }
+            img.color = new Color32(255, 255, 255, 255);
+            img.sprite = weapon.gameObject.GetComponent<SpriteRenderer>().sprite;
+        }
+        else
+        {
+            img.color = new Color32(255, 255, 255, 0);
         }
     }
 

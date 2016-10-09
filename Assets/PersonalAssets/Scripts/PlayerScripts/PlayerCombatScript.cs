@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerCombatScript : MonoBehaviour {
 
-    private WeaponScript weapon;
     private int health;
     private int maxHealth;
     public int baseHealth;
@@ -26,9 +25,11 @@ public class PlayerCombatScript : MonoBehaviour {
     private int expToLvlUp;
     public int ExperienceToNextLevel { get { return expToLvlUp; } }
 
+    private Inventory inventory;
+
     // Use this for initialization
     void Start () {
-        weapon = GetComponentInChildren<WeaponScript>();
+        inventory = GetComponent<Inventory>();
         anim = GetComponent<Animator>();
         RefreshLevelAndStats();
         expToLvlUp = ExperienceRequiredForNextLevel(level);
@@ -42,13 +43,13 @@ public class PlayerCombatScript : MonoBehaviour {
     // Hay que checkear !EventSystem.current.IsPointerOverGameObject() para que si estoy en un button no se pueda disparar cuando clickeo los botones
     private void CheckForShotInput()
     {
-        if (Input.GetButton("Fire1") && !EventSystem.current.IsPointerOverGameObject()) {
-            weapon.Fire(OffsetForLocalScale());
-        } else if (Input.GetButton("Fire2") && !EventSystem.current.IsPointerOverGameObject()) {
-            weapon.ChargedFire(OffsetForLocalScale());
-        } else if (Input.GetButton("Reload"))
+        if (Input.GetButton("Fire1") && !EventSystem.current.IsPointerOverGameObject() && inventory.currentWeapon != null) {
+            inventory.currentWeapon.Fire(OffsetForLocalScale());
+        } else if (Input.GetButton("Fire2") && !EventSystem.current.IsPointerOverGameObject() && inventory.currentWeapon != null) {
+            inventory.currentWeapon.ChargedFire(OffsetForLocalScale());
+        } else if (Input.GetButton("Reload") && inventory.currentWeapon != null)
         {
-            weapon.ReloadIfNeeded();
+            inventory.currentWeapon.ReloadIfNeeded();
         }
     }
 
@@ -70,6 +71,17 @@ public class PlayerCombatScript : MonoBehaviour {
         if(health == 0)
         {
             Die();
+        }
+    }
+
+    public void ReceiveHeal(int heal)
+    {
+        if(health + heal <= maxHealth)
+        {
+            health += heal;
+        } else
+        {
+            health = maxHealth;
         }
     }
 

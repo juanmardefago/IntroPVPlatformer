@@ -10,19 +10,37 @@ public class Inventory : MonoBehaviour {
 
     public List<GameObject> items;
 
-    public GameObject currentWeapon;
+    public GameObject[] eqWeapons;
+
+    public WeaponScript currentWeapon;
+
+    public BulletsHandler bulletHandler;
+    public WeaponImageHandler weaponImage;
 
 	// Use this for initialization
 	void Start () {
         coins = 0;
         items = new List<GameObject>();
-        currentWeapon = GetComponentInChildren<WeaponScript>().gameObject;
-	}
+        if(eqWeapons[0] != null)
+        {
+            ChangeWeapon(0);
+        } else if (eqWeapons[1] != null)
+        {
+            ChangeWeapon(1);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetButtonDown("Weapon1") && eqWeapons[0] != null)
+        {
+            ChangeWeapon(0);
+        }
+        else if (Input.GetButtonDown("Weapon2") && eqWeapons[1] != null)
+        {
+            ChangeWeapon(1);
+        }
+    }
 
     public void AddCoins(int coinsToAdd)
     {
@@ -34,25 +52,15 @@ public class Inventory : MonoBehaviour {
         items.Add(item);
     }
 
-    public void EquipWeapon(int num)
+    private void ChangeWeapon(int index)
     {
-        int tempNum = num;
-        int index = 0;
-        while(tempNum > 0 && index < items.Count)
+        if (currentWeapon != null)
         {
-            if (items[index] != null && items[index].tag == "Weapon")
-            {
-                tempNum--;
-            }
-            index++;
+            currentWeapon.gameObject.SetActive(false);
         }
-        if (items[index] != null) {
-            TriggerWeaponSwap(items[index]);
-        }
-    }
-
-    private void TriggerWeaponSwap(GameObject weapon)
-    {
-
+        currentWeapon = eqWeapons[index].GetComponent<WeaponScript>();
+        currentWeapon.gameObject.SetActive(true);
+        bulletHandler.RefreshWeaponBullets();
+        weaponImage.RefreshWeaponImage();
     }
 }

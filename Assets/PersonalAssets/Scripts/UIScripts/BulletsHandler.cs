@@ -2,21 +2,25 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class BulletsHandler : MonoBehaviour {
+public class BulletsHandler : MonoBehaviour
+{
 
-    public GameObject player;
+    public Inventory playerInventory;
     private WeaponScript playerWeapon;
     private Text textUI;
     private bool isColorInReloadingState;
     public Color reloadingColor;
     public Color normalColor;
 
+    public void Awake()
+    {
+        textUI = gameObject.GetComponent<Text>();
+    }
+
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        playerWeapon = player.GetComponentInChildren<WeaponScript>();
-        textUI = gameObject.GetComponent<Text>();
+        playerWeapon = playerInventory.currentWeapon;
         textUI.text = "";
         isColorInReloadingState = false;
     }
@@ -29,15 +33,23 @@ public class BulletsHandler : MonoBehaviour {
 
     private void HandleBulletAmount()
     {
-        int currentBullets = playerWeapon.Bullets;
-        int maxBullets = playerWeapon.maxBullets;
-        textUI.text = currentBullets + " / " + maxBullets;
-        if (playerWeapon.Reloading())
+        if (playerWeapon != null)
         {
-            ChangeColorToReloading();
-        } else
+            int currentBullets = playerWeapon.Bullets;
+            int maxBullets = playerWeapon.maxBullets;
+            textUI.text = currentBullets + " / " + maxBullets;
+            if (playerWeapon.Reloading())
+            {
+                ChangeColorToReloading();
+            }
+            else
+            {
+                ChangeColorToNormal();
+            }
+        }
+        else
         {
-            ChangeColorToNormal();
+            textUI.text = "";
         }
     }
 
@@ -57,5 +69,10 @@ public class BulletsHandler : MonoBehaviour {
             textUI.color = normalColor;
             isColorInReloadingState = false;
         }
+    }
+
+    public void RefreshWeaponBullets()
+    {
+        playerWeapon = playerInventory.currentWeapon;
     }
 }

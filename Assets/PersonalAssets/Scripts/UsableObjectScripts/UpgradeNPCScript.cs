@@ -8,6 +8,7 @@ public class UpgradeNPCScript : UsableObjectScript
     public GameObject mainCanvas;
     public GameObject shopContent;
     public GameObject mainPanel;
+    public GameObject equipPanel;
     public GameObject buyPanel;
     public GameObject upgradePanel;
     public GameObject weaponRowPrefab;
@@ -32,6 +33,7 @@ public class UpgradeNPCScript : UsableObjectScript
     public override void Interact(PlayerNPCInteraction pi)
     {
         ListAllWeapons();
+        ListEquipedWeapons();
         mainCanvas.SetActive(true);
     }
 
@@ -128,6 +130,20 @@ public class UpgradeNPCScript : UsableObjectScript
         mainPanel.SetActive(true);
         buyPanel.SetActive(false);
         upgradePanel.SetActive(false);
+    }
+
+    private void ListEquipedWeapons()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        GameObject[] weaponsEquiped = player.GetComponent<Inventory>().GetEquippedWeapons();
+        Button[] buttons = equipPanel.GetComponentsInChildren<Button>();
+        // Weapon 1 - Imagen y texto del child (la 0 es la del boton)
+        buttons[0].GetComponentsInChildren<Image>()[1].sprite = weaponsEquiped[0].GetComponent<SpriteRenderer>().sprite;
+        buttons[0].GetComponentInChildren<Text>().text = weaponsEquiped[0].GetComponent<WeaponScript>().weaponName;
+
+        // Weapon 2
+        buttons[1].GetComponentsInChildren<Image>()[1].sprite = weaponsEquiped[1].GetComponent<SpriteRenderer>().sprite;
+        buttons[1].GetComponentInChildren<Text>().text = weaponsEquiped[1].GetComponent<WeaponScript>().weaponName;
     }
 
     public void GoBack()

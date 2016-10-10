@@ -90,4 +90,9 @@ public class Inventory : MonoBehaviour {
         }
         return res;
     }
+
+    public GameObject[] GetEquippedWeapons()
+    {
+        return eqWeapons;
+    }
 }

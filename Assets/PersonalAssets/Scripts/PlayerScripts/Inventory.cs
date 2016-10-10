@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
 
+    // hay que hacerla private para la version final
     public int coins;
 
     public int Coins { get { return coins;  } }
@@ -47,6 +48,11 @@ public class Inventory : MonoBehaviour {
         coins += coinsToAdd;
     }
 
+    public void SubtractCoins(int coinsToSubtract)
+    {
+        coins -= coinsToSubtract;
+    }
+
     public void AddItem(GameObject item)
     {
         items.Add(item);
@@ -62,5 +68,23 @@ public class Inventory : MonoBehaviour {
         currentWeapon.gameObject.SetActive(true);
         bulletHandler.RefreshWeaponBullets();
         weaponImage.RefreshWeaponImage();
+    }
+
+    public List<string> GetWeaponsOwned()
+    {
+        List<string> res = new List<string>();
+        foreach(GameObject item in items)
+        {
+            if(item.tag == "Weapon")
+            {
+
+                res.Add(item.GetComponent<WeaponScript>().weaponName);
+            }
+        }
+        foreach(GameObject weapon in eqWeapons)
+        {
+            res.Add(weapon.GetComponent<WeaponScript>().weaponName);
+        }
+        return res;
     }
 }

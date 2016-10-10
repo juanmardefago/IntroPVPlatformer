@@ -56,6 +56,7 @@ MonoBehaviour:
   laserChargedShot: {fileID: 1000012280153516, guid: bd33282d6603f8a42a92ec365608d9d4,
     type: 2}
   weaponName: Advanced Laser Repeater
+  weaponPrice: 1500
   baseDamage: 15
   damageIncreasePerLevel: 30
   weaponLevel: 1

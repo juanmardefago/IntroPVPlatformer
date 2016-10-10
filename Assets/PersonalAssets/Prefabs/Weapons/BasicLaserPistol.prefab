@@ -56,6 +56,7 @@ MonoBehaviour:
   laserChargedShot: {fileID: 1000012280153516, guid: bd33282d6603f8a42a92ec365608d9d4,
     type: 2}
   weaponName: Laser Pistol
+  weaponPrice: 50
   baseDamage: 5
   damageIncreasePerLevel: 5
   weaponLevel: 1

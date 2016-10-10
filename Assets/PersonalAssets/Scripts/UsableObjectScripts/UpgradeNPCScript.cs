@@ -56,6 +56,8 @@ public class UpgradeNPCScript : UsableObjectScript
             }
             rows.Add(weaponRow);
         }
+        RectTransform rTransform = shopContent.GetComponent<RectTransform>();
+        rTransform.sizeDelta = new Vector2(rTransform.sizeDelta.x, -offset);
     }
 
     private void AddOnClickListenersToButtons(GameObject weaponRow, GameObject weapon, Button[] buttons)

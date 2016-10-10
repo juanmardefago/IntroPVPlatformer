@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DoubleDamageUpgrade : UpgradeScript
 {
+
     public override void ApplyEffect(Collider2D enemy, ProjectileScript projectile)
     {
         // Do nothing, not needed;

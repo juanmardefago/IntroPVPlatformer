@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour {
 
     public BulletsHandler bulletHandler;
     public WeaponImageHandler weaponImage;
+    public Transform inventoryBag;
 
 	// Use this for initialization
 	void Start () {
@@ -56,6 +57,8 @@ public class Inventory : MonoBehaviour {
     public void AddItem(GameObject item)
     {
         items.Add(item);
+        item.transform.SetParent(inventoryBag, false);
+        item.SetActive(false);
     }
 
     private void ChangeWeapon(int index)

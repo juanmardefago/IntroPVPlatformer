@@ -84,6 +84,8 @@ public class WeaponScript : MonoBehaviour {
         }
     }
 
+    // Cooldown Related
+
     private void UpdateChargedShotTimer()
     {
         if (chargedShotTimer >= Time.deltaTime)
@@ -120,6 +122,8 @@ public class WeaponScript : MonoBehaviour {
             bullets = maxBullets;
         }
     }
+
+    // Boolean checks
 
     private bool ChargedShotOnCD()
     {

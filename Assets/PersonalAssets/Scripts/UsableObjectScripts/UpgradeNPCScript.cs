@@ -103,6 +103,8 @@ public class UpgradeNPCScript : UsableObjectScript
     private void OpenUpgradeMenuForWeapon(GameObject weapon)
     {
         mainPanel.SetActive(false);
+        WeaponShopRowHandler weaponRowHeader = upgradePanel.GetComponentInChildren<WeaponShopRowHandler>();
+        weaponRowHeader.RefreshWeapon(weapon);
         upgradePanel.SetActive(true);
     }
 
@@ -121,6 +123,13 @@ public class UpgradeNPCScript : UsableObjectScript
             Destroy(row);
         }
         rows.Clear();
+        mainPanel.SetActive(true);
+        buyPanel.SetActive(false);
+        upgradePanel.SetActive(false);
+    }
+
+    public void GoBack()
+    {
         mainPanel.SetActive(true);
         buyPanel.SetActive(false);
         upgradePanel.SetActive(false);

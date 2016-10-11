@@ -67,8 +67,16 @@ public class Inventory : MonoBehaviour {
         {
             currentWeapon.gameObject.SetActive(false);
         }
-        currentWeapon = eqWeapons[index].GetComponent<WeaponScript>();
-        currentWeapon.gameObject.SetActive(true);
+
+        if (eqWeapons[index] != null)
+        {
+            currentWeapon = eqWeapons[index].GetComponent<WeaponScript>();
+            currentWeapon.gameObject.SetActive(true);
+        } else
+        {
+            currentWeapon = null;
+        }
+
         bulletHandler.RefreshWeaponBullets();
         weaponImage.RefreshWeaponImage();
     }
@@ -86,7 +94,10 @@ public class Inventory : MonoBehaviour {
         }
         foreach(GameObject weapon in eqWeapons)
         {
-            res.Add(weapon.GetComponent<WeaponScript>().weaponName);
+            if (weapon != null)
+            {
+                res.Add(weapon.GetComponent<WeaponScript>().weaponName);
+            }
         }
         return res;
     }
@@ -94,5 +105,53 @@ public class Inventory : MonoBehaviour {
     public GameObject[] GetEquippedWeapons()
     {
         return eqWeapons;
+    }
+
+    public List<GameObject> GetUnequippedWeapons()
+    {
+        List<GameObject> res = new List<GameObject>();
+        foreach(GameObject item in items)
+        {
+            if(item.tag == "Weapon")
+            {
+                res.Add(item);
+            }
+        }
+        return res;
+    }
+
+    public void Unequip(GameObject weaponToUnequip)
+    {
+        for(int i = 0; i < 2; i++)
+        {
+            if(eqWeapons[i] == weaponToUnequip)
+            {
+                UnequipAndPutInBag(eqWeapons[i], i);
+            }
+        }
+    }
+
+    private void UnequipAndPutInBag(GameObject weapon, int index)
+    {
+        eqWeapons[index] = null;
+        items.Add(weapon);
+        if(weapon.GetComponent<WeaponScript>().weaponName == currentWeapon.weaponName)
+        {
+            ChangeWeapon((index+1) % 2);
+        }
+        weapon.SetActive(false);
+        weapon.transform.SetParent(inventoryBag);
+    }
+
+    public void EquipOrSwap(GameObject weapon, int slot)
+    {
+        if(eqWeapons[slot] != null)
+        {
+            Unequip(eqWeapons[slot]);
+        }
+        eqWeapons[slot] = weapon;
+        weapon.transform.SetParent(transform);
+        items.Remove(weapon);
+        ChangeWeapon(slot);
     }
 }

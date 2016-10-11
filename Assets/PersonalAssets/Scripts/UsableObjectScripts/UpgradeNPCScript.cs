@@ -9,19 +9,23 @@ public class UpgradeNPCScript : UsableObjectScript
     public GameObject shopContent;
     public GameObject mainPanel;
     public GameObject equipPanel;
+    public GameObject swapWeaponPanel;
     public GameObject buyPanel;
     public GameObject upgradePanel;
     public GameObject weaponRowPrefab;
+    public GameObject weaponRowPrefabSingleButton;
     public Image buyWeaponImage;
     public Text buyWeaponText;
 
     public List<GameObject> weapons;
     public List<GameObject> upgrades;
     private List<GameObject> rows;
+    private List<GameObject> swapRows;
 
     public void Start()
     {
         rows = new List<GameObject>();
+        swapRows = new List<GameObject>();
     }
 
     public override void DeInteract(PlayerNPCInteraction pi)
@@ -126,8 +130,14 @@ public class UpgradeNPCScript : UsableObjectScript
         {
             Destroy(row);
         }
+        foreach (GameObject row in swapRows)
+        {
+            Destroy(row);
+        }
         rows.Clear();
+        swapRows.Clear();
         mainPanel.SetActive(true);
+        swapWeaponPanel.SetActive(false);
         buyPanel.SetActive(false);
         upgradePanel.SetActive(false);
     }
@@ -137,19 +147,121 @@ public class UpgradeNPCScript : UsableObjectScript
         GameObject player = GameObject.FindWithTag("Player");
         GameObject[] weaponsEquiped = player.GetComponent<Inventory>().GetEquippedWeapons();
         Button[] buttons = equipPanel.GetComponentsInChildren<Button>();
-        // Weapon 1 - Imagen y texto del child (la 0 es la del boton)
-        buttons[0].GetComponentsInChildren<Image>()[1].sprite = weaponsEquiped[0].GetComponent<SpriteRenderer>().sprite;
-        buttons[0].GetComponentInChildren<Text>().text = weaponsEquiped[0].GetComponent<WeaponScript>().weaponName;
-
+        // Weapon 1 - Imagen y texto del child (la [0] es la del boton)
+        ConfigButtonForEquipWeapon(buttons[0], weaponsEquiped[0], 0);
         // Weapon 2
-        buttons[1].GetComponentsInChildren<Image>()[1].sprite = weaponsEquiped[1].GetComponent<SpriteRenderer>().sprite;
-        buttons[1].GetComponentInChildren<Text>().text = weaponsEquiped[1].GetComponent<WeaponScript>().weaponName;
+        ConfigButtonForEquipWeapon(buttons[1], weaponsEquiped[1], 1);
+    }
+
+    private void ConfigButtonForEquipWeapon(Button button, GameObject weapon, int slot)
+    {
+        if (weapon != null)
+        {
+            button.GetComponentsInChildren<Image>()[1].color = Color.white;
+            button.GetComponentsInChildren<Image>()[1].sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+            button.GetComponentInChildren<Text>().text = weapon.GetComponent<WeaponScript>().weaponName;            
+        } else
+        {
+            button.GetComponentsInChildren<Image>()[1].color = new Color(0, 0, 0, 0);
+            button.GetComponentInChildren<Text>().text = "Click to equip a weapon";
+        }
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => OpenSwapMenuForWeapon(weapon, slot));
+    }
+
+    private void OpenSwapMenuForWeapon(GameObject weapon, int slot)
+    {
+        Button unequipButton = swapWeaponPanel.GetComponentInChildren<Button>();
+        GameObject weaponHeader = swapWeaponPanel.GetComponentInChildren<WeaponShopRowHandler>().gameObject;
+        unequipButton.onClick.RemoveAllListeners();
+        if (weapon != null)
+        {
+            // Agregarle la funcionalidad al unequipButton
+            unequipButton.interactable = true;
+            unequipButton.onClick.AddListener(() => Unequip(weapon));
+            // Agrego la foto a la imagen correspondiente, que por la estructura de escena es la 2da del array ([1])
+            weaponHeader.GetComponentsInChildren<Image>()[1].color = Color.white;
+            weaponHeader.GetComponentsInChildren<Image>()[1].sprite = weapon.GetComponent<SpriteRenderer>().sprite;
+            // Agrego el texto del arma
+            weaponHeader.GetComponentInChildren<Text>().text = weapon.GetComponent<WeaponScript>().weaponName;
+        } else
+        {
+            unequipButton.interactable = false;
+            // hago la imagen transparente
+            weaponHeader.GetComponentsInChildren<Image>()[1].color = new Color(0, 0, 0, 0);
+            // Pongo un texto para avisarle al usuario que no tiene equipada un arma en ese slot
+            weaponHeader.GetComponentInChildren<Text>().text = "Choose a weapon to equip";
+        }
+        // Agregar las armas posibles para swapear
+        ListSwapableWeapons(weapon, slot);
+        // Habilitar el panel correspondiente
+        swapWeaponPanel.SetActive(true);
+        mainPanel.SetActive(false);
+
+    }
+
+    private void ListSwapableWeapons(GameObject weaponToSwap, int slot)
+    {
+        List<GameObject> unequippedWeapons = GameObject.FindWithTag("Player").GetComponent<Inventory>().GetUnequippedWeapons();
+        float offsetY = -82;
+        GameObject weaponRow;
+        foreach (GameObject weapon in unequippedWeapons)
+        {
+            weaponRow = Instantiate(weaponRowPrefabSingleButton);
+            swapRows.Add(weaponRow);
+            weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weapon);
+            weaponRow.transform.SetParent(swapWeaponPanel.transform, false);
+            weaponRow.transform.localPosition = new Vector3(weaponRow.transform.localPosition.x, offsetY, weaponRow.transform.localPosition.z);
+            offsetY -= 37;
+            Button button = weaponRow.GetComponentInChildren<Button>();
+            if (weaponToSwap != null) {
+                button.GetComponentInChildren<Text>().text = "Swap Weapon";
+            }
+            else {
+                button.GetComponentInChildren<Text>().text = "Equip Weapon";
+            }
+            AddListenerToSwapWeaponButton(button, weapon, slot);
+        }
+    }
+
+    private void AddListenerToSwapWeaponButton(Button button, GameObject weapon, int slot)
+    {
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => EquipOrSwap(weapon, slot));
+    }
+
+    private void EquipOrSwap(GameObject weapon, int slot)
+    {
+        Debug.Log("Called equip for " + weapon.GetComponent<WeaponScript>().weaponName + " with slot " + slot);
+        GameObject.FindWithTag("Player").GetComponent<Inventory>().EquipOrSwap(weapon, slot);
+        GoBackFromSwapMenu();
+    }
+
+    private void Unequip(GameObject weapon)
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        Inventory inventory = player.GetComponent<Inventory>();
+        inventory.Unequip(weapon);
+        ListEquipedWeapons();
+        GoBackFromSwapMenu();
     }
 
     public void GoBack()
     {
         mainPanel.SetActive(true);
+        swapWeaponPanel.SetActive(false);
         buyPanel.SetActive(false);
         upgradePanel.SetActive(false);
+    }
+
+    public void GoBackFromSwapMenu()
+    {
+        ListEquipedWeapons();
+        foreach (GameObject row in swapRows)
+        {
+            Destroy(row);
+        }
+        swapRows.Clear();
+        GoBack();
     }
 }

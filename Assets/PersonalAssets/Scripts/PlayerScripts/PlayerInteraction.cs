@@ -12,11 +12,12 @@ public class PlayerInteraction : MonoBehaviour {
     public Animator anim;
     [HideInInspector]
     public Stack<Vector3> goBackPositionStack;
-    public GameObject weapon;
+    public Inventory inventory;
     public ObjectInteractionScript interactingScript;
 
 	// Use this for initialization
 	void Start () {
+        inventory = GetComponent<Inventory>();
         movementScript = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
         goBackPositionStack = new Stack<Vector3>();
@@ -54,6 +55,7 @@ public class PlayerInteraction : MonoBehaviour {
 
     public void SetWeaponActive(bool cond)
     {
+        GameObject weapon = inventory.currentWeapon.gameObject;
         if (weapon != null)
         {
             weapon.SetActive(cond);

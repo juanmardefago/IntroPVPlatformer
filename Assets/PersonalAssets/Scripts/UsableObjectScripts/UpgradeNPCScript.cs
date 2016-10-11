@@ -43,42 +43,50 @@ public class UpgradeNPCScript : UsableObjectScript
 
     private void ListAllWeapons()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        List<string> weaponsOwned = player.GetComponent<Inventory>().GetWeaponsOwned();
+        Inventory inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
+        List<string> weaponsOwned = inventory.GetWeaponsOwned();
         GameObject weaponRow;
         float offset = 0;
+        GameObject weaponToShow;
         foreach (GameObject weapon in weapons)
         {
-            weaponRow = Instantiate(weaponRowPrefab);
-            weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weapon);
+            weaponRow = Instantiate(weaponRowPrefabSingleButton);
+            weaponToShow = GetRealWeaponIfPossible(inventory, weapon);
+            weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weaponToShow);
             weaponRow.transform.SetParent(shopContent.transform, false);
             weaponRow.transform.localPosition = new Vector3(weaponRow.transform.localPosition.x, offset, weaponRow.transform.localPosition.z);
             offset -= 37;
-            Button[] buttons = weaponRow.GetComponentsInChildren<Button>();
-            AddOnClickListenersToButtons(weaponRow, weapon, buttons);
-            if (weaponsOwned.Contains(weapon.GetComponent<WeaponScript>().weaponName))
-            {
-                buttons[0].interactable = false;
-            }
+            AddOnClickListenerToButton(weaponToShow, weaponRow.GetComponentInChildren<Button>(), weaponsOwned.Contains(weapon.GetComponent<WeaponScript>().weaponName));
             rows.Add(weaponRow);
         }
         RectTransform rTransform = shopContent.GetComponent<RectTransform>();
         rTransform.sizeDelta = new Vector2(rTransform.sizeDelta.x, -offset);
     }
 
-    private void AddOnClickListenersToButtons(GameObject weaponRow, GameObject weapon, Button[] buttons)
+    private GameObject GetRealWeaponIfPossible(Inventory inventory, GameObject weapon)
     {
-        // En teoría por el orden de los hijos, el primero tendría que ser el de compra, y el segundo el de upgrade, si hay algun bug es aca.
-        // Lo implementé asi porque sino se tiene que ejecutar mucho codigo para checkear banda de cosas, y teniendo en cuenta que 
-        // desde la v1 de unity esto te lo devuelve ordenado aunque no lo digan los doc, si se rompe ya sabemos donde es.
-
-        // Los parametros del AddListener son funciones lambda de C#.
-        foreach(Button button in buttons)
+        GameObject possibleWeapon = inventory.GetWeaponWithName(weapon.GetComponent<WeaponScript>().weaponName);
+        if(possibleWeapon == null)
         {
-            button.onClick.RemoveAllListeners();
+            possibleWeapon = weapon;
         }
-        buttons[0].onClick.AddListener(() => OpenBuyMenuForWeapon(weapon));
-        buttons[1].onClick.AddListener(() => OpenUpgradeMenuForWeapon(weapon));
+        return possibleWeapon;
+    }
+
+    private void AddOnClickListenerToButton(GameObject weapon, Button button, bool playerOwnsTheWeapon)
+    {
+        // Los parametros del AddListener son funciones lambda de C#.
+        button.onClick.RemoveAllListeners();
+        if (playerOwnsTheWeapon)
+        {
+            button.onClick.AddListener(() => OpenUpgradeMenuForWeapon(weapon));
+            button.GetComponentInChildren<Text>().text = "Upgrade";
+        }
+        else
+        {
+            button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon));
+            button.GetComponentInChildren<Text>().text = "Buy";
+        }
     }
 
     private void OpenBuyMenuForWeapon(GameObject weapon)
@@ -110,10 +118,31 @@ public class UpgradeNPCScript : UsableObjectScript
 
     private void OpenUpgradeMenuForWeapon(GameObject weapon)
     {
+        PlayerCombatScript combatScript = GameObject.FindWithTag("Player").GetComponent<PlayerCombatScript>();
         mainPanel.SetActive(false);
-        WeaponShopRowHandler weaponRowHeader = upgradePanel.GetComponentInChildren<WeaponShopRowHandler>();
-        weaponRowHeader.RefreshWeapon(weapon);
+        upgradePanel.GetComponentInChildren<WeaponShopRowHandler>().RefreshWeapon(weapon);
+        Button lvlUpButton = upgradePanel.GetComponentInChildren<Button>();
+        lvlUpButton.onClick.RemoveAllListeners();
+        lvlUpButton.onClick.AddListener(() => OpenDialogLevelUpWeapon(weapon));
+
+        if (weapon.GetComponent<WeaponScript>().weaponLevel >= combatScript.Level)
+        {
+            lvlUpButton.interactable = false;
+        }
+        else
+        {
+            lvlUpButton.interactable = true;
+        }
         upgradePanel.SetActive(true);
+    }
+
+    private void OpenDialogLevelUpWeapon(GameObject weapon)
+    {
+        // Habria que agregar una especie de dialogo como la de buyWeapon que pregunte si quiere comprar la mejora
+        // Además hay que agregar el precio de la mejora y la formula para calcular el 
+        // proximo precio de mejora.
+        weapon.GetComponent<WeaponScript>().LevelUp();
+        upgradePanel.GetComponentInChildren<WeaponShopRowHandler>().RefreshWeapon(weapon);
     }
 
     private void TriggerWeaponBuy(GameObject weapon, Inventory playerInventory)
@@ -232,7 +261,6 @@ public class UpgradeNPCScript : UsableObjectScript
 
     private void EquipOrSwap(GameObject weapon, int slot)
     {
-        Debug.Log("Called equip for " + weapon.GetComponent<WeaponScript>().weaponName + " with slot " + slot);
         GameObject.FindWithTag("Player").GetComponent<Inventory>().EquipOrSwap(weapon, slot);
         GoBackFromSwapMenu();
     }
@@ -263,5 +291,10 @@ public class UpgradeNPCScript : UsableObjectScript
         }
         swapRows.Clear();
         GoBack();
+    }
+    public void GoBackFromUpgradeMenu()
+    {
+        ResetPanels();
+        ListAllWeapons();
     }
 }

@@ -12,6 +12,7 @@ public class WeaponShopRowHandler : MonoBehaviour {
 	public void RefreshWeapon(GameObject weapon)
     {
         weaponImage.sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-        weaponText.text = weapon.GetComponent<WeaponScript>().weaponName;
+        WeaponScript wScript = weapon.GetComponent<WeaponScript>();
+        weaponText.text = wScript.weaponName + " Lv." + wScript.weaponLevel;
     }
 }

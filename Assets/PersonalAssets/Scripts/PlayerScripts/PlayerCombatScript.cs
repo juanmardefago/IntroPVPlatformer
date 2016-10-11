@@ -22,6 +22,7 @@ public class PlayerCombatScript : MonoBehaviour {
     public int Experience { get { return experience; } }
     [SerializeField]
     private int level;
+    public int Level { get { return level; } }
     private int expToLvlUp;
     public int ExperienceToNextLevel { get { return expToLvlUp; } }
 
@@ -32,7 +33,7 @@ public class PlayerCombatScript : MonoBehaviour {
         inventory = GetComponent<Inventory>();
         anim = GetComponent<Animator>();
         RefreshLevelAndStats();
-        expToLvlUp = ExperienceRequiredForNextLevel(level);
+        expToLvlUp = ExperienceRequiredForNextLevel();
 	}
 	
 	// Update is called once per frame
@@ -102,13 +103,15 @@ public class PlayerCombatScript : MonoBehaviour {
 
     private void RefreshLevelAndStats()
     {
-        maxHealth = baseHealth + (level * healthPerLevel) + bonusHealth;
+        maxHealth = baseHealth + (level * level * healthPerLevel) + bonusHealth;
         health = maxHealth;
+        expToLvlUp = ExperienceRequiredForNextLevel();
+        experience = 0;
     }
     
-    private int ExperienceRequiredForNextLevel(int currentLevel)
+    private int ExperienceRequiredForNextLevel()
     {
-        return 1000 + (currentLevel * (currentLevel - 1) * 100);
+        return 1000 + (level * (level - 1) * 100);
     }
 
     public void HealthUpgrade(int upgrade)

@@ -154,4 +154,24 @@ public class Inventory : MonoBehaviour {
         items.Remove(weapon);
         ChangeWeapon(slot);
     }
+
+    public GameObject GetWeaponWithName(string name)
+    {
+        GameObject res = null;
+        foreach (GameObject item in items)
+        {
+            if (item.tag == "Weapon" && item.GetComponent<WeaponScript>().weaponName == name)
+            {
+                res = item;
+            }
+        }
+        foreach (GameObject weapon in eqWeapons)
+        {
+            if (weapon != null && weapon.GetComponent<WeaponScript>().weaponName == name)
+            {
+                res = weapon;
+            }
+        }
+        return res;
+    }
 }

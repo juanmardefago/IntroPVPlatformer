@@ -75,7 +75,7 @@ GameObject:
   - 114: {fileID: 114000013545079076}
   - 114: {fileID: 114000011317384236}
   m_Layer: 5
-  m_Name: UpgradeButton
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ GameObject:
   - 114: {fileID: 114000014087934302}
   - 114: {fileID: 114000010194663234}
   m_Layer: 5
-  m_Name: BuyButton
+  m_Name: LevelUpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Upgrade
+  m_Text: Go Back
 --- !u!114 &114000011031672028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -326,7 +326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Buy
+  m_Text: Level Up
 --- !u!114 &114000012944871278
 MonoBehaviour:
   m_ObjectHideFlags: 1

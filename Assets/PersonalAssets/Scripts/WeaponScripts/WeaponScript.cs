@@ -32,7 +32,7 @@ public class WeaponScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        damage = baseDamage + ((weaponLevel - 1) * damageIncreasePerLevel);
+        RecalculateDamage();
         bullets = maxBullets;
 	}
 	
@@ -82,6 +82,17 @@ public class WeaponScript : MonoBehaviour {
         {
             upgrade.UpgradeProjectile(pScript);
         }
+    }
+
+    private void RecalculateDamage()
+    {
+        damage = baseDamage + ((weaponLevel - 1) * damageIncreasePerLevel);
+    }
+
+    public void LevelUp()
+    {
+        weaponLevel++;
+        RecalculateDamage();
     }
 
     // Cooldown Related

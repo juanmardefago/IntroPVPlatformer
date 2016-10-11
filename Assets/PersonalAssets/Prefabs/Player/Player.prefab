@@ -444,7 +444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToInteract: {fileID: 0}
   anim: {fileID: 0}
-  weapon: {fileID: 1000012142698400}
+  inventory: {fileID: 0}
   interactingScript: {fileID: 0}
 --- !u!114 &114000013125526906
 MonoBehaviour:

@@ -60,6 +60,7 @@ MonoBehaviour:
   baseDamage: 15
   damageIncreasePerLevel: 30
   weaponLevel: 1
+  weaponPriceToLevelUp: 300
   maxBullets: 60
   chargedShotCD: 1.5
   normalShotCD: 0.1

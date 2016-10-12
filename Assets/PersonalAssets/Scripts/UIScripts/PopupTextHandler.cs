@@ -15,20 +15,20 @@ public class PopupTextHandler : MonoBehaviour
         clipLength = 1.02f;
     }
 
-    public void TakeDamage(int damage)
+    public void Show(string text)
     {
         GameObject popup = Instantiate(popupPrefab);
-        popup.GetComponentInChildren<Text>().text = damage.ToString();
+        popup.GetComponentInChildren<Text>().text = text;
         popup.transform.SetParent(canvas.transform, false);
         Destroy(popup, clipLength);
     }
 
-    public void ReceiveHeal(int heal)
+    public void Show(string text, Color color)
     {
         GameObject popup = Instantiate(popupPrefab);
         Text popupText = popup.GetComponentInChildren<Text>();
-        popupText.color = Color.green;
-        popupText.text = heal.ToString();
+        popupText.color = color;
+        popupText.text = text;
         popup.transform.SetParent(canvas.transform, false);
         Destroy(popup, clipLength);
     }

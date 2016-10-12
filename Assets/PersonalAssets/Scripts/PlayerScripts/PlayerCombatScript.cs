@@ -26,11 +26,14 @@ public class PlayerCombatScript : MonoBehaviour {
     private int expToLvlUp;
     public int ExperienceToNextLevel { get { return expToLvlUp; } }
 
+    private PopupTextHandler popup;
+
     private Inventory inventory;
 
     // Use this for initialization
     void Start () {
         inventory = GetComponent<Inventory>();
+        popup = GetComponent<PopupTextHandler>();
         anim = GetComponent<Animator>();
         RefreshLevelAndStats();
         expToLvlUp = ExperienceRequiredForNextLevel();
@@ -69,10 +72,11 @@ public class PlayerCombatScript : MonoBehaviour {
     {
         health -= damage;
         anim.SetTrigger("hit");
-        if(health == 0)
+        if(health <= 0)
         {
             Die();
         }
+        popup.Show(damage.ToString());
     }
 
     public void ReceiveHeal(int heal)
@@ -80,6 +84,7 @@ public class PlayerCombatScript : MonoBehaviour {
         if(health + heal <= maxHealth)
         {
             health += heal;
+            popup.Show(heal.ToString(), Color.green);
         } else
         {
             health = maxHealth;
@@ -93,6 +98,7 @@ public class PlayerCombatScript : MonoBehaviour {
             exp -= expToLvlUp;
             experience += expToLvlUp;
             level++;
+            popup.Show("Level up!", Color.yellow);
             RefreshLevelAndStats();
             AddExperience(exp);
         } else

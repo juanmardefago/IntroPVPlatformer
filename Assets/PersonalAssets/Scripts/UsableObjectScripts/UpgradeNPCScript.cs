@@ -84,16 +84,20 @@ public class UpgradeNPCScript : UsableObjectScript
         }
         else
         {
-            button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon));
+            WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
+            Inventory playerInventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
+            button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?",
+                () => TriggerWeaponBuy(weapon, playerInventory), playerInventory, weaponScript.weaponPrice));
             button.GetComponentInChildren<Text>().text = "Buy";
         }
     }
 
-    private void OpenBuyMenuForWeapon(GameObject weapon)
+    private void OpenBuyMenuForWeapon(GameObject weapon, string text, UnityEngine.Events.UnityAction action, Inventory playerInventory, int coinsNeeded)
     {
         buyWeaponImage.sprite = weapon.GetComponent<SpriteRenderer>().sprite;
         WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
-        buyWeaponText.text = "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?";
+        //buyWeaponText.text = "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?";
+        buyWeaponText.text = text;
         Button[] buttons = buyPanel.GetComponentsInChildren<Button>();
         // Hay que limpiar los listeners antes de agregar, porque sino abriendo y cerrando la ventana varias veces
         // se agregan listeners cada vez que se la abre y entonces podes comprar más de 1 arma de un solo saque.
@@ -101,11 +105,10 @@ public class UpgradeNPCScript : UsableObjectScript
         {
             button.onClick.RemoveAllListeners();
         }
-        Inventory playerInventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
         // YesButton (por orden en escena).
-        if (playerInventory.Coins >= weaponScript.weaponPrice)
+        if (playerInventory.Coins >= coinsNeeded)
         {
-            buttons[0].onClick.AddListener(() => TriggerWeaponBuy(weapon, playerInventory));
+            buttons[0].onClick.AddListener(action);
             buttons[0].interactable = true;
         } else
         {
@@ -118,12 +121,18 @@ public class UpgradeNPCScript : UsableObjectScript
 
     private void OpenUpgradeMenuForWeapon(GameObject weapon)
     {
-        PlayerCombatScript combatScript = GameObject.FindWithTag("Player").GetComponent<PlayerCombatScript>();
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerCombatScript combatScript = player.GetComponent<PlayerCombatScript>();
         mainPanel.SetActive(false);
         upgradePanel.GetComponentInChildren<WeaponShopRowHandler>().RefreshWeapon(weapon);
         Button lvlUpButton = upgradePanel.GetComponentInChildren<Button>();
         lvlUpButton.onClick.RemoveAllListeners();
-        lvlUpButton.onClick.AddListener(() => OpenDialogLevelUpWeapon(weapon));
+        //lvlUpButton.onClick.AddListener(() => OpenDialogLevelUpWeapon(weapon, combatScript.Level, lvlUpButton));
+
+        WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
+        Inventory playerInventory = player.GetComponent<Inventory>();
+        lvlUpButton.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Level up " + weaponScript.weaponName + " for " + weaponScript.weaponPriceToLevelUp + " coins?",
+            () => TriggerWeaponLevelUp(weapon, playerInventory, combatScript.Level, weaponScript.weaponPriceToLevelUp, lvlUpButton), playerInventory, weaponScript.weaponPriceToLevelUp));
 
         if (weapon.GetComponent<WeaponScript>().weaponLevel >= combatScript.Level)
         {
@@ -136,13 +145,16 @@ public class UpgradeNPCScript : UsableObjectScript
         upgradePanel.SetActive(true);
     }
 
-    private void OpenDialogLevelUpWeapon(GameObject weapon)
+    private void TriggerWeaponLevelUp(GameObject weapon, Inventory playerInventory, int playerLevel, int coinsToSubtract, Button myself)
     {
-        // Habria que agregar una especie de dialogo como la de buyWeapon que pregunte si quiere comprar la mejora
-        // Además hay que agregar el precio de la mejora y la formula para calcular el 
-        // proximo precio de mejora.
+        playerInventory.SubtractCoins(coinsToSubtract);
         weapon.GetComponent<WeaponScript>().LevelUp();
         upgradePanel.GetComponentInChildren<WeaponShopRowHandler>().RefreshWeapon(weapon);
+        if (weapon.GetComponent<WeaponScript>().weaponLevel >= playerLevel)
+        {
+            myself.interactable = false;
+        }
+        buyPanel.SetActive(false);
     }
 
     private void TriggerWeaponBuy(GameObject weapon, Inventory playerInventory)
@@ -152,6 +164,7 @@ public class UpgradeNPCScript : UsableObjectScript
         ResetPanels();
         ListAllWeapons();
     }
+
 
     private void ResetPanels()
     {

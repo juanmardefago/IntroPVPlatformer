@@ -14,6 +14,7 @@ public class WeaponScript : MonoBehaviour {
     public int baseDamage;
     public int damageIncreasePerLevel;
     public int weaponLevel;
+    public int weaponPriceToLevelUp;
 
     private int bullets;
     public int maxBullets;
@@ -89,10 +90,16 @@ public class WeaponScript : MonoBehaviour {
         damage = baseDamage + ((weaponLevel - 1) * damageIncreasePerLevel);
     }
 
+    private void RecalculatePriceToLevelUp()
+    {
+        weaponPriceToLevelUp += weaponPriceToLevelUp;
+    }
+
     public void LevelUp()
     {
         weaponLevel++;
         RecalculateDamage();
+        RecalculatePriceToLevelUp();
     }
 
     // Cooldown Related

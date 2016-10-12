@@ -22,6 +22,8 @@ public class EnemyCombatScript : MonoBehaviour
 
     public int expBounty;
 
+    private PopupTextHandler popup;
+
     // Use this for initialization
     void Start()
     {
@@ -29,6 +31,7 @@ public class EnemyCombatScript : MonoBehaviour
         anim = GetComponent<Animator>();
         myTransform = GetComponent<Transform>();
         movementScript = GetComponent<EnemyMovementBasic>();
+        popup = GetComponent<PopupTextHandler>();
     }
 
     // Update is called once per frame
@@ -64,6 +67,7 @@ public class EnemyCombatScript : MonoBehaviour
         {
             Die();
         }
+        popup.Show(damage.ToString());
         aggro = 3f;
         movementScript.SetRecovering();
         movementScript.PushbackTo(-TransformDistanceToDirection());

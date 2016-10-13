@@ -174,4 +174,17 @@ public class Inventory : MonoBehaviour {
         }
         return res;
     }
+
+    public List<GameObject> GetUnequippedGems()
+    {
+        List<GameObject> gems = new List<GameObject>();
+        foreach(GameObject item in items)
+        {
+            if(item.tag == "Gem")
+            {
+                gems.Add(item);
+            }
+        }
+        return gems;
+    }
 }

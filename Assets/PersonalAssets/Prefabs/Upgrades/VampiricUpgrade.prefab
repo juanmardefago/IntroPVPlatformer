@@ -22,7 +22,7 @@ GameObject:
   - 114: {fileID: 114000010423348982}
   m_Layer: 0
   m_Name: VampiricUpgrade
-  m_TagString: Upgrade
+  m_TagString: Gems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8d8eba8d7e8c9429316afd73c0fcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeSprite: {fileID: 21300000, guid: 86b43690e5e748c459bc823c369c0432, type: 3}
   upgradeName: Vampiric
   description: Makes your weapon heal for a percentage of the damage it deals.

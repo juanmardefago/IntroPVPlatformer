@@ -3,6 +3,7 @@ using System.Collections;
 
 public abstract class UpgradeScript : MonoBehaviour {
 
+    public Sprite upgradeSprite;
     public string upgradeName;
     public string description;
 

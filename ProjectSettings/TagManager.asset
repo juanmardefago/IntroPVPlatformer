@@ -12,7 +12,7 @@ TagManager:
   - Enemy
   - NPC
   - Coin
-  - Upgrade
+  - Gem
   layers:
   - Default
   - TransparentFX

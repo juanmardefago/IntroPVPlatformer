@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class UpgradeNPCScript : UsableObjectScript
 {
+    private GameObject player;
+    private Inventory inventory;
+
     public GameObject mainCanvas;
-    public GameObject shopContent;
     public GameObject mainPanel;
     public GameObject equipPanel;
     public GameObject swapWeaponPanel;
     public GameObject buyPanel;
     public GameObject upgradePanel;
+    public GameObject infoPanel;
+    public GameObject gemRowPrefab;
     public GameObject weaponRowPrefab;
     public GameObject weaponRowPrefabSingleButton;
     public Image buyWeaponImage;
@@ -21,13 +25,30 @@ public class UpgradeNPCScript : UsableObjectScript
     public List<GameObject> upgrades;
     private List<GameObject> rows;
     private List<GameObject> swapRows;
+    private List<GameObject> gemRows;
+
+    // Content transforms to fill the scrollable lists.
+
+    private RectTransform shopContent;
+    private RectTransform swapWeaponContent;
+    private RectTransform equippedGemsContent;
+    private RectTransform availableGemsContent;
+
 
     public void Start()
     {
         rows = new List<GameObject>();
         swapRows = new List<GameObject>();
+        gemRows = new List<GameObject>();
+        shopContent = mainPanel.GetComponent<ScrollRect>().content;
+        swapWeaponContent = swapWeaponPanel.GetComponent<ScrollRect>().content;
+        equippedGemsContent = upgradePanel.GetComponentsInChildren<ScrollRect>()[0].content;
+        availableGemsContent = upgradePanel.GetComponentsInChildren<ScrollRect>()[1].content;
+        player = GameObject.FindWithTag("Player");
+        inventory = player.GetComponent<Inventory>();
     }
 
+    // Interaction methods, only called when player presses Interact (by default E) near an NPC
     public override void DeInteract(PlayerNPCInteraction pi)
     {
         mainCanvas.SetActive(false);
@@ -41,9 +62,9 @@ public class UpgradeNPCScript : UsableObjectScript
         mainCanvas.SetActive(true);
     }
 
+    // Lists all weapons that can be purchased on the mainPanel content (on a scrollable list).
     private void ListAllWeapons()
     {
-        Inventory inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
         List<string> weaponsOwned = inventory.GetWeaponsOwned();
         GameObject weaponRow;
         float offset = 0;
@@ -53,16 +74,16 @@ public class UpgradeNPCScript : UsableObjectScript
             weaponRow = Instantiate(weaponRowPrefabSingleButton);
             weaponToShow = GetRealWeaponIfPossible(inventory, weapon);
             weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weaponToShow);
-            weaponRow.transform.SetParent(shopContent.transform, false);
+            weaponRow.transform.SetParent(shopContent, false);
             weaponRow.transform.localPosition = new Vector3(weaponRow.transform.localPosition.x, offset, weaponRow.transform.localPosition.z);
             offset -= 37;
             AddOnClickListenerToButton(weaponToShow, weaponRow.GetComponentInChildren<Button>(), weaponsOwned.Contains(weapon.GetComponent<WeaponScript>().weaponName));
             rows.Add(weaponRow);
         }
-        RectTransform rTransform = shopContent.GetComponent<RectTransform>();
-        rTransform.sizeDelta = new Vector2(rTransform.sizeDelta.x, -offset);
+        shopContent.sizeDelta = new Vector2(shopContent.sizeDelta.x, -offset);
     }
 
+    // Gets the actual weapon from the player if the player owns it, otherwise it uses the prefab from the NPC.
     private GameObject GetRealWeaponIfPossible(Inventory inventory, GameObject weapon)
     {
         GameObject possibleWeapon = inventory.GetWeaponWithName(weapon.GetComponent<WeaponScript>().weaponName);
@@ -73,6 +94,9 @@ public class UpgradeNPCScript : UsableObjectScript
         return possibleWeapon;
     }
 
+    // Le agrega el Listener a el boton "button" dependiendo de si el player ya tiene o no el arma
+    // Se usa en el scrollable del main panel.
+    // Si tiene el arma se agrega el boton de upgrade, sino el de buy.
     private void AddOnClickListenerToButton(GameObject weapon, Button button, bool playerOwnsTheWeapon)
     {
         // Los parametros del AddListener son funciones lambda de C#.
@@ -85,18 +109,17 @@ public class UpgradeNPCScript : UsableObjectScript
         else
         {
             WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
-            Inventory playerInventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
             button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?",
-                () => TriggerWeaponBuy(weapon, playerInventory), playerInventory, weaponScript.weaponPrice));
+                () => TriggerWeaponBuy(weapon), weaponScript.weaponPrice));
             button.GetComponentInChildren<Text>().text = "Buy";
         }
     }
 
-    private void OpenBuyMenuForWeapon(GameObject weapon, string text, UnityEngine.Events.UnityAction action, Inventory playerInventory, int coinsNeeded)
+    // Abre el Dialog (una ventanita que dice un texto y tiene 2 botones, SI y NO.
+    // Lo hice lo mas generico posible porque lo reutilizo en otro panel, usa lambdas (UnityAction) y muchos parametros para personalizarlo.
+    private void OpenBuyMenuForWeapon(GameObject weapon, string text, UnityEngine.Events.UnityAction action, int coinsNeeded)
     {
         buyWeaponImage.sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-        WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
-        //buyWeaponText.text = "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?";
         buyWeaponText.text = text;
         Button[] buttons = buyPanel.GetComponentsInChildren<Button>();
         // Hay que limpiar los listeners antes de agregar, porque sino abriendo y cerrando la ventana varias veces
@@ -106,7 +129,7 @@ public class UpgradeNPCScript : UsableObjectScript
             button.onClick.RemoveAllListeners();
         }
         // YesButton (por orden en escena).
-        if (playerInventory.Coins >= coinsNeeded)
+        if (inventory.Coins >= coinsNeeded)
         {
             buttons[0].onClick.AddListener(action);
             buttons[0].interactable = true;
@@ -121,18 +144,15 @@ public class UpgradeNPCScript : UsableObjectScript
 
     private void OpenUpgradeMenuForWeapon(GameObject weapon)
     {
-        GameObject player = GameObject.FindWithTag("Player");
         PlayerCombatScript combatScript = player.GetComponent<PlayerCombatScript>();
         mainPanel.SetActive(false);
         upgradePanel.GetComponentInChildren<WeaponShopRowHandler>().RefreshWeapon(weapon);
         Button lvlUpButton = upgradePanel.GetComponentInChildren<Button>();
         lvlUpButton.onClick.RemoveAllListeners();
-        //lvlUpButton.onClick.AddListener(() => OpenDialogLevelUpWeapon(weapon, combatScript.Level, lvlUpButton));
 
         WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
-        Inventory playerInventory = player.GetComponent<Inventory>();
         lvlUpButton.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Level up " + weaponScript.weaponName + " for " + weaponScript.weaponPriceToLevelUp + " coins?",
-            () => TriggerWeaponLevelUp(weapon, playerInventory, combatScript.Level, weaponScript.weaponPriceToLevelUp, lvlUpButton), playerInventory, weaponScript.weaponPriceToLevelUp));
+            () => TriggerWeaponLevelUp(weapon, combatScript.Level, weaponScript.weaponPriceToLevelUp, lvlUpButton), weaponScript.weaponPriceToLevelUp));
 
         if (weapon.GetComponent<WeaponScript>().weaponLevel >= combatScript.Level)
         {
@@ -142,12 +162,124 @@ public class UpgradeNPCScript : UsableObjectScript
         {
             lvlUpButton.interactable = true;
         }
+        ListEquippedGems(weapon);
+        ListAvailableGems(weapon);
         upgradePanel.SetActive(true);
     }
 
-    private void TriggerWeaponLevelUp(GameObject weapon, Inventory playerInventory, int playerLevel, int coinsToSubtract, Button myself)
+    // Estos metodos de listado de gemas son una mierda, con codigo super repetido, pero lo arme así por ahora, y despues veo como refactorizarlo.
+    private void ListEquippedGems(GameObject weapon)
     {
-        playerInventory.SubtractCoins(coinsToSubtract);
+        List<GameObject> equippedGems = weapon.GetComponent<WeaponScript>().upgrades.ConvertAll((UpgradeScript u) => u.gameObject);
+        GameObject gemRow;
+        float offset = 0;
+        foreach(GameObject gem in equippedGems)
+        {
+            gemRow = Instantiate(gemRowPrefab);
+            GemRowHandler handler = gemRow.GetComponent<GemRowHandler>();
+            handler.RefreshGem(gem);
+            gemRow.transform.SetParent(equippedGemsContent, false);
+            gemRow.transform.localPosition = new Vector3(gemRow.transform.localPosition.x, offset, gemRow.transform.localPosition.z);
+            offset -= 37;
+            // Obtengo los botones
+            Button infoButton = handler.gemInfoButton;
+            Button equipButton = handler.gemEquipButton;
+            // Limpio los botones
+            infoButton.onClick.RemoveAllListeners();
+            equipButton.onClick.RemoveAllListeners();
+            // Agrego el listener
+            AddListenersToGemRowButtons(infoButton, equipButton, gem.GetComponent<UpgradeScript>().description, gem, weapon, "Unequip");
+            gemRows.Add(gemRow);
+        }
+        equippedGemsContent.sizeDelta = new Vector2(equippedGemsContent.sizeDelta.x, -offset);
+    }
+
+    private void ListAvailableGems(GameObject weapon)
+    {
+        List<GameObject> unequippedGems = inventory.GetUnequippedGems();
+        GameObject gemRow;
+        float offset = 0;
+        foreach (GameObject gem in unequippedGems)
+        {
+            gemRow = Instantiate(gemRowPrefab);
+            GemRowHandler handler = gemRow.GetComponent<GemRowHandler>();
+            handler.RefreshGem(gem);
+            gemRow.transform.SetParent(availableGemsContent, false);
+            gemRow.transform.localPosition = new Vector3(gemRow.transform.localPosition.x, offset, gemRow.transform.localPosition.z);
+            offset -= 37;
+            // Obtengo los botones
+            Button infoButton = handler.gemInfoButton;
+            Button equipButton = handler.gemEquipButton;
+            // Limpio los botones
+            infoButton.onClick.RemoveAllListeners();
+            equipButton.onClick.RemoveAllListeners();
+            // Agrego el listener
+            AddListenersToGemRowButtons(infoButton, equipButton, gem.GetComponent<UpgradeScript>().description, gem, weapon, "Equip");
+            gemRows.Add(gemRow);
+        }
+
+        foreach (GameObject gem in upgrades)
+        {
+            gemRow = Instantiate(gemRowPrefab);
+            GemRowHandler handler = gemRow.GetComponent<GemRowHandler>();
+            handler.RefreshGem(gem);
+            gemRow.transform.SetParent(availableGemsContent, false);
+            gemRow.transform.localPosition = new Vector3(gemRow.transform.localPosition.x, offset, gemRow.transform.localPosition.z);
+            offset -= 37;
+            // Obtengo los botones
+            Button infoButton = handler.gemInfoButton;
+            Button equipButton = handler.gemEquipButton;
+            // Limpio los botones
+            infoButton.onClick.RemoveAllListeners();
+            equipButton.onClick.RemoveAllListeners();
+            // Agrego el listener
+            AddListenersToGemRowButtons(infoButton, equipButton, gem.GetComponent<UpgradeScript>().description, gem, weapon, "Buy");
+            gemRows.Add(gemRow);
+        }
+        availableGemsContent.sizeDelta = new Vector2(availableGemsContent.sizeDelta.x, -offset);
+    }
+
+    private void AddListenersToGemRowButtons(Button infoButton, Button equipButton, string infoText, GameObject gem, GameObject weapon, string equipButtonText)
+    {
+        infoButton.onClick.AddListener(() => ShowTextDialog(infoText, gem.GetComponent<UpgradeScript>().upgradeSprite));
+        if(equipButtonText == "Buy")
+        {
+            equipButton.onClick.AddListener(() => BuyGem(gem));
+        } else if (equipButtonText == "Equip")
+        {
+            equipButton.onClick.AddListener(() => EquipGemToWeapon(gem, weapon));
+        } else if (equipButtonText == "Unequip")
+        {
+            equipButton.onClick.AddListener(() => UnequipGemFromWeapon(gem, weapon));
+        }
+        equipButton.GetComponentInChildren<Text>().text = equipButtonText;
+    }
+
+    private void ShowTextDialog(string text, Sprite sprite)
+    {
+        infoPanel.GetComponentInChildren<Text>().text = text;
+        infoPanel.GetComponentsInChildren<Image>()[2].sprite = sprite;
+        infoPanel.SetActive(true);
+    }
+
+    private void UnequipGemFromWeapon(GameObject gem, GameObject weapon)
+    {
+        Debug.Log("Unequipping " + gem.GetComponent<UpgradeScript>().upgradeName + " from " + weapon.GetComponent<WeaponScript>().weaponName);
+    }
+
+    private void EquipGemToWeapon(GameObject gem, GameObject weapon)
+    {
+        Debug.Log("Equipping " + gem.GetComponent<UpgradeScript>().upgradeName + " from " + weapon.GetComponent<WeaponScript>().weaponName);
+    }
+
+    private void BuyGem(GameObject gem)
+    {
+        Debug.Log("Bought " + gem.GetComponent<UpgradeScript>().upgradeName);
+    }
+
+    private void TriggerWeaponLevelUp(GameObject weapon, int playerLevel, int coinsToSubtract, Button myself)
+    {
+        inventory.SubtractCoins(coinsToSubtract);
         weapon.GetComponent<WeaponScript>().LevelUp();
         upgradePanel.GetComponentInChildren<WeaponShopRowHandler>().RefreshWeapon(weapon);
         if (weapon.GetComponent<WeaponScript>().weaponLevel >= playerLevel)
@@ -157,37 +289,17 @@ public class UpgradeNPCScript : UsableObjectScript
         buyPanel.SetActive(false);
     }
 
-    private void TriggerWeaponBuy(GameObject weapon, Inventory playerInventory)
+    private void TriggerWeaponBuy(GameObject weapon)
     {
-        playerInventory.SubtractCoins(weapon.GetComponent<WeaponScript>().weaponPrice);
-        playerInventory.AddItem(Instantiate(weapon));
+        inventory.SubtractCoins(weapon.GetComponent<WeaponScript>().weaponPrice);
+        inventory.AddItem(Instantiate(weapon));
         ResetPanels();
         ListAllWeapons();
     }
 
-
-    private void ResetPanels()
-    {
-        foreach(GameObject row in rows)
-        {
-            Destroy(row);
-        }
-        foreach (GameObject row in swapRows)
-        {
-            Destroy(row);
-        }
-        rows.Clear();
-        swapRows.Clear();
-        mainPanel.SetActive(true);
-        swapWeaponPanel.SetActive(false);
-        buyPanel.SetActive(false);
-        upgradePanel.SetActive(false);
-    }
-
     private void ListEquipedWeapons()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        GameObject[] weaponsEquiped = player.GetComponent<Inventory>().GetEquippedWeapons();
+        GameObject[] weaponsEquiped = inventory.GetEquippedWeapons();
         Button[] buttons = equipPanel.GetComponentsInChildren<Button>();
         // Weapon 1 - Imagen y texto del child (la [0] es la del boton)
         ConfigButtonForEquipWeapon(buttons[0], weaponsEquiped[0], 0);
@@ -244,15 +356,15 @@ public class UpgradeNPCScript : UsableObjectScript
 
     private void ListSwapableWeapons(GameObject weaponToSwap, int slot)
     {
-        List<GameObject> unequippedWeapons = GameObject.FindWithTag("Player").GetComponent<Inventory>().GetUnequippedWeapons();
-        float offsetY = -82;
+        List<GameObject> unequippedWeapons = inventory.GetUnequippedWeapons();
+        float offsetY = 0;
         GameObject weaponRow;
         foreach (GameObject weapon in unequippedWeapons)
         {
             weaponRow = Instantiate(weaponRowPrefabSingleButton);
             swapRows.Add(weaponRow);
             weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weapon);
-            weaponRow.transform.SetParent(swapWeaponPanel.transform, false);
+            weaponRow.transform.SetParent(swapWeaponContent, false);
             weaponRow.transform.localPosition = new Vector3(weaponRow.transform.localPosition.x, offsetY, weaponRow.transform.localPosition.z);
             offsetY -= 37;
             Button button = weaponRow.GetComponentInChildren<Button>();
@@ -266,6 +378,8 @@ public class UpgradeNPCScript : UsableObjectScript
         }
     }
 
+
+
     private void AddListenerToSwapWeaponButton(Button button, GameObject weapon, int slot)
     {
         button.onClick.RemoveAllListeners();
@@ -274,17 +388,38 @@ public class UpgradeNPCScript : UsableObjectScript
 
     private void EquipOrSwap(GameObject weapon, int slot)
     {
-        GameObject.FindWithTag("Player").GetComponent<Inventory>().EquipOrSwap(weapon, slot);
+        inventory.EquipOrSwap(weapon, slot);
         GoBackFromSwapMenu();
     }
 
     private void Unequip(GameObject weapon)
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        Inventory inventory = player.GetComponent<Inventory>();
         inventory.Unequip(weapon);
         ListEquipedWeapons();
         GoBackFromSwapMenu();
+    }
+
+    // Metodos utiles para cambiar el estado de los paneles y limpiar listas
+    private void ResetPanels()
+    {
+        foreach (GameObject row in rows)
+        {
+            Destroy(row);
+        }
+        foreach (GameObject row in swapRows)
+        {
+            Destroy(row);
+        }
+        foreach (GameObject row in gemRows)
+        {
+            Destroy(row);
+        }
+        rows.Clear();
+        swapRows.Clear();
+        mainPanel.SetActive(true);
+        swapWeaponPanel.SetActive(false);
+        buyPanel.SetActive(false);
+        upgradePanel.SetActive(false);
     }
 
     public void GoBack()
@@ -310,4 +445,10 @@ public class UpgradeNPCScript : UsableObjectScript
         ResetPanels();
         ListAllWeapons();
     }
+
+    public void GoBackDescription()
+    {
+        infoPanel.SetActive(false);
+    }
+
 }

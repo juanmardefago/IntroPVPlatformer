@@ -6,6 +6,7 @@ public abstract class UpgradeScript : MonoBehaviour {
     public Sprite upgradeSprite;
     public string upgradeName;
     public string description;
+    public int upgradePrice;
 
     // Una upgrade puede mejorar el proyectil a mano, por ejemplo, un upgrade de doble daño
     // directamente le cambia el valor de Damage al projectil y no necesita aplicar efecto despues

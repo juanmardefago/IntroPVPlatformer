@@ -29,7 +29,7 @@ public class WeaponScript : MonoBehaviour {
     public float reloadCD = 0.5f;
     private float reloadTimer = 0f;
 
-    public List<UpgradeScript> upgrades;
+    public List<UpgradeScript> gems;
 
     // Use this for initialization
     void Start () {
@@ -79,7 +79,7 @@ public class WeaponScript : MonoBehaviour {
 
     private void ApplyUpgrades(ProjectileScript pScript)
     {
-        foreach (UpgradeScript upgrade in upgrades)
+        foreach (UpgradeScript upgrade in gems)
         {
             upgrade.UpgradeProjectile(pScript);
         }
@@ -169,5 +169,15 @@ public class WeaponScript : MonoBehaviour {
         {
             Reload();
         }
+    }
+
+    public void AddGem(GameObject gem)
+    {
+        gems.Add(gem.GetComponent<UpgradeScript>());
+    }
+
+    public void RemoveGem(GameObject gem)
+    {
+        gems.Remove(gem.GetComponent<UpgradeScript>());
     }
 }

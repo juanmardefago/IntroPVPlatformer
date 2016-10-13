@@ -187,4 +187,20 @@ public class Inventory : MonoBehaviour {
         }
         return gems;
     }
+
+    // El player tiene que tener la gema que se va a agregar al arma
+    // Esto se cumple porque solo se triggerea desde la UI del shop
+    // Y esa UI se encarga de limitar los mensajes.
+    public void EquipGemToWeapon(GameObject gem, GameObject weapon)
+    {
+        gem.transform.SetParent(weapon.transform);
+        weapon.GetComponent<WeaponScript>().AddGem(gem);
+        items.Remove(gem);
+    }
+
+    public void UnequipGemFromWeapon(GameObject gem, GameObject weapon)
+    {
+        AddItem(gem);
+        weapon.GetComponent<WeaponScript>().RemoveGem(gem);
+    }
 }

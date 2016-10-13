@@ -54,3 +54,4 @@ MonoBehaviour:
   upgradeSprite: {fileID: 21300000, guid: 86b43690e5e748c459bc823c369c0432, type: 3}
   upgradeName: Vampiric
   description: Makes your weapon heal for a percentage of the damage it deals.
+  upgradePrice: 500

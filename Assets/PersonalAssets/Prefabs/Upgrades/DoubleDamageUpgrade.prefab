@@ -54,3 +54,4 @@ MonoBehaviour:
   upgradeSprite: {fileID: 21300000, guid: 186e472d00ceb6d4f900deb39873fe09, type: 3}
   upgradeName: Double Damage
   description: Makes your weapon twice as deadly.
+  upgradePrice: 500

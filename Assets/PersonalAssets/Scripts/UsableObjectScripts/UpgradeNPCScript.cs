@@ -175,14 +175,14 @@ public class UpgradeNPCScript : UsableObjectScript
     private void ListEquippedGems(GameObject weapon)
     {
         List<GameObject> equippedGems = weapon.GetComponent<WeaponScript>().gems.ConvertAll((UpgradeScript u) => u.gameObject);
-        float offset = -20;
+        float offset = 0;
         offset = ListGemsInPanel(weapon, equippedGemsContent, equippedGems, "Unequip", offset);
     }
 
     private void ListAvailableGems(GameObject weapon)
     {
         List<GameObject> unequippedGems = inventory.GetUnequippedGems();
-        float offset = -20;
+        float offset = 0;
         offset = ListGemsInPanel(weapon, availableGemsContent, unequippedGems, "Equip", offset);
         offset = ListGemsInPanel(weapon, availableGemsContent, upgrades, "Buy", offset);
     }

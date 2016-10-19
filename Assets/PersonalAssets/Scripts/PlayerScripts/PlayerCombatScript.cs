@@ -30,6 +30,10 @@ public class PlayerCombatScript : MonoBehaviour {
 
     private Inventory inventory;
 
+    public GameObject shield;
+    private bool blocking = false;
+    private bool canBlock = true;
+
     // Use this for initialization
     void Start () {
         inventory = GetComponent<Inventory>();
@@ -42,6 +46,8 @@ public class PlayerCombatScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckForShotInput();
+        // Probando hacer el Cooldown del block usando yield y coroutines
+        if (!blocking) StartCoroutine(CheckForBlock());
 	}
 
     // Hay que checkear !EventSystem.current.IsPointerOverGameObject() para que si estoy en un button no se pueda disparar cuando clickeo los botones
@@ -57,6 +63,34 @@ public class PlayerCombatScript : MonoBehaviour {
         }
     }
 
+    private IEnumerator CheckForBlock()
+    {
+        if (Input.GetButtonDown("Shield") && canBlock)
+        {
+            Shield();
+            yield return new WaitForSeconds(1f);
+            Unshield();
+            yield return new WaitForSeconds(1f);
+            canBlock = true;
+        } 
+    }
+
+    // Acá se le va a avisar al animator del shield que haga la animación de aparecion del escudo
+    private void Shield()
+    {
+        blocking = true;
+        shield.SetActive(true);
+        canBlock = false;
+    }
+
+    // Acá se le va a avisar al animator del shield que haga la animación de desaparición del escudo
+    private void Unshield()
+    {
+        blocking = false;
+        shield.SetActive(false);
+    }
+
+
     private int OffsetForLocalScale()
     {
         int res = 0;
@@ -70,13 +104,21 @@ public class PlayerCombatScript : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        anim.SetTrigger("hit");
-        if(health <= 0)
+        int damageTaken = damage;
+        if (!blocking)
+        {
+            health -= damageTaken;
+            anim.SetTrigger("hit");
+        } else
+        {
+            damageTaken = damage / 5;
+            health -= damageTaken;
+        }
+        if (health <= 0)
         {
             Die();
         }
-        popup.Show(damage.ToString());
+        popup.Show(damageTaken.ToString());
     }
 
     public void ReceiveHeal(int heal)

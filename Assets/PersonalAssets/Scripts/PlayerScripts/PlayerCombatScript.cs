@@ -47,7 +47,7 @@ public class PlayerCombatScript : MonoBehaviour {
 	void Update () {
         CheckForShotInput();
         // Probando hacer el Cooldown del block usando yield y coroutines
-        if (!blocking) StartCoroutine(CheckForBlock());
+        if (canBlock) StartCoroutine(CheckForBlock());
 	}
 
     // Hay que checkear !EventSystem.current.IsPointerOverGameObject() para que si estoy en un button no se pueda disparar cuando clickeo los botones
@@ -65,12 +65,13 @@ public class PlayerCombatScript : MonoBehaviour {
 
     private IEnumerator CheckForBlock()
     {
-        if (Input.GetButtonDown("Shield") && canBlock)
+        if (Input.GetButtonDown("Shield"))
         {
             Shield();
             yield return new WaitForSeconds(1f);
             Unshield();
             yield return new WaitForSeconds(1f);
+            shield.SetActive(false);
             canBlock = true;
         } 
     }
@@ -80,6 +81,7 @@ public class PlayerCombatScript : MonoBehaviour {
     {
         blocking = true;
         shield.SetActive(true);
+        shield.GetComponent<Animator>().SetTrigger("in");
         canBlock = false;
     }
 
@@ -87,7 +89,7 @@ public class PlayerCombatScript : MonoBehaviour {
     private void Unshield()
     {
         blocking = false;
-        shield.SetActive(false);
+        shield.GetComponent<Animator>().SetTrigger("out");
     }
 
 

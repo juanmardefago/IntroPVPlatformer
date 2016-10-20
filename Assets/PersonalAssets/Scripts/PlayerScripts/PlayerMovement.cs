@@ -113,27 +113,4 @@ public class PlayerMovement : MonoBehaviour {
             hitRecoveryTimer = 0f;
         }
     }
-
-    // DEPRECATED
-
-    //hace el checkeo de Jump
-    //private void CheckJump()
-    //{
-    //    // Si quiso saltar en un Update y esta en el piso salta, esto es para evitar que se hagan multiples saltos en el aire.
-    //    if (wantsToJump && isGrounded){
-    //        //rBody.AddRelativeForce(Vector2.up * jumpStrength, ForceMode2D.Force);
-    //        rBody.velocity += Vector2.up * jumpStrength;
-    //        jumpTimer += Time.deltaTime;
-    //        wantsToJump = false;
-    //        isCurrentlyJumping = true;
-    //        anim.SetBool("isJumping", true);
-    //    } // Si sigue queriendo saltar, pero además esta saltando, se checkea si no se le agoto el timer de salto y si no solto la tecla.
-    //    else if (wantsToJump && isCurrentlyJumping && jumpTimer < maxTimeJumping && !letGoJump){
-    //        jumpTimer += Time.deltaTime;
-    //        rBody.velocity += Vector2.up * jumpStrength * 0.1f;
-    //    } // Si solto la tecla no va a poder volver a continuar el salto.
-    //    else if (letGoJump){
-    //        jumpTimer = maxTimeJumping;
-    //    }
-    //}
 }

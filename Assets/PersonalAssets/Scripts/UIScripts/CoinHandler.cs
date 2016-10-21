@@ -10,10 +10,12 @@ public class CoinHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindWithTag("Player");
+        if(player == null) {
+            player = GameObject.FindWithTag("Player");
+        }
         playerInventory = player.GetComponent<Inventory>();
         textUI = gameObject.GetComponent<Text>();
-        textUI.text = "Coins: 0";
+        textUI.text = "0";
 	}
 	
 	// Update is called once per frame
@@ -24,6 +26,6 @@ public class CoinHandler : MonoBehaviour {
     private void HandleCoinText()
     {
         int currentCoins = playerInventory.Coins;
-        textUI.text = "Coins: " + currentCoins;
+        textUI.text = currentCoins.ToString();
     }
 }

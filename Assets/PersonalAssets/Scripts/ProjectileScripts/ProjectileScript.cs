@@ -66,6 +66,7 @@ public class ProjectileScript : MonoBehaviour
         shouldBurst = true;
         Rigidbody2D rBody = GetComponent<Rigidbody2D>();
         rBody.velocity = new Vector2(0, 0);
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     private void CheckForDisappearTime()

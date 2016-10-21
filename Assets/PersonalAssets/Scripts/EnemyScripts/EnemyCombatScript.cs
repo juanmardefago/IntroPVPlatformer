@@ -43,7 +43,7 @@ public class EnemyCombatScript : MonoBehaviour
         if (dieTimer == 0f && (aggro > 0 || (Vector2.Distance(playerPos2D, myPos2D) < awarenessDistance && Vector2.Angle(myPos2D, playerPos2D) < awarenessAngle)))
         {
             movementScript.MoveTowardsPosition(playerPos2D);
-            movementScript.MoveWithDirection(TransformDistanceToDirection());
+            movementScript.MoveWithDirection(DirectionPointingToPlayer());
         }
 
         DecreaseAggro();
@@ -55,7 +55,7 @@ public class EnemyCombatScript : MonoBehaviour
         if(collision.transform.tag == "Player" && dieTimer == 0f)
         {
             collision.transform.gameObject.SendMessage("TakeDamage", damage);
-            collision.transform.gameObject.SendMessage("Pushback", TransformDistanceToDirection());
+            collision.transform.gameObject.SendMessage("Pushback", DirectionPointingToPlayer());
         }
     }
 
@@ -69,8 +69,12 @@ public class EnemyCombatScript : MonoBehaviour
         }
         popup.Show(damage.ToString());
         aggro = 3f;
+    }
+
+    public void Pushback()
+    {
         movementScript.SetRecovering();
-        movementScript.PushbackTo(-TransformDistanceToDirection());
+        movementScript.PushbackTo(-DirectionPointingToPlayer());
     }
 
     public void Die()
@@ -99,7 +103,7 @@ public class EnemyCombatScript : MonoBehaviour
         }
     }
 
-    private Vector2 TransformDistanceToDirection()
+    private Vector2 DirectionPointingToPlayer()
     {
         Vector2 res;
         if (playerPos2D.x > myPos2D.x)

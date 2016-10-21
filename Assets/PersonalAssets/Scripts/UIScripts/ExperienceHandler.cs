@@ -6,15 +6,20 @@ public class ExperienceHandler : MonoBehaviour {
 
     public GameObject player;
     private PlayerCombatScript combatStats;
+    private Image experienceBar;
     private Text textUI;
 
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+        }
         combatStats = player.GetComponent<PlayerCombatScript>();
-        textUI = gameObject.GetComponent<Text>();
-        textUI.text = "";
+        experienceBar = gameObject.GetComponent<Image>();
+        experienceBar.fillAmount = 1;
+        textUI = GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
@@ -27,6 +32,7 @@ public class ExperienceHandler : MonoBehaviour {
     {
         int currentXP = combatStats.Experience;
         int nextLvlXP = combatStats.ExperienceToNextLevel;
+        experienceBar.fillAmount = (float) currentXP / nextLvlXP;
         textUI.text = currentXP + " / " + nextLvlXP;
     }
 }

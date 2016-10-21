@@ -1452,6 +1452,10 @@ Prefab:
       propertyPath: expBounty
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011037164126, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0

@@ -24,7 +24,8 @@ public class PlayerCombatScript : MonoBehaviour {
     private int level;
     public int Level { get { return level; } }
     private int expToLvlUp;
-    public int ExperienceToNextLevel { get { return expToLvlUp; } }
+    private int totalExpForNextLevel;
+    public int ExperienceToNextLevel { get { return totalExpForNextLevel; } }
 
     private PopupTextHandler popup;
 
@@ -40,7 +41,8 @@ public class PlayerCombatScript : MonoBehaviour {
         popup = GetComponent<PopupTextHandler>();
         anim = GetComponent<Animator>();
         RefreshLevelAndStats();
-        expToLvlUp = ExperienceRequiredForNextLevel();
+        totalExpForNextLevel = ExperienceRequiredForNextLevel();
+        expToLvlUp = totalExpForNextLevel;
 	}
 	
 	// Update is called once per frame
@@ -109,18 +111,22 @@ public class PlayerCombatScript : MonoBehaviour {
         int damageTaken = damage;
         if (!blocking)
         {
-            health -= damageTaken;
             anim.SetTrigger("hit");
         } else
         {
             damageTaken = damage / 5;
-            health -= damageTaken;
         }
+        DoTakeDamage(damageTaken);
+    }
+
+    private void DoTakeDamage(int damage)
+    {
+        health -= damage;
         if (health <= 0)
         {
             Die();
         }
-        popup.Show(damageTaken.ToString());
+        popup.Show(damage.ToString());
     }
 
     public void ReceiveHeal(int heal)
@@ -137,17 +143,18 @@ public class PlayerCombatScript : MonoBehaviour {
 
     public void AddExperience(int exp)
     {
-        if (exp >= expToLvlUp)
+        int expGained = exp;
+        if (expGained >= expToLvlUp)
         {
-            exp -= expToLvlUp;
-            experience += expToLvlUp;
+            expGained -= expToLvlUp;
             level++;
             popup.Show("Level up!", Color.yellow);
             RefreshLevelAndStats();
-            AddExperience(exp);
+            AddExperience(expGained);
         } else
         {
-            experience += exp;
+            experience += expGained;
+            expToLvlUp -= expGained;
         }
     }
 
@@ -155,7 +162,8 @@ public class PlayerCombatScript : MonoBehaviour {
     {
         maxHealth = baseHealth + (level * level * healthPerLevel) + bonusHealth;
         health = maxHealth;
-        expToLvlUp = ExperienceRequiredForNextLevel();
+        totalExpForNextLevel = ExperienceRequiredForNextLevel();
+        expToLvlUp = totalExpForNextLevel;
         experience = 0;
     }
     

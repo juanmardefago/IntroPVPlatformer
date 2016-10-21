@@ -31,7 +31,7 @@ public class PlayerInteraction : MonoBehaviour {
             // avisa que empezo a interactuar y llama al metodo de interaccion del script interactivo del objeto.
             interactingScript = objectToInteract.GetComponent<ObjectInteractionScript>();
             interactingScript.Interact(this, movementScript);
-        } else if(Input.GetButtonDown("Interact") && Interacting())
+        } else if(Input.GetButtonDown("Jump") && Interacting())
         {
             // Si estaba interactuando entonces avisa al script de desinteraccion del objeto.
             interactingScript.DeInteract(this, movementScript);

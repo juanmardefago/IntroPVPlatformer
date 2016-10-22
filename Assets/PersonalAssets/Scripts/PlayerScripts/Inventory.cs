@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour {
     public BulletsHandler bulletHandler;
     public WeaponImageHandler weaponImage;
     public Transform inventoryBag;
+    private int currentWeaponSlot;
 
 	// Use this for initialization
 	void Start () {
@@ -72,9 +73,11 @@ public class Inventory : MonoBehaviour {
         {
             currentWeapon = eqWeapons[index].GetComponent<WeaponScript>();
             currentWeapon.gameObject.SetActive(true);
+            currentWeaponSlot = index;
         } else
         {
             currentWeapon = null;
+            currentWeaponSlot = -1;
         }
 
         bulletHandler.RefreshWeaponBullets();
@@ -202,5 +205,10 @@ public class Inventory : MonoBehaviour {
     {
         AddItem(gem);
         weapon.GetComponent<WeaponScript>().RemoveGem(gem);
+    }
+
+    public int GetCurrentWeaponSlot()
+    {
+        return currentWeaponSlot;
     }
 }

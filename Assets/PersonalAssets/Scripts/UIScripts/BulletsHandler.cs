@@ -7,21 +7,21 @@ public class BulletsHandler : MonoBehaviour
 
     public Inventory playerInventory;
     private WeaponScript playerWeapon;
-    private Text textUI;
+    private Image bulletBar;
     private bool isColorInReloadingState;
     public Color reloadingColor;
     public Color normalColor;
 
     public void Awake()
     {
-        textUI = gameObject.GetComponent<Text>();
+        bulletBar = gameObject.GetComponent<Image>();
     }
 
     // Use this for initialization
     void Start()
     {
         playerWeapon = playerInventory.currentWeapon;
-        textUI.text = "";
+        bulletBar.fillAmount = 1;
         isColorInReloadingState = false;
     }
 
@@ -37,7 +37,7 @@ public class BulletsHandler : MonoBehaviour
         {
             int currentBullets = playerWeapon.Bullets;
             int maxBullets = playerWeapon.maxBullets;
-            textUI.text = currentBullets + " / " + maxBullets;
+            bulletBar.fillAmount = (float )currentBullets / maxBullets;
             if (playerWeapon.Reloading())
             {
                 ChangeColorToReloading();
@@ -49,7 +49,7 @@ public class BulletsHandler : MonoBehaviour
         }
         else
         {
-            textUI.text = "";
+            bulletBar.fillAmount = 0;
         }
     }
 
@@ -57,7 +57,7 @@ public class BulletsHandler : MonoBehaviour
     {
         if (!isColorInReloadingState)
         {
-            textUI.color = reloadingColor;
+            bulletBar.color = reloadingColor;
             isColorInReloadingState = true;
         }
     }
@@ -66,7 +66,7 @@ public class BulletsHandler : MonoBehaviour
     {
         if (isColorInReloadingState)
         {
-            textUI.color = normalColor;
+            bulletBar.color = normalColor;
             isColorInReloadingState = false;
         }
     }

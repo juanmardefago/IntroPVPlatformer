@@ -9,11 +9,13 @@ public class EnemyMovementBasic : MonoBehaviour {
     public float recoveryTime;
     private float recoveryTimer;
     private Animator anim;
+    public bool canMoveForward;
 
 	// Use this for initialization
 	void Start () {
         rBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        canMoveForward = true;
 	}
 	
 	// Update is called once per frame
@@ -25,7 +27,7 @@ public class EnemyMovementBasic : MonoBehaviour {
             recoveryTimer = 0f;
         }
 
-        if(rBody.velocity == Vector2.zero)
+        if(rBody.velocity.x == 0)
         {
             anim.SetBool("IsWalking", false);
         }
@@ -42,9 +44,23 @@ public class EnemyMovementBasic : MonoBehaviour {
     {
         if (!IsRecovering())
         {
+            DoMoveWithDirection(dir);
+        }
+    }
+
+    private void DoMoveWithDirection(Vector2 dir)
+    {
+        CorrectLocalScale(dir.x);
+        if (canMoveForward)
+        {
             rBody.velocity = new Vector2(dir.x * speed, rBody.velocity.y);
-            CorrectLocalScale(dir.x);
-            anim.SetBool("IsWalking", true);
+            if (dir != Vector2.zero)
+            {
+                anim.SetBool("IsWalking", true);
+            }
+        } else
+        {
+            rBody.velocity = new Vector2(0, rBody.velocity.y);
         }
     }
 
@@ -56,7 +72,7 @@ public class EnemyMovementBasic : MonoBehaviour {
         }
     }
 
-    private void FlipScale()
+    public void FlipScale()
     {
         facingRight = !facingRight;
         Vector3 scale = transform.localScale;

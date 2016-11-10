@@ -6,7 +6,7 @@ public class EnemyCombatScript : MonoBehaviour
 
     public int health;
     public float awarenessDistance;
-    public float awarenessAngle;
+    public LayerMask playerLayer;
     private Animator anim;
     public Transform playerTransform;
     private Vector2 playerPos2D;
@@ -40,10 +40,14 @@ public class EnemyCombatScript : MonoBehaviour
         playerPos2D = playerTransform.position;
         myPos2D = myTransform.position;
 
-        if (dieTimer == 0f && (aggro > 0 || (Vector2.Distance(playerPos2D, myPos2D) < awarenessDistance && Vector2.Angle(myPos2D, playerPos2D) < awarenessAngle)))
+        if (dieTimer == 0f && (aggro > 0 || Physics2D.OverlapCircle(myPos2D, awarenessDistance, playerLayer)) && !SameXAsPlayer())
         {
             movementScript.MoveTowardsPosition(playerPos2D);
             movementScript.MoveWithDirection(DirectionPointingToPlayer());
+        }
+        else
+        {
+            movementScript.MoveWithDirection(Vector2.zero);
         }
 
         DecreaseAggro();
@@ -52,7 +56,7 @@ public class EnemyCombatScript : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.tag == "Player" && dieTimer == 0f)
+        if (collision.transform.tag == "Player" && dieTimer == 0f)
         {
             collision.transform.gameObject.SendMessage("TakeDamage", damage);
             collision.transform.gameObject.SendMessage("Pushback", DirectionPointingToPlayer());
@@ -88,7 +92,14 @@ public class EnemyCombatScript : MonoBehaviour
 
     private void DecreaseAggro()
     {
-        aggro -= Time.deltaTime;
+        if (aggro > 0)
+        {
+            aggro -= Time.deltaTime;
+        }
+        else if (aggro < 0)
+        {
+            aggro = 0;
+        }
     }
 
     private void CheckForDieDelay()
@@ -113,10 +124,21 @@ public class EnemyCombatScript : MonoBehaviour
         else if (myPos2D.x > playerPos2D.x)
         {
             res = Vector2.left;
-        } else
+        }
+        else
         {
             res = Vector2.zero;
         }
         return res;
+    }
+
+    private bool SameXAsPlayer()
+    {
+        return myPos2D.x >= playerPos2D.x - 0.1 && myPos2D.x <= playerPos2D.x + 0.1;
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, awarenessDistance);
     }
 }

@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   recoveryTime: 0.1
+  canMoveForward: 0
 --- !u!212 &212000010877042466
 SpriteRenderer:
   m_ObjectHideFlags: 1

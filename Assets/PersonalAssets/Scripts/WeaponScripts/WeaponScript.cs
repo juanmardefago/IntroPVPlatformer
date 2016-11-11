@@ -52,8 +52,8 @@ public class WeaponScript : MonoBehaviour {
             ProjectileScript pScript = shot.GetComponent<ProjectileScript>();
             pScript.damage = damage;
             ApplyUpgrades(pScript);
-            shot.transform.position = transform.position + new Vector3(0.001f * localScaleFlipFactor, 0, 0);
-            shot.GetComponent<Rigidbody2D>().velocity = new Vector2(15 * localScaleFlipFactor, 0);
+            shot.transform.position = transform.position + new Vector3(0.0001f * localScaleFlipFactor - localScaleFlipFactor * 0.3f, 0, 0);
+            pScript.SetFlipFactor(localScaleFlipFactor);
             bullets--;
             if(bullets == 0)
             {
@@ -72,8 +72,8 @@ public class WeaponScript : MonoBehaviour {
             // Aca se podría hacer que en vez de que el chargedShot sea siempre x4, tenga una variable que se puede tocar desde el inspector de unity.
             pScript.damage = damage * 4;
             ApplyUpgrades(pScript);
-            shot.transform.position = transform.position + new Vector3(0.001f * localScaleFlipFactor, 0, 0);
-            shot.GetComponent<Rigidbody2D>().velocity = new Vector2(15 * localScaleFlipFactor, 0);
+            shot.transform.position = transform.position + new Vector3(0.0001f * localScaleFlipFactor - localScaleFlipFactor * 0.01f, 0, 0);
+            pScript.SetFlipFactor(localScaleFlipFactor);
         }
     }
 

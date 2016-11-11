@@ -108,12 +108,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0.5
   m_AngularDrag: 0.5
-  m_GravityScale: 8
-  m_IsKinematic: 1
+  m_GravityScale: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!61 &61000010138696460
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 114000013943185444}
   restrictionTag: Water
+  restrictMovementInsideTag: 1
 --- !u!114 &114000010765741982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,8 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4165255c6bc712c48a0813d59ad567fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  recoveryTime: 0.1
+  speed: 1.5
+  recoveryTime: 0.5
   canMoveForward: 0
 --- !u!212 &212000010877042466
 SpriteRenderer:

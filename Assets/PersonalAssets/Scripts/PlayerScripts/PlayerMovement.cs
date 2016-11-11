@@ -31,8 +31,11 @@ public class PlayerMovement : MonoBehaviour {
         {
             playerMovementState.KeyPressUpdate();
             playerMovementState.StateDependentUpdate(this);
+        } else
+        {
+            CheckForRecoveryAndRecover();
+            playerMovementState.KeepStateOnPushback(this);
         }
-        CheckForRecoveryAndRecover();
     }
 
     void FixedUpdate () {
@@ -94,6 +97,11 @@ public class PlayerMovement : MonoBehaviour {
     public void Pushback(Vector2 dir)
     {
         hitRecoveryTimer = hitRecoveryTime;
+        playerMovementState.Pushback(this, dir);
+    }
+
+    public void DefaultPushback(Vector2 dir)
+    {
         rBody.AddForce(dir * 10, ForceMode2D.Impulse);
     }
 

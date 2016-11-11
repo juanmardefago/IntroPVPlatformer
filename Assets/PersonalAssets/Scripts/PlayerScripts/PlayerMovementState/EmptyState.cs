@@ -25,4 +25,14 @@ public class EmptyState : PlayerMovementState {
     {
         // Do nothing, this is an empty state.
     }
+
+    public void KeepStateOnPushback(PlayerMovement pm)
+    {
+
+    }
+
+    public void Pushback(PlayerMovement pm, Vector2 dir)
+    {
+        pm.DefaultPushback(dir);
+    }
 }

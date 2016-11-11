@@ -48,4 +48,14 @@ public class ClimbingState : PlayerMovementState
             rBody.velocity = new Vector2(0, 0);
         }
     }
+
+    public void KeepStateOnPushback(PlayerMovement pm)
+    {
+
+    }
+
+    public void Pushback(PlayerMovement pm, Vector2 dir)
+    {
+        pm.DefaultPushback(dir);
+    }
 }

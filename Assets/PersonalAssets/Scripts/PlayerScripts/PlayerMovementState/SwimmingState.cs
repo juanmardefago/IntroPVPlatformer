@@ -62,4 +62,14 @@ public class SwimmingState : PlayerMovementState {
             rBody.velocity = new Vector2(rBody.velocity.x, 0);
         }
     }
+
+    public void KeepStateOnPushback(PlayerMovement pm)
+    {
+        pm.rBody.velocity = new Vector2(pm.rBody.velocity.x, 0);
+    }
+
+    public void Pushback(PlayerMovement pm, Vector2 dir)
+    {
+        pm.DefaultPushback(dir);
+    }
 }

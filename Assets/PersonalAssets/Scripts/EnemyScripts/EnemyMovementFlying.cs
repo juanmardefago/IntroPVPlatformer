@@ -1,15 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyMovementFlying : MonoBehaviour {
+public class EnemyMovementFlying : EnemyMovementBasic {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    protected override void DoMoveWithDirection(Vector2 dir)
+    {
+        CorrectLocalScale(dir.x);
+        if (canMoveForward)
+        {
+            rBody.velocity = new Vector2(dir.x * speed, dir.y * speed);
+            if (dir != Vector2.zero)
+            {
+                anim.SetBool("IsWalking", true);
+            }
+        }
+        else
+        {
+            rBody.velocity = new Vector2(dir.x * speed, 0.5f);
+            if (dir != Vector2.zero)
+            {
+                anim.SetBool("IsWalking", true);
+            }
+        }
+    }
 }

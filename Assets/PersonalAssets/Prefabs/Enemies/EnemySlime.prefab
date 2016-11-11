@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 114000010404989212}
   restrictionTag: Ground
+  restrictMovementInsideTag: 1
 --- !u!114 &114000012069525232
 MonoBehaviour:
   m_ObjectHideFlags: 1

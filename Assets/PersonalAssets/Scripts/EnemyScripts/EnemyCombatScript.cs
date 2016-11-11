@@ -7,25 +7,25 @@ public class EnemyCombatScript : MonoBehaviour
     public int health;
     public float awarenessDistance;
     public LayerMask playerLayer;
-    private Animator anim;
+    protected Animator anim;
     public Transform playerTransform;
-    private Vector2 playerPos2D;
-    private Transform myTransform;
-    private Vector2 myPos2D;
-    private EnemyMovementBasic movementScript;
-    private float aggro = 0f;
+    protected Vector2 playerPos2D;
+    protected Transform myTransform;
+    protected Vector2 myPos2D;
+    protected EnemyMovementBasic movementScript;
+    protected float aggro = 0f;
 
-    private float dieDelay = 2f;
-    private float dieTimer = 0f;
+    protected float dieDelay = 2f;
+    protected float dieTimer = 0f;
 
     public int damage;
 
     public int expBounty;
 
-    private PopupTextHandler popup;
+    protected PopupTextHandler popup;
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
         playerTransform = GameObject.FindWithTag("Player").transform;
         anim = GetComponent<Animator>();
@@ -35,14 +35,13 @@ public class EnemyCombatScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         playerPos2D = playerTransform.position;
         myPos2D = myTransform.position;
 
         if (dieTimer == 0f && (aggro > 0 || Physics2D.OverlapCircle(myPos2D, awarenessDistance, playerLayer)) && !SameXAsPlayer())
         {
-            movementScript.MoveTowardsPosition(playerPos2D);
             movementScript.MoveWithDirection(DirectionPointingToPlayer());
         }
         else
@@ -90,7 +89,7 @@ public class EnemyCombatScript : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    private void DecreaseAggro()
+    protected void DecreaseAggro()
     {
         if (aggro > 0)
         {
@@ -102,7 +101,7 @@ public class EnemyCombatScript : MonoBehaviour
         }
     }
 
-    private void CheckForDieDelay()
+    protected void CheckForDieDelay()
     {
         if (dieTimer > 0f && dieTimer < dieDelay)
         {
@@ -114,7 +113,7 @@ public class EnemyCombatScript : MonoBehaviour
         }
     }
 
-    private Vector2 DirectionPointingToPlayer()
+    protected Vector2 DirectionPointingToPlayer()
     {
         Vector2 res;
         if (playerPos2D.x > myPos2D.x)
@@ -132,7 +131,7 @@ public class EnemyCombatScript : MonoBehaviour
         return res;
     }
 
-    private bool SameXAsPlayer()
+    protected bool SameXAsPlayer()
     {
         return myPos2D.x >= playerPos2D.x - 0.1 && myPos2D.x <= playerPos2D.x + 0.1;
     }

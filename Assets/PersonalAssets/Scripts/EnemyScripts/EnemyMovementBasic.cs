@@ -3,23 +3,23 @@ using System.Collections;
 
 public class EnemyMovementBasic : MonoBehaviour {
 
-    private Rigidbody2D rBody;
+    protected Rigidbody2D rBody;
     public float speed;
-    private bool facingRight = false;
+    protected bool facingRight = false;
     public float recoveryTime;
-    private float recoveryTimer;
-    private Animator anim;
+    protected float recoveryTimer;
+    protected Animator anim;
     public bool canMoveForward;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    public void Start () {
         rBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         canMoveForward = true;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
         if (recoveryTimer > 0f)
         {
             recoveryTimer -= Time.deltaTime;
@@ -31,14 +31,7 @@ public class EnemyMovementBasic : MonoBehaviour {
         {
             anim.SetBool("IsWalking", false);
         }
-	
 	}
-
-    public void MoveTowardsPosition(Vector2 pos)
-    {
-        // Debug.Log("Moving to " + pos.ToString());
-
-    }
 
     public void MoveWithDirection(Vector2 dir)
     {
@@ -48,7 +41,7 @@ public class EnemyMovementBasic : MonoBehaviour {
         }
     }
 
-    private void DoMoveWithDirection(Vector2 dir)
+    protected virtual void DoMoveWithDirection(Vector2 dir)
     {
         CorrectLocalScale(dir.x);
         if (canMoveForward)
@@ -86,7 +79,7 @@ public class EnemyMovementBasic : MonoBehaviour {
         anim.SetBool("IsWalking", false);
     }
 
-    private bool IsRecovering()
+    protected bool IsRecovering()
     {
         return recoveryTimer != 0f;
     }

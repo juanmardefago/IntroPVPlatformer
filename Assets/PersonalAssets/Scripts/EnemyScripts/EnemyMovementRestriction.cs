@@ -5,12 +5,19 @@ public class EnemyMovementRestriction : MonoBehaviour
 {
     public EnemyMovementBasic movementScript;
     public string restrictionTag;
+    public bool restrictMovementInsideTag;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (LookupTag(other.transform) == restrictionTag)
         {
-            movementScript.canMoveForward = true;
+            if (restrictMovementInsideTag)
+            {
+                movementScript.canMoveForward = true;
+            } else
+            {
+                movementScript.canMoveForward = false;
+            }
         }
     }
 
@@ -18,7 +25,14 @@ public class EnemyMovementRestriction : MonoBehaviour
     {
         if (LookupTag(other.transform) == restrictionTag)
         {
-            movementScript.canMoveForward = true;
+            if (restrictMovementInsideTag)
+            {
+                movementScript.canMoveForward = true;
+            }
+            else
+            {
+                movementScript.canMoveForward = false;
+            }
         }
     }
 
@@ -26,7 +40,14 @@ public class EnemyMovementRestriction : MonoBehaviour
     {
         if (LookupTag(other.transform) == restrictionTag)
         {
-            movementScript.canMoveForward = false;
+            if (restrictMovementInsideTag)
+            {
+                movementScript.canMoveForward = false;
+            }
+            else
+            {
+                movementScript.canMoveForward = true;
+            }
         }
     }
 

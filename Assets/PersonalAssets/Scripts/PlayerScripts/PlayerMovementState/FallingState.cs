@@ -26,4 +26,14 @@ public class FallingState : PlayerMovementState
     {
         pm.CheckHorizontalMovement();
     }
+
+    public void KeepStateOnPushback(PlayerMovement pm)
+    {
+
+    }
+
+    public void Pushback(PlayerMovement pm, Vector2 dir)
+    {
+        pm.DefaultPushback(dir);
+    }
 }

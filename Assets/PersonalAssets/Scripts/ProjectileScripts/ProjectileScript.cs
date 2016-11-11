@@ -6,6 +6,7 @@ public class ProjectileScript : MonoBehaviour
 {
 
     private float timer = 0f;
+    public float bulletSpeed;
     public float maxTime;
     public int damage;
     public Sprite explotionSprite;
@@ -105,5 +106,11 @@ public class ProjectileScript : MonoBehaviour
             upgrade.ApplyEffect(enemy, this);
         }
         enemy.gameObject.SendMessage("TakeDamage", damage);
+    }
+
+    public void SetFlipFactor(int flipFactor)
+    {
+        Rigidbody2D rBody = GetComponent<Rigidbody2D>();
+        rBody.velocity = new Vector2(flipFactor * bulletSpeed, rBody.velocity.y);
     }
 }

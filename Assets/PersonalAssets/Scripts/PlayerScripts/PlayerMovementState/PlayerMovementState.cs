@@ -11,4 +11,8 @@ public interface PlayerMovementState {
     // Se realiza la acción dependiendo del estado
     // Se llama una vez por Update en el PlayerMovement.cs
     void StateDependentUpdate(PlayerMovement pm);
+
+    void KeepStateOnPushback(PlayerMovement pm);
+
+    void Pushback(PlayerMovement pm, Vector2 dir); 
 }

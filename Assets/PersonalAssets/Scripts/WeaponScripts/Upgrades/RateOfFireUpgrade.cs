@@ -2,25 +2,25 @@
 using System.Collections;
 using System;
 
-public class PushbackUpgrade : UpgradeScript
-{
+public class RateOfFireUpgrade : UpgradeScript {
+
     public override void ApplyEffect(Collider2D enemy, ProjectileScript projectile)
     {
-        enemy.gameObject.SendMessage("Pushback");
+        // Do nothing, not needed
     }
 
     public override void ApplyEffectToWeapon(WeaponScript weapon)
     {
-        // Do nothing, not needed;
+        weapon.normalShotCD *= 0.5f;
     }
 
     public override void RemoveEffectFromWeapon(WeaponScript weapon)
     {
-        // Do nothing, not needed;
+        weapon.normalShotCD *= 2;
     }
 
     public override void UpgradeProjectile(ProjectileScript projectile)
     {
-        projectile.AddUpgrade(this);
+        // Do nothing, not needed
     }
 }

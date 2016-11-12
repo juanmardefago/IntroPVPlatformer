@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class VampiricUpgrade : UpgradeScript
 {
@@ -13,6 +14,16 @@ public class VampiricUpgrade : UpgradeScript
         }
         int heal = (projectile.damage / 4);
         player.SendMessage("ReceiveHeal", heal);
+    }
+
+    public override void ApplyEffectToWeapon(WeaponScript weapon)
+    {
+        // Do nothing, not needed
+    }
+
+    public override void RemoveEffectFromWeapon(WeaponScript weapon)
+    {
+        // Do nothing, not needed
     }
 
     public override void UpgradeProjectile(ProjectileScript projectile)

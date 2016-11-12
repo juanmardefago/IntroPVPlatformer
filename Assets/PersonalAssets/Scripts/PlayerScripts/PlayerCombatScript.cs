@@ -30,6 +30,7 @@ public class PlayerCombatScript : MonoBehaviour {
     private PopupTextHandler popup;
 
     private Inventory inventory;
+    private PlayerMovement movementScript;
 
     public GameObject shield;
     private bool blocking = false;

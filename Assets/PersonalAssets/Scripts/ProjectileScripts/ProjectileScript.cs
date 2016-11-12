@@ -8,12 +8,15 @@ public class ProjectileScript : MonoBehaviour
     private float timer = 0f;
     public float bulletSpeed;
     public float maxTime;
+    [HideInInspector]
     public int damage;
     public Sprite explotionSprite;
     private bool shouldBurst = false;
     private float burstTimer = 0f;
     public float burstMaxTime;
     private List<UpgradeScript> upgrades;
+    public int maxEnemiesToPierce;
+    private int enemiesPierced;
 
     public void Awake()
     {
@@ -41,9 +44,16 @@ public class ProjectileScript : MonoBehaviour
         }
         else if (IsTagged("Enemy", other))
         {
-            ApplyUpgrades(other);
-            Burst();
-        }
+            if (enemiesPierced == maxEnemiesToPierce)
+            {
+                ApplyUpgrades(other);
+                Burst();
+            } else if(enemiesPierced < maxEnemiesToPierce)
+            {
+                enemiesPierced++;
+                ApplyUpgrades(other);
+            }
+        } 
     }
 
     private bool IsTagged(string tag, Collider2D other)

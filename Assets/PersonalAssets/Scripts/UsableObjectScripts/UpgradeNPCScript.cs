@@ -207,6 +207,14 @@ public class UpgradeNPCScript : UsableObjectScript
             equipButton.onClick.RemoveAllListeners();
             // Agrego el listener
             AddListenersToGemRowButtons(infoButton, equipButton, gem.GetComponent<UpgradeScript>().description, gem, weapon, buttonText);
+            // Si no hay más espacio para equipar gemas y es una gema que se puede equipar, le desactivo el boton para equipar
+            if (buttonText == "Equip" && !weapon.GetComponent<WeaponScript>().CanEquipGem())
+            {
+                equipButton.interactable = false;
+            } else if(buttonText == "Equip")
+            {
+                equipButton.interactable = true;
+            }
             gemRows.Add(gemRow);
         }
         rTransform.sizeDelta = new Vector2(equippedGemsContent.sizeDelta.x, -offset);

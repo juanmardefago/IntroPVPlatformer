@@ -10,6 +10,7 @@ public class WeaponScript : MonoBehaviour {
     public string weaponName;
     public int weaponPrice;
 
+    [SerializeField]
     private int damage;
     public int baseDamage;
     public int damageIncreasePerLevel;
@@ -30,6 +31,7 @@ public class WeaponScript : MonoBehaviour {
     private float reloadTimer = 0f;
 
     public List<UpgradeScript> gems;
+    public int gemSlots;
 
     // Use this for initialization
     void Start () {
@@ -173,11 +175,20 @@ public class WeaponScript : MonoBehaviour {
 
     public void AddGem(GameObject gem)
     {
-        gems.Add(gem.GetComponent<UpgradeScript>());
+        UpgradeScript gemScript = gem.GetComponent<UpgradeScript>();
+        gems.Add(gemScript);
+        gemScript.ApplyEffectToWeapon(this);
     }
 
     public void RemoveGem(GameObject gem)
     {
-        gems.Remove(gem.GetComponent<UpgradeScript>());
+        UpgradeScript gemScript = gem.GetComponent<UpgradeScript>();
+        gems.Remove(gemScript);
+        gemScript.RemoveEffectFromWeapon(this);
+    }
+
+    public bool CanEquipGem()
+    {
+        return gems.Count < gemSlots;
     }
 }

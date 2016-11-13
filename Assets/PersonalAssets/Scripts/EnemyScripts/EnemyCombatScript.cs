@@ -87,6 +87,7 @@ public class EnemyCombatScript : MonoBehaviour
         anim.SetTrigger("dying");
         movementScript.MakeKinematic();
         GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<LootDropScript>().DropLoot();
     }
 
     protected void DecreaseAggro()

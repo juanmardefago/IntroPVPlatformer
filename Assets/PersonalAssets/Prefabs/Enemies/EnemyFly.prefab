@@ -62,6 +62,7 @@ GameObject:
   - 114: {fileID: 114000012753220560}
   - 114: {fileID: 114000013719673766}
   - 114: {fileID: 114000011547116796}
+  - 114: {fileID: 114000010232896740}
   m_Layer: 12
   m_Name: EnemyFly
   m_TagString: Enemy
@@ -159,6 +160,24 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010232896740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011988120432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11409af3b7bacf94baa91930c27da749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCoins: 30
+  minCoins: 10
+  dropList: []
+  dropListChance: []
+  coinPrefab: {fileID: 1000012650179460, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
+  genericItemPrefab: {fileID: 1000010241121010, guid: d6c9db35638953842b08c47634da67d8,
+    type: 2}
 --- !u!114 &114000011218380290
 MonoBehaviour:
   m_ObjectHideFlags: 1

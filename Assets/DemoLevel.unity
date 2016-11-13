@@ -403,6 +403,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropListChance.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4000014019363858, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_LocalPosition.x
       value: 55.284966
@@ -457,6 +467,39 @@ Prefab:
         type: 2}
       propertyPath: damage
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropListChance.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1000014046464992, guid: cc6ff3352da90e943a816a1ac918710e,
+        type: 2}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropList.Array.data[1]
+      value: 
+      objectReference: {fileID: 1000013079350922, guid: 4ccb2f2eb18e1a94991949d05f97bfa3,
+        type: 2}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropList.Array.data[2]
+      value: 
+      objectReference: {fileID: 1000012556133452, guid: 2310312c4c10cfc4f94d3023ea548ae0,
+        type: 2}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropListChance.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: dropListChance.Array.data[2]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -1188,11 +1231,6 @@ Prefab:
     - target: {fileID: 4000011536071800, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012692049476, guid: 9131e28469893fe40b78a8a4c5cb32fa,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: -188555031
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}

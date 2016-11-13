@@ -14,6 +14,9 @@ public class Restarter : MonoBehaviour {
         if (other.tag == "Enemy")
         {
             other.SendMessage("Die");
+        } if(other.tag == "Coin")
+        {
+            Destroy(other.gameObject);
         }
     }
 

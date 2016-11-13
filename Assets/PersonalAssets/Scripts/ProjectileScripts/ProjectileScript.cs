@@ -122,5 +122,6 @@ public class ProjectileScript : MonoBehaviour
     {
         Rigidbody2D rBody = GetComponent<Rigidbody2D>();
         rBody.velocity = new Vector2(flipFactor * bulletSpeed, rBody.velocity.y);
+        transform.localScale = new Vector3(flipFactor * transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 }

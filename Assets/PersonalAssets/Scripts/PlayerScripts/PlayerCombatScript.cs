@@ -184,7 +184,7 @@ public class PlayerCombatScript : MonoBehaviour {
     {
         if(lives == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("MainMenuScene");
         } else {
             lives--;
             transform.position = new Vector3(-6f, -1.35f, 0f);

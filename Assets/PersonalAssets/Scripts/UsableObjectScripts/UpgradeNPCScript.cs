@@ -70,19 +70,16 @@ public class UpgradeNPCScript : UsableObjectScript
     // Lists all weapons that can be purchased on the mainPanel content (on a scrollable list).
     private void ListAllWeapons()
     {
-        List<string> weaponsOwned = inventory.GetWeaponsOwned();
         GameObject weaponRow;
         float offset = 0;
-        GameObject weaponToShow;
         foreach (GameObject weapon in weapons)
         {
             weaponRow = Instantiate(weaponRowPrefabSingleButton);
-            weaponToShow = GetRealWeaponIfPossible(inventory, weapon);
-            weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weaponToShow);
+            weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weapon);
             weaponRow.transform.SetParent(shopContent, false);
             weaponRow.transform.localPosition = new Vector3(weaponRow.transform.localPosition.x, offset, weaponRow.transform.localPosition.z);
             offset -= 37;
-            AddOnClickListenerToButton(weaponToShow, weaponRow.GetComponentInChildren<Button>(), weaponsOwned.Contains(weapon.GetComponent<WeaponScript>().weaponName));
+            AddOnClickListenerToButton(weapon, weaponRow.GetComponentInChildren<Button>());
             rows.Add(weaponRow);
         }
         shopContent.sizeDelta = new Vector2(shopContent.sizeDelta.x, -offset);
@@ -102,22 +99,14 @@ public class UpgradeNPCScript : UsableObjectScript
     // Le agrega el Listener a el boton "button" dependiendo de si el player ya tiene o no el arma
     // Se usa en el scrollable del main panel.
     // Si tiene el arma se agrega el boton de upgrade, sino el de buy.
-    private void AddOnClickListenerToButton(GameObject weapon, Button button, bool playerOwnsTheWeapon)
+    private void AddOnClickListenerToButton(GameObject weapon, Button button)
     {
         // Los parametros del AddListener son funciones lambda de C#.
         button.onClick.RemoveAllListeners();
-        if (playerOwnsTheWeapon)
-        {
-            button.onClick.AddListener(() => OpenUpgradeMenuForWeapon(weapon));
-            button.GetComponentInChildren<Text>().text = "Upgrade";
-        }
-        else
-        {
-            WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
-            button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?",
-                () => TriggerWeaponBuy(weapon), weaponScript.weaponPrice));
-            button.GetComponentInChildren<Text>().text = "Buy";
-        }
+        WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
+        button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?",
+            () => TriggerWeaponBuy(weapon), weaponScript.weaponPrice));
+        button.GetComponentInChildren<Text>().text = "Buy";
     }
 
     // Abre el Dialog (una ventanita que dice un texto y tiene 2 botones, SI y NO.

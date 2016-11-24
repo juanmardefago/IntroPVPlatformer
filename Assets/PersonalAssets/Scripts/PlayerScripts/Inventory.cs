@@ -84,22 +84,22 @@ public class Inventory : MonoBehaviour {
         weaponImage.RefreshWeaponImage();
     }
 
-    public List<string> GetWeaponsOwned()
+    public List<GameObject> GetWeaponsOwned()
     {
-        List<string> res = new List<string>();
+        List<GameObject> res = new List<GameObject>();
         foreach(GameObject item in items)
         {
             if(item.tag == "Weapon")
             {
 
-                res.Add(item.GetComponent<WeaponScript>().weaponName);
+                res.Add(item);
             }
         }
         foreach(GameObject weapon in eqWeapons)
         {
             if (weapon != null)
             {
-                res.Add(weapon.GetComponent<WeaponScript>().weaponName);
+                res.Add(weapon);
             }
         }
         return res;
@@ -191,9 +191,6 @@ public class Inventory : MonoBehaviour {
         return gems;
     }
 
-    // El player tiene que tener la gema que se va a agregar al arma
-    // Esto se cumple porque solo se triggerea desde la UI del shop
-    // Y esa UI se encarga de limitar los mensajes.
     public void EquipGemToWeapon(GameObject gem, GameObject weapon)
     {
         gem.transform.SetParent(weapon.transform);

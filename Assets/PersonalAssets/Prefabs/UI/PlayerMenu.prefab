@@ -2251,7 +2251,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 114000013507863076}
+  m_TargetGraphic: {fileID: 114000010804698612}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3577,7 +3577,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 114000013507863076}
+  m_TargetGraphic: {fileID: 114000013497612180}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -5147,7 +5147,7 @@ RectTransform:
   m_Father: {fileID: 224000012620239810}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5562,8 +5562,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000027179718, y: 69.750015}
-  m_SizeDelta: {x: 0, y: -139.5}
+  m_AnchoredPosition: {x: 0, y: 69.5}
+  m_SizeDelta: {x: 0, y: -139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012550156024
 RectTransform:

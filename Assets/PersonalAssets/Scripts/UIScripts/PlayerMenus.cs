@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMenus : MonoBehaviour
 {
@@ -427,6 +428,17 @@ public class PlayerMenus : MonoBehaviour
     public void GoBackDescription()
     {
         infoPanel.SetActive(false);
+    }
+
+    public void QuitToDesktop()
+    {
+        Application.Quit();
+    }
+
+    // Acá se tendría que hacer un save antes de salir ( o pedirle que lo haga, o agregar un boton de save y una advertencia)
+    public void QuitToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 
 }

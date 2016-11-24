@@ -51,8 +51,7 @@ public class UpgradeNPCScript : UsableObjectScript
     // Interaction methods, only called when player presses Interact (by default E) near an NPC
     public override void DeInteract(PlayerNPCInteraction pi)
     {
-        mainCanvas.SetActive(false);
-        ResetPanels();
+        CloseShopMenu();
     }
 
     public override void Interact(PlayerNPCInteraction pi)
@@ -60,6 +59,12 @@ public class UpgradeNPCScript : UsableObjectScript
         ListAllWeapons();
         ListEquipedWeapons();
         mainCanvas.SetActive(true);
+    }
+
+    public void CloseShopMenu()
+    {
+        mainCanvas.SetActive(false);
+        ResetPanels();
     }
 
     // Lists all weapons that can be purchased on the mainPanel content (on a scrollable list).
@@ -389,6 +394,7 @@ public class UpgradeNPCScript : UsableObjectScript
             }
             AddListenerToSwapWeaponButton(button, weapon, slot);
         }
+        swapWeaponContent.sizeDelta = new Vector2(swapWeaponContent.sizeDelta.x, -offsetY);
     }
 
     private void AddListenerToSwapWeaponButton(Button button, GameObject weapon, int slot)

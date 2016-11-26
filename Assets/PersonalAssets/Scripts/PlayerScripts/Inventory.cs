@@ -62,6 +62,12 @@ public class Inventory : MonoBehaviour {
         item.SetActive(false);
     }
 
+    public void RemoveItem(GameObject item)
+    {
+        items.Remove(item);
+        Destroy(item);
+    }
+
     private void ChangeWeapon(int index)
     {
         if (currentWeapon != null)

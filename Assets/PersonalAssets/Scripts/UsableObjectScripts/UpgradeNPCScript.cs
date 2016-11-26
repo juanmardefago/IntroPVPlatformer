@@ -12,7 +12,9 @@ public class UpgradeNPCScript : UsableObjectScript
     public GameObject mainCanvas;
     public GameObject buyWeaponsPanel;
     public GameObject buyPanel;
+    public GameObject sellWeaponsPanel;
     public GameObject buyGemsPanel;
+    public GameObject sellGemsPanel;
     public GameObject infoPanel;
     public GameObject topBar;
     public GameObject gemRowPrefab;
@@ -29,8 +31,10 @@ public class UpgradeNPCScript : UsableObjectScript
 
     // Content transforms to fill the scrollable lists.
 
-    private RectTransform shopContent;
-    private RectTransform availableGemsContent;
+    private RectTransform buyWeaponsContent;
+    private RectTransform buyGemsContent;
+    private RectTransform sellWeaponsContent;
+    private RectTransform sellGemsContent;
 
 
     public void Start()
@@ -38,8 +42,10 @@ public class UpgradeNPCScript : UsableObjectScript
         rows = new List<GameObject>();
         swapRows = new List<GameObject>();
         gemRows = new List<GameObject>();
-        shopContent = buyWeaponsPanel.GetComponent<ScrollRect>().content;
-        availableGemsContent = buyGemsPanel.GetComponentInChildren<ScrollRect>().content;
+        buyWeaponsContent = buyWeaponsPanel.GetComponent<ScrollRect>().content;
+        sellWeaponsContent = sellWeaponsPanel.GetComponent<ScrollRect>().content;
+        buyGemsContent = buyGemsPanel.GetComponent<ScrollRect>().content;
+        sellGemsContent = sellGemsPanel.GetComponent<ScrollRect>().content;
         player = GameObject.FindWithTag("Player");
         inventory = player.GetComponent<Inventory>();
     }
@@ -64,39 +70,53 @@ public class UpgradeNPCScript : UsableObjectScript
     public void OpenBuyWeaponsMenu()
     {
         ResetPanels();
-        ReloadWeapons();
+        ReloadWeapons(buyWeaponsContent, weapons, (weapon, button) => AddOnClickListenerToButtonForBuy(weapon, button));
         buyWeaponsPanel.SetActive(true);
     }
 
     public void OpenBuyGemMenu()
     {
         ResetPanels();
-        ReloadGems();
+        ReloadGems(buyGemsContent, upgrades, (infoButton, equipButton, infoText, gem) => AddListenersToGemRowButtonsForBuy(infoButton, equipButton, infoText, gem));
         buyGemsPanel.SetActive(true);
     }
 
+    public void OpenSellWeaponsMenu()
+    {
+        ResetPanels();
+        ReloadWeapons(sellWeaponsContent, inventory.GetUnequippedWeapons(), (weapon, button) => AddOnClickListenerToButtonForSell(weapon, button));
+        sellWeaponsPanel.SetActive(true);
+    }
+
+    public void OpenSellGemsMenu()
+    {
+        ResetPanels();
+        ReloadGems(sellGemsContent, inventory.GetUnequippedGems(), (infoButton, equipButton, infoText, gem) => AddListenersToGemRowButtonsForSell(infoButton, equipButton, infoText, gem));
+        sellGemsPanel.SetActive(true);
+    }
+
     // Lists all weapons that can be purchased on the mainPanel content (on a scrollable list).
-    private void ListAllWeapons()
+    private void ListAllWeapons(RectTransform contentHolder, List<GameObject> weaponList, UnityEngine.Events.UnityAction<GameObject, Button> onClickAdder)
     {
         GameObject weaponRow;
         float offset = 0;
-        foreach (GameObject weapon in weapons)
+        foreach (GameObject weapon in weaponList)
         {
             weaponRow = Instantiate(weaponRowPrefabSingleButton);
             weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weapon);
-            weaponRow.transform.SetParent(shopContent, false);
+            weaponRow.transform.SetParent(contentHolder, false);
             weaponRow.transform.localPosition = new Vector3(weaponRow.transform.localPosition.x, offset, weaponRow.transform.localPosition.z);
             offset -= 37;
-            AddOnClickListenerToButton(weapon, weaponRow.GetComponentInChildren<Button>());
+            onClickAdder(weapon, weaponRow.GetComponentInChildren<Button>());
             rows.Add(weaponRow);
         }
-        shopContent.sizeDelta = new Vector2(shopContent.sizeDelta.x, -offset);
+        contentHolder.sizeDelta = new Vector2(contentHolder.sizeDelta.x, -offset);
     }
 
     // Le agrega el Listener a el boton "button" dependiendo de si el player ya tiene o no el arma
     // Se usa en el scrollable del main panel.
     // Si tiene el arma se agrega el boton de upgrade, sino el de buy.
-    private void AddOnClickListenerToButton(GameObject weapon, Button button)
+    private void AddOnClickListenerToButtonForBuy(GameObject weapon, Button button)
     {
         // Los parametros del AddListener son funciones lambda de C#.
         button.onClick.RemoveAllListeners();
@@ -104,6 +124,16 @@ public class UpgradeNPCScript : UsableObjectScript
         button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Buy " + weaponScript.weaponName + " for " + weaponScript.weaponPrice + " coins?",
             () => TriggerWeaponBuy(weapon), weaponScript.weaponPrice));
         button.GetComponentInChildren<Text>().text = "Buy";
+    }
+
+    private void AddOnClickListenerToButtonForSell(GameObject weapon, Button button)
+    {
+        // Los parametros del AddListener son funciones lambda de C#.
+        button.onClick.RemoveAllListeners();
+        WeaponScript weaponScript = weapon.GetComponent<WeaponScript>();
+        button.onClick.AddListener(() => OpenBuyMenuForWeapon(weapon, "Sell " + weaponScript.weaponName + " for " + weaponScript.weaponPrice / 2 + " coins?",
+            () => TriggerWeaponSell(weapon), 0));
+        button.GetComponentInChildren<Text>().text = "Sell";
     }
 
     // Abre el Dialog (una ventanita que dice un texto y tiene 2 botones, SI y NO.
@@ -133,13 +163,13 @@ public class UpgradeNPCScript : UsableObjectScript
         buyPanel.SetActive(true);
     }
 
-    private void ListGems()
+    private void ListGems(RectTransform contentHolder, List<GameObject> gemsList, UnityEngine.Events.UnityAction<Button, Button, string, GameObject> onClickAdder)
     {
         float offset = 0;
-        offset = ListGemsInPanel(availableGemsContent, upgrades, "Buy", offset);
+        offset = ListGemsInPanel(contentHolder, gemsList, onClickAdder, offset);
     }
 
-    private float ListGemsInPanel(RectTransform rTransform, List<GameObject> gemList, string buttonText, float startingOffset = 0)
+    private float ListGemsInPanel(RectTransform rTransform, List<GameObject> gemList, UnityEngine.Events.UnityAction<Button, Button, string, GameObject> onClickAdder, float startingOffset = 0)
     {
         GameObject gemRow;
         float offset = startingOffset;
@@ -158,21 +188,27 @@ public class UpgradeNPCScript : UsableObjectScript
             infoButton.onClick.RemoveAllListeners();
             equipButton.onClick.RemoveAllListeners();
             // Agrego el listener
-            AddListenersToGemRowButtons(infoButton, equipButton, gem.GetComponent<UpgradeScript>().description, gem, buttonText);
+            onClickAdder(infoButton, equipButton, gem.GetComponent<UpgradeScript>().description, gem);
             gemRows.Add(gemRow);
         }
         rTransform.sizeDelta = new Vector2(rTransform.sizeDelta.x, -offset);
         return offset;
     }
 
-    private void AddListenersToGemRowButtons(Button infoButton, Button equipButton, string infoText, GameObject gem, string equipButtonText)
+    private void AddListenersToGemRowButtonsForBuy(Button infoButton, Button equipButton, string infoText, GameObject gem)
     {
-        infoButton.onClick.AddListener(() => ShowTextDialog(infoText, gem.GetComponent<UpgradeScript>().upgradeSprite));
-        if(equipButtonText == "Buy")
-        {
-            equipButton.onClick.AddListener(() => OpenBuyMenuForGem(gem));
-        }
-        equipButton.GetComponentInChildren<Text>().text = equipButtonText;
+        UpgradeScript gemScript = gem.GetComponent<UpgradeScript>();
+        infoButton.onClick.AddListener(() => ShowTextDialog(infoText, gemScript.upgradeSprite));
+        equipButton.onClick.AddListener(() => OpenBuyMenuForGem(gem, "Buy " + gemScript.upgradeName + " for " + gemScript.upgradePrice + " coins?", () => BuyGem(gem), gemScript.upgradePrice));
+        equipButton.GetComponentInChildren<Text>().text = "Buy";
+    }
+
+    private void AddListenersToGemRowButtonsForSell(Button infoButton, Button equipButton, string infoText, GameObject gem)
+    {
+        UpgradeScript gemScript = gem.GetComponent<UpgradeScript>();
+        infoButton.onClick.AddListener(() => ShowTextDialog(infoText, gemScript.upgradeSprite));
+        equipButton.onClick.AddListener(() => OpenBuyMenuForGem(gem, "Sell " + gemScript.upgradeName + " for " + gemScript.upgradePrice / 2 + " coins?", () => SellGem(gem), 0));
+        equipButton.GetComponentInChildren<Text>().text = "Sell";
     }
 
     private void ShowTextDialog(string text, Sprite sprite)
@@ -189,11 +225,17 @@ public class UpgradeNPCScript : UsableObjectScript
         buyPanel.SetActive(false);
     }
 
-    private void OpenBuyMenuForGem(GameObject gem)
+    private void SellGem(GameObject gem)
     {
-        UpgradeScript gemScript = gem.GetComponent<UpgradeScript>();
-        buyWeaponImage.sprite = gemScript.upgradeSprite;
-        buyWeaponText.text = "Buy " + gemScript.upgradeName + " for " + gemScript.upgradePrice + " coins?";
+        inventory.AddCoins(gem.GetComponent<UpgradeScript>().upgradePrice / 2);
+        inventory.RemoveItem(gem);
+        OpenSellGemsMenu();
+    }
+
+    private void OpenBuyMenuForGem(GameObject gem, string text, UnityEngine.Events.UnityAction action, int coinsNeeded)
+    {
+        buyWeaponImage.sprite = gem.GetComponent<UpgradeScript>().upgradeSprite;
+        buyWeaponText.text = text;
         Button[] buttons = buyPanel.GetComponentsInChildren<Button>();
         // Hay que limpiar los listeners antes de agregar, porque sino abriendo y cerrando la ventana varias veces
         // se agregan listeners cada vez que se la abre y entonces podes comprar más de 1 arma de un solo saque.
@@ -202,9 +244,9 @@ public class UpgradeNPCScript : UsableObjectScript
             button.onClick.RemoveAllListeners();
         }
         // YesButton (por orden en escena).
-        if (inventory.Coins >= gemScript.upgradePrice)
+        if (inventory.Coins >= coinsNeeded)
         {
-            buttons[0].onClick.AddListener(() => BuyGem(gem));
+            buttons[0].onClick.AddListener(action);
             buttons[0].interactable = true;
         }
         else
@@ -235,6 +277,13 @@ public class UpgradeNPCScript : UsableObjectScript
         buyPanel.SetActive(false);
     }
 
+    private void TriggerWeaponSell(GameObject weapon)
+    {
+        inventory.AddCoins(weapon.GetComponent<WeaponScript>().weaponPrice / 2);
+        inventory.RemoveItem(weapon);
+        OpenSellWeaponsMenu();
+    }
+
     // Metodos utiles para cambiar el estado de los paneles y limpiar listas
     private void ResetPanels()
     {
@@ -256,6 +305,8 @@ public class UpgradeNPCScript : UsableObjectScript
         buyWeaponsPanel.SetActive(false);
         buyPanel.SetActive(false);
         buyGemsPanel.SetActive(false);
+        sellGemsPanel.SetActive(false);
+        sellWeaponsPanel.SetActive(false);
     }
 
     public void GoBack()
@@ -263,12 +314,6 @@ public class UpgradeNPCScript : UsableObjectScript
         buyWeaponsPanel.SetActive(true);
         buyPanel.SetActive(false);
         buyGemsPanel.SetActive(false);
-    }
-
-    public void GoBackFromUpgradeMenu()
-    {
-        ResetPanels();
-        ListAllWeapons();
     }
 
     public void GoBackDescription()
@@ -279,24 +324,23 @@ public class UpgradeNPCScript : UsableObjectScript
     private void GoBackAfterGemPurchase()
     {
         buyPanel.SetActive(false);
-        ReloadGems();
     }
 
-    private void ReloadGems()
+    private void ReloadGems(RectTransform contentHolder, List<GameObject> gemsList, UnityEngine.Events.UnityAction<Button, Button, string, GameObject> onClickAdder)
     {
         foreach (GameObject row in gemRows)
         {
             Destroy(row);
         }
-        ListGems();
+        ListGems(contentHolder, gemsList, onClickAdder);
     }
 
-    private void ReloadWeapons()
+    private void ReloadWeapons(RectTransform contentHolder, List<GameObject> weaponList, UnityEngine.Events.UnityAction<GameObject, Button> onClickAdder)
     {
         foreach (GameObject row in rows)
         {
             Destroy(row);
         }
-        ListAllWeapons();
+        ListAllWeapons(contentHolder, weaponList, onClickAdder);
     }
 }

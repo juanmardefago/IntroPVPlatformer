@@ -41,6 +41,7 @@ public class PlayerCombatScript : MonoBehaviour {
         inventory = GetComponent<Inventory>();
         popup = GetComponent<PopupTextHandler>();
         anim = GetComponent<Animator>();
+        movementScript = GetComponent<PlayerMovement>();
         RefreshLevelAndStats();
         totalExpForNextLevel = ExperienceRequiredForNextLevel();
         expToLvlUp = totalExpForNextLevel;
@@ -105,6 +106,18 @@ public class PlayerCombatScript : MonoBehaviour {
             res = -1;
         }
         return res;
+    }
+
+    public void ProcessHit(EnemyCombatScript enemy)
+    {
+        TakeDamage(enemy.damage);
+        if (!blocking)
+        {
+            movementScript.Pushback(enemy.DirectionPointingToPlayer());
+        } else
+        {
+            enemy.Pushback();
+        }
     }
 
     public void TakeDamage(int damage)

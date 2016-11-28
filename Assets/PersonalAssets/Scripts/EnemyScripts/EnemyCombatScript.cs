@@ -57,8 +57,7 @@ public class EnemyCombatScript : MonoBehaviour
     {
         if (collision.transform.tag == "Player" && dieTimer == 0f)
         {
-            collision.transform.gameObject.SendMessage("TakeDamage", damage);
-            collision.transform.gameObject.SendMessage("Pushback", DirectionPointingToPlayer());
+            collision.transform.gameObject.SendMessage("ProcessHit", this);
         }
     }
 
@@ -114,7 +113,7 @@ public class EnemyCombatScript : MonoBehaviour
         }
     }
 
-    protected Vector2 DirectionPointingToPlayer()
+    public virtual Vector2 DirectionPointingToPlayer()
     {
         Vector2 res;
         if (playerPos2D.x > myPos2D.x)

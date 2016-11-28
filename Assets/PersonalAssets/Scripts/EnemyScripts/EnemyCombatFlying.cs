@@ -22,7 +22,7 @@ public class EnemyCombatFlying : EnemyCombatScript {
         CheckForDieDelay();
     }
 
-    protected new Vector2 DirectionPointingToPlayer()
+    public override Vector2 DirectionPointingToPlayer()
     {
         Vector2 res = base.DirectionPointingToPlayer();
         if (playerPos2D.y > myPos2D.y)

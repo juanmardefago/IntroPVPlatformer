@@ -75,7 +75,7 @@ public class EnemyMovementBasic : MonoBehaviour {
 
     public void PushbackTo(Vector2 dir)
     {
-        rBody.AddRelativeForce(dir * 3, ForceMode2D.Impulse);
+        rBody.AddRelativeForce(dir * 20, ForceMode2D.Impulse);
         anim.SetBool("IsWalking", false);
     }
 

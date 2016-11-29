@@ -208,6 +208,10 @@ MonoBehaviour:
     m_Bits: 1024
   playerTransform: {fileID: 0}
   damage: 10
+  deviation: 0
+  hitRate: 0.7
+  critRate: 0.1
+  crit: 0
   expBounty: 200
 --- !u!114 &114000011654967144
 MonoBehaviour:

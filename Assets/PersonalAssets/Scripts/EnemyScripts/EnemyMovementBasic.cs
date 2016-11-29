@@ -16,6 +16,7 @@ public class EnemyMovementBasic : MonoBehaviour {
         rBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         canMoveForward = true;
+        speed = Random.Range(speed-0.2f, speed+0.2f);
 	}
 	
 	// Update is called once per frame

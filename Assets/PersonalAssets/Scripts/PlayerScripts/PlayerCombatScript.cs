@@ -15,6 +15,7 @@ public class PlayerCombatScript : MonoBehaviour {
     public int MaxHealth { get { return maxHealth; } }
 
     public int lives;
+    public Transform respawnTransform;
 
     private Animator anim;
     [SerializeField]
@@ -110,7 +111,16 @@ public class PlayerCombatScript : MonoBehaviour {
 
     public void ProcessHit(EnemyCombatScript enemy)
     {
-        TakeDamage(enemy.damage);
+        int enemyDamage = NormalDistribution.CalculateNormalDistRandom(enemy.damage, enemy.deviation);
+        if (enemy.crit)
+        {
+            TakeDamage(enemyDamage * 2, Color.red);
+            enemy.crit = false;
+        } else
+        {
+            TakeDamage(enemyDamage);
+        }
+
         if (!blocking)
         {
             movementScript.Pushback(enemy.DirectionPointingToPlayer());
@@ -120,7 +130,7 @@ public class PlayerCombatScript : MonoBehaviour {
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Color? color = null)
     {
         int damageTaken = damage;
         if (!blocking)
@@ -130,17 +140,39 @@ public class PlayerCombatScript : MonoBehaviour {
         {
             damageTaken = damage / 5;
         }
-        DoTakeDamage(damageTaken);
+        DoTakeDamage(damageTaken, color);
     }
 
-    private void DoTakeDamage(int damage)
+    private void DoTakeDamage(int damage, Color? color = null)
     {
         health -= damage;
         if (health <= 0)
         {
             Die();
         }
-        popup.Show(damage.ToString());
+        if (color != null)
+        {
+            Show(damage.ToString(), (Color) color);
+        } else
+        {
+            Show(damage.ToString());
+        }
+
+    }
+
+    private void Show(string text)
+    {
+        popup.Show(text);
+    }
+
+    private void Show(string text, Color color)
+    {
+        popup.Show(text, color);
+    }
+
+    public void ShowMiss()
+    {
+        Show("Miss", Color.grey);
     }
 
     public void ReceiveHeal(int heal)
@@ -148,7 +180,7 @@ public class PlayerCombatScript : MonoBehaviour {
         if(health + heal <= maxHealth)
         {
             health += heal;
-            popup.Show(heal.ToString(), Color.green);
+            Show(heal.ToString(), Color.green);
         } else
         {
             health = maxHealth;
@@ -162,7 +194,7 @@ public class PlayerCombatScript : MonoBehaviour {
         {
             expGained -= expToLvlUp;
             level++;
-            popup.Show("Level up!", Color.yellow);
+            Show("Level up!", Color.yellow);
             RefreshLevelAndStats();
             AddExperience(expGained);
         } else
@@ -200,7 +232,13 @@ public class PlayerCombatScript : MonoBehaviour {
             SceneManager.LoadScene("MainMenuScene");
         } else {
             lives--;
-            transform.position = new Vector3(-6f, -1.35f, 0f);
+            if (respawnTransform != null)
+            {
+                transform.position = respawnTransform.position;
+            } else
+            {
+                transform.position = Vector3.zero;
+            }
             health = maxHealth;
         }
 

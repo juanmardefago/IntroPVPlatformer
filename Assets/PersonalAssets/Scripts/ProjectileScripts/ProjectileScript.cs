@@ -17,6 +17,10 @@ public class ProjectileScript : MonoBehaviour
     private List<UpgradeScript> upgrades;
     public int maxEnemiesToPierce;
     private int enemiesPierced;
+    [HideInInspector]
+    public float hitRate;
+    [HideInInspector]
+    public bool isCrit;
 
     public void Awake()
     {
@@ -44,16 +48,38 @@ public class ProjectileScript : MonoBehaviour
         }
         else if (IsTagged("Enemy", other))
         {
-            if (enemiesPierced == maxEnemiesToPierce)
-            {
-                ApplyUpgrades(other);
-                Burst();
-            } else if(enemiesPierced < maxEnemiesToPierce)
-            {
-                enemiesPierced++;
-                ApplyUpgrades(other);
-            }
+            HitOrMiss(other);
         } 
+    }
+
+    private void HitOrMiss(Collider2D other)
+    {
+        if(Random.value <= hitRate)
+        {
+            Hit(other);
+        } else
+        {
+            Miss(other);
+        }
+    }
+
+    private void Hit(Collider2D other)
+    {
+        if (enemiesPierced == maxEnemiesToPierce)
+        {
+            ApplyUpgrades(other);
+            Burst();
+        }
+        else if (enemiesPierced < maxEnemiesToPierce)
+        {
+            enemiesPierced++;
+            ApplyUpgrades(other);
+        }
+    }
+
+    private void Miss(Collider2D other)
+    {
+        other.SendMessage("ShowMiss");
     }
 
     private bool IsTagged(string tag, Collider2D other)
@@ -115,7 +141,14 @@ public class ProjectileScript : MonoBehaviour
         {
             upgrade.ApplyEffect(enemy, this);
         }
-        enemy.gameObject.SendMessage("TakeDamage", damage);
+        if (isCrit)
+        {
+            enemy.gameObject.SendMessage("TakeCritDamage", damage);
+        } else
+        {
+            enemy.gameObject.SendMessage("TakeDamage", damage);
+        }
+
     }
 
     public void SetFlipFactor(int flipFactor)

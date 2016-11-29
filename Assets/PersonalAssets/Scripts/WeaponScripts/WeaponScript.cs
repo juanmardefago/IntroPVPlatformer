@@ -12,6 +12,7 @@ public class WeaponScript : MonoBehaviour {
 
     [SerializeField]
     private int damage;
+    private int deviation;
     public int baseDamage;
     public int damageIncreasePerLevel;
     public int weaponLevel;
@@ -33,6 +34,9 @@ public class WeaponScript : MonoBehaviour {
     public List<UpgradeScript> gems;
     public int gemSlots;
 
+    public float hitRate;
+    public float critRate;
+
     // Use this for initialization
     void Start () {
         RecalculateDamage();
@@ -52,7 +56,16 @@ public class WeaponScript : MonoBehaviour {
             normalShotTimer = normalShotCD;
             GameObject shot = Instantiate(laserShot);
             ProjectileScript pScript = shot.GetComponent<ProjectileScript>();
-            pScript.damage = damage;
+            pScript.hitRate = hitRate;
+            if (Random.value <= critRate)
+            {
+                pScript.damage = NormalDistribution.CalculateNormalDistRandom(damage * 2, deviation * 2);
+                pScript.isCrit = true;
+            }
+            else
+            {
+                pScript.damage = NormalDistribution.CalculateNormalDistRandom(damage, deviation);
+            }
             ApplyUpgrades(pScript);
             shot.transform.position = transform.position + new Vector3(0.0001f * localScaleFlipFactor - localScaleFlipFactor * 0.3f, 0, 0);
             pScript.SetFlipFactor(localScaleFlipFactor);
@@ -72,7 +85,15 @@ public class WeaponScript : MonoBehaviour {
             GameObject shot = Instantiate(laserChargedShot);
             ProjectileScript pScript = shot.GetComponent<ProjectileScript>();
             // Aca se podría hacer que en vez de que el chargedShot sea siempre x4, tenga una variable que se puede tocar desde el inspector de unity.
-            pScript.damage = damage * 4;
+            pScript.hitRate = hitRate;
+            if (Random.value <= critRate)
+            {
+                pScript.damage = NormalDistribution.CalculateNormalDistRandom(damage * 4, deviation * 4);
+                pScript.isCrit = true;
+            } else
+            {
+                pScript.damage = NormalDistribution.CalculateNormalDistRandom(damage * 4, deviation * 4);
+            }
             ApplyUpgrades(pScript);
             shot.transform.position = transform.position + new Vector3(0.0001f * localScaleFlipFactor - localScaleFlipFactor * 0.01f, 0, 0);
             pScript.SetFlipFactor(localScaleFlipFactor);
@@ -90,6 +111,7 @@ public class WeaponScript : MonoBehaviour {
     private void RecalculateDamage()
     {
         damage = baseDamage + ((weaponLevel - 1) * damageIncreasePerLevel);
+        deviation = Mathf.Max((damage / 100) * 5, 1);
     }
 
     private void RecalculatePriceToLevelUp()

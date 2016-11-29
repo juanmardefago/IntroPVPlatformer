@@ -19,6 +19,11 @@ public class EnemyCombatScript : MonoBehaviour
     protected float dieTimer = 0f;
 
     public int damage;
+    [HideInInspector]
+    public int deviation;
+    public float hitRate;
+    public float critRate;
+    public bool crit;
 
     public int expBounty;
 
@@ -32,6 +37,7 @@ public class EnemyCombatScript : MonoBehaviour
         myTransform = GetComponent<Transform>();
         movementScript = GetComponent<EnemyMovementBasic>();
         popup = GetComponent<PopupTextHandler>();
+        deviation = Mathf.Max((damage / 100) * 5, 1);
     }
 
     // Update is called once per frame
@@ -57,7 +63,17 @@ public class EnemyCombatScript : MonoBehaviour
     {
         if (collision.transform.tag == "Player" && dieTimer == 0f)
         {
-            collision.transform.gameObject.SendMessage("ProcessHit", this);
+            if (Random.value <= hitRate)
+            {
+                if(Random.value <= critRate)
+                {
+                    crit = true;
+                }
+                collision.transform.gameObject.SendMessage("ProcessHit", this);
+            } else
+            {
+                collision.transform.gameObject.SendMessage("ShowMiss");
+            }
         }
     }
 
@@ -69,8 +85,36 @@ public class EnemyCombatScript : MonoBehaviour
         {
             Die();
         }
-        popup.Show(damage.ToString());
+        Show(damage.ToString());
         aggro = 3f;
+    }
+
+    public void TakeCritDamage(int damage)
+    {
+        anim.SetTrigger("hit");
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+        Show(damage.ToString(), Color.red);
+        aggro = 3f;
+    }
+
+
+    private void Show(string text)
+    {
+        popup.Show(text);
+    }
+
+    private void Show(string text, Color color)
+    {
+        popup.Show(text, color);
+    }
+
+    public void ShowMiss()
+    {
+        Show("Miss", Color.grey);
     }
 
     public void Pushback()

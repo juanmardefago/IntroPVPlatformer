@@ -401,6 +401,8 @@ MonoBehaviour:
   reloadCD: 1
   gems: []
   gemSlots: 3
+  hitRate: 0.8
+  critRate: 0.2
 --- !u!114 &114000010168508358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,6 +428,7 @@ MonoBehaviour:
   baseHealth: 50
   healthPerLevel: 50
   lives: 3
+  respawnTransform: {fileID: 0}
   experience: 0
   level: 1
   shield: {fileID: 1000014015967444}
@@ -583,6 +586,8 @@ MonoBehaviour:
   reloadCD: 1
   gems: []
   gemSlots: 3
+  hitRate: 0.7
+  critRate: 0.1
 --- !u!212 &212000011085997550
 SpriteRenderer:
   m_ObjectHideFlags: 1

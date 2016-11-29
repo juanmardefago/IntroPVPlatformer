@@ -68,6 +68,8 @@ MonoBehaviour:
   reloadCD: 1
   gems: []
   gemSlots: 3
+  hitRate: 0.8
+  critRate: 0.2
 --- !u!212 &212000010902800092
 SpriteRenderer:
   m_ObjectHideFlags: 1

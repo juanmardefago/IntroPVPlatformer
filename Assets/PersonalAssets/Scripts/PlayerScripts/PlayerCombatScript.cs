@@ -126,7 +126,7 @@ public class PlayerCombatScript : MonoBehaviour {
             movementScript.Pushback(enemy.DirectionPointingToPlayer());
         } else
         {
-            enemy.Pushback();
+            enemy.PushbackShield();
         }
     }
 
@@ -206,7 +206,7 @@ public class PlayerCombatScript : MonoBehaviour {
 
     private void RefreshLevelAndStats()
     {
-        maxHealth = baseHealth + (level * level * healthPerLevel) + bonusHealth;
+        maxHealth = baseHealth + (level  * healthPerLevel) + bonusHealth;
         health = maxHealth;
         totalExpForNextLevel = ExperienceRequiredForNextLevel();
         expToLvlUp = totalExpForNextLevel;
@@ -229,7 +229,7 @@ public class PlayerCombatScript : MonoBehaviour {
     {
         if(lives == 0)
         {
-            SceneManager.LoadScene("MainMenuScene");
+            SceneManager.LoadScene("YouDiedDemo");
         } else {
             lives--;
             if (respawnTransform != null)

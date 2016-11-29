@@ -58,7 +58,7 @@ MonoBehaviour:
   weaponName: Cursed Pistol
   weaponPrice: 20000
   damage: 0
-  baseDamage: 600
+  baseDamage: 200
   damageIncreasePerLevel: 200
   weaponLevel: 1
   weaponPriceToLevelUp: 500

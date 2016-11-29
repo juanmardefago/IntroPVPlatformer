@@ -120,7 +120,13 @@ public class EnemyCombatScript : MonoBehaviour
     public void Pushback()
     {
         movementScript.SetRecovering();
-        movementScript.PushbackTo(-DirectionPointingToPlayer());
+        movementScript.PushbackTo(new Vector2(-DirectionPointingToPlayer().x, 0), 3);
+    }
+
+    public void PushbackShield()
+    {
+        movementScript.SetRecovering();
+        movementScript.PushbackTo(new Vector2(-DirectionPointingToPlayer().x, 0), 20);
     }
 
     public void Die()

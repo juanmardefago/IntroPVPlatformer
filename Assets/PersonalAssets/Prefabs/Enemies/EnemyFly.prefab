@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ef5e491efd1fc44b2d5fe22ceb8598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 60
+  health: 40
   awarenessDistance: 8
   playerLayer:
     serializedVersion: 2

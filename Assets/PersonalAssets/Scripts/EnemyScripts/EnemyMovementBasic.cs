@@ -74,9 +74,9 @@ public class EnemyMovementBasic : MonoBehaviour {
         transform.localScale = scale;
     }
 
-    public void PushbackTo(Vector2 dir)
+    public void PushbackTo(Vector2 dir, int force)
     {
-        rBody.AddRelativeForce(dir * 20, ForceMode2D.Impulse);
+        rBody.AddRelativeForce(dir * force, ForceMode2D.Impulse);
         anim.SetBool("IsWalking", false);
     }
 

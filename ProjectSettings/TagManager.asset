@@ -13,6 +13,7 @@ TagManager:
   - NPC
   - Coin
   - Gem
+  - Spawn
   layers:
   - Default
   - TransparentFX
@@ -29,8 +30,8 @@ TagManager:
   - Enemy
   - PlayerNPCInteract
   - NPC
-  - 
-  - 
+  - Spawn
+  - SpawnerArea
   - 
   - 
   - 

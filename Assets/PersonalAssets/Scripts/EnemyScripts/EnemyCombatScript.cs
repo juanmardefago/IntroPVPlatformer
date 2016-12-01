@@ -3,8 +3,8 @@ using System.Collections;
 
 public class EnemyCombatScript : MonoBehaviour
 {
-
-    public int health;
+    public int baseHealth;
+    private int health;
     public float awarenessDistance;
     public LayerMask playerLayer;
     protected Animator anim;
@@ -26,6 +26,7 @@ public class EnemyCombatScript : MonoBehaviour
     public bool crit;
 
     public int expBounty;
+    public bool waterType;
 
     protected PopupTextHandler popup;
 
@@ -38,6 +39,7 @@ public class EnemyCombatScript : MonoBehaviour
         movementScript = GetComponent<EnemyMovementBasic>();
         popup = GetComponent<PopupTextHandler>();
         deviation = Mathf.Max((damage / 100) * 5, 1);
+        health = baseHealth;
     }
 
     // Update is called once per frame
@@ -139,6 +141,14 @@ public class EnemyCombatScript : MonoBehaviour
         GetComponent<LootDropScript>().DropLoot();
     }
 
+    public void NoExpDie()
+    {
+        dieTimer += Time.deltaTime;
+        anim.SetTrigger("dying");
+        movementScript.MakeKinematic();
+        GetComponent<BoxCollider2D>().enabled = false;
+    }
+
     protected void DecreaseAggro()
     {
         if (aggro > 0)
@@ -184,6 +194,35 @@ public class EnemyCombatScript : MonoBehaviour
     protected bool SameXAsPlayer()
     {
         return myPos2D.x >= playerPos2D.x - 0.1 && myPos2D.x <= playerPos2D.x + 0.1;
+    }
+
+    public void OnWaterTouch()
+    {
+        if (!waterType)
+        {
+            if(health < baseHealth)
+            {
+                Die();
+            } else
+            {
+                NoExpDie();
+            }
+        }
+    }
+
+    public void OnWaterLack()
+    {
+        if (waterType)
+        {
+            if (health < baseHealth)
+            {
+                Die();
+            }
+            else
+            {
+                NoExpDie();
+            }
+        }
     }
 
     public void OnDrawGizmos()

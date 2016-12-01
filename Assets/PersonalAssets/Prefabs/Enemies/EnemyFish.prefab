@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc9db29e999d394d830756bbf450f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 40
+  baseHealth: 40
   awarenessDistance: 5
   playerLayer:
     serializedVersion: 2
@@ -213,6 +213,7 @@ MonoBehaviour:
   critRate: 0.1
   crit: 0
   expBounty: 200
+  waterType: 1
 --- !u!114 &114000011654967144
 MonoBehaviour:
   m_ObjectHideFlags: 1

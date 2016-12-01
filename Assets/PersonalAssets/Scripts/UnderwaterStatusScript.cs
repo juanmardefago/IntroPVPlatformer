@@ -9,6 +9,10 @@ public class UnderwaterStatusScript : MonoBehaviour {
         {
             other.SendMessage("UnderwaterStatus", true);
         }
+        else if(other.tag == "Enemy")
+        {
+            other.gameObject.SendMessage("OnWaterTouch");
+        }
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -17,5 +21,11 @@ public class UnderwaterStatusScript : MonoBehaviour {
         {
             other.gameObject.SendMessage("UnderwaterStatus", false);
         }
+        else if (other.tag == "Enemy")
+        {
+            other.gameObject.SendMessage("OnWaterLack");
+        }
     }
+
+
 }

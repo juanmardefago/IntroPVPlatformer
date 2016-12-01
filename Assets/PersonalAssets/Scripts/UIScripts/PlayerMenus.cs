@@ -438,7 +438,7 @@ public class PlayerMenus : MonoBehaviour
     // Acá se tendría que hacer un save antes de salir ( o pedirle que lo haga, o agregar un boton de save y una advertencia)
     public void QuitToMainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        SceneManager.LoadScene(0);
     }
 
 }

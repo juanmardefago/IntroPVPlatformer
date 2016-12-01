@@ -143,6 +143,20 @@ public class PlayerCombatScript : MonoBehaviour {
         DoTakeDamage(damageTaken, color);
     }
 
+    public void TakeSpikeDamage(int damage)
+    {
+        int damageTaken = damage;
+        if (!blocking)
+        {
+            anim.SetTrigger("hit");
+        }
+        else
+        {
+            damageTaken = damage / 5;
+        }
+        DoTakeDamage(damageTaken, Color.white);
+    }
+
     private void DoTakeDamage(int damage, Color? color = null)
     {
         health -= damage;

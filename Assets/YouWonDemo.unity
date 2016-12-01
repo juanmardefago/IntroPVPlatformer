@@ -843,10 +843,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1211920934}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0010681152, y: 0}
-  m_SizeDelta: {x: 1044, y: 241}
+  m_AnchorMin: {x: 0.5, y: 0.76072896}
+  m_AnchorMax: {x: 0.53186023, y: 0.76072896}
+  m_AnchoredPosition: {x: -15.498932, y: 131}
+  m_SizeDelta: {x: 1013, y: 241}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2107066883
 MonoBehaviour:
@@ -880,7 +880,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The end
+  m_Text: 'You Won
+
+    The end'
 --- !u!222 &2107066884
 CanvasRenderer:
   m_ObjectHideFlags: 0

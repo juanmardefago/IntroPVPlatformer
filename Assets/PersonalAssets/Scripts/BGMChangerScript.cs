@@ -14,7 +14,10 @@ public class BGMChangerScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        audioSource.clip = areaMusic;
-        audioSource.Play();
+        if (audioSource.clip != areaMusic)
+        {
+            audioSource.clip = areaMusic;
+            audioSource.Play();
+        }
     }
 }

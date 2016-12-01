@@ -28,7 +28,11 @@ public class EnemyCombatScript : MonoBehaviour
     public int expBounty;
     public bool waterType;
 
+    public float hitCD;
+    private bool hitting;
+
     protected PopupTextHandler popup;
+    protected SoundScript soundScript;
 
     // Use this for initialization
     public void Start()
@@ -37,6 +41,7 @@ public class EnemyCombatScript : MonoBehaviour
         anim = GetComponent<Animator>();
         myTransform = GetComponent<Transform>();
         movementScript = GetComponent<EnemyMovementBasic>();
+        soundScript = GetComponent<SoundScript>();
         popup = GetComponent<PopupTextHandler>();
         deviation = Mathf.Max((damage / 100) * 5, 1);
         health = baseHealth;
@@ -65,44 +70,63 @@ public class EnemyCombatScript : MonoBehaviour
     {
         if (collision.transform.tag == "Player" && dieTimer == 0f)
         {
-            if (Random.value <= hitRate)
-            {
-                if(Random.value <= critRate)
-                {
-                    crit = true;
-                }
-                collision.transform.gameObject.SendMessage("ProcessHit", this);
-            } else
-            {
-                collision.transform.gameObject.SendMessage("ShowMiss");
-            }
+            if (!hitting) StartCoroutine(HitPlayer(collision.transform.gameObject));
         }
+    }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player" && dieTimer == 0f)
+        {
+            if (!hitting) StartCoroutine(HitPlayer(collision.transform.gameObject));
+        }
+    }
+
+    private IEnumerator HitPlayer(GameObject player)
+    {
+        hitting = true;
+        if (Random.value <= hitRate)
+        {
+            if (Random.value <= critRate)
+            {
+                crit = true;
+            }
+            player.SendMessage("ProcessHit", this);
+            soundScript.PlayAttackSound();
+        }
+        else
+        {
+            player.SendMessage("ShowMiss");
+        }
+
+        yield return new WaitForSeconds(hitCD);
+        hitting = false;
     }
 
     public void TakeDamage(int damage)
     {
-        anim.SetTrigger("hit");
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
         Show(damage.ToString());
         aggro = 3f;
+        DoTakeDamage(damage);
     }
 
     public void TakeCritDamage(int damage)
     {
+        Show(damage.ToString(), Color.red);
+        aggro = 3f;
+        DoTakeDamage(damage);
+    }
+
+    public void DoTakeDamage(int damage)
+    {
+        soundScript.PlayHitSound();
         anim.SetTrigger("hit");
         health -= damage;
         if (health <= 0)
         {
             Die();
         }
-        Show(damage.ToString(), Color.red);
-        aggro = 3f;
     }
-
 
     private void Show(string text)
     {
@@ -139,6 +163,7 @@ public class EnemyCombatScript : MonoBehaviour
         movementScript.MakeKinematic();
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<LootDropScript>().DropLoot();
+        soundScript.PlayDeathSound();
     }
 
     public void NoExpDie()
@@ -147,6 +172,7 @@ public class EnemyCombatScript : MonoBehaviour
         anim.SetTrigger("dying");
         movementScript.MakeKinematic();
         GetComponent<BoxCollider2D>().enabled = false;
+        soundScript.PlayDeathSound();
     }
 
     protected void DecreaseAggro()
@@ -200,10 +226,11 @@ public class EnemyCombatScript : MonoBehaviour
     {
         if (!waterType)
         {
-            if(health < baseHealth)
+            if (health < baseHealth)
             {
                 Die();
-            } else
+            }
+            else
             {
                 NoExpDie();
             }

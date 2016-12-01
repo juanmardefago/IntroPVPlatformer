@@ -63,6 +63,8 @@ GameObject:
   - 114: {fileID: 114000013719673766}
   - 114: {fileID: 114000011547116796}
   - 114: {fileID: 114000010232896740}
+  - 114: {fileID: 114000012832823678}
+  - 82: {fileID: 82000011265400840}
   m_Layer: 12
   m_Name: EnemyFly
   m_TagString: Enemy
@@ -143,6 +145,80 @@ BoxCollider2D:
   m_Offset: {x: 0.05, y: -0.1}
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.5}
+--- !u!82 &82000011265400840
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011988120432}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95000013150067386
 Animator:
   serializedVersion: 3
@@ -173,8 +249,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCoins: 30
   minCoins: 10
-  dropList: []
-  dropListChance: []
+  dropList:
+  - {fileID: 1000012556133452, guid: 2310312c4c10cfc4f94d3023ea548ae0, type: 2}
+  - {fileID: 1000012898207788, guid: f6c0821b662914445bcc40698d14744e, type: 2}
+  dropListChance:
+  - 0.05
+  - 0.05
   coinPrefab: {fileID: 1000012650179460, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
   genericItemPrefab: {fileID: 1000010241121010, guid: d6c9db35638953842b08c47634da67d8,
     type: 2}
@@ -245,6 +325,26 @@ MonoBehaviour:
   speed: 3
   recoveryTime: 0.2
   canMoveForward: 0
+--- !u!114 &114000012832823678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011988120432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4ad7400bb1ee341b703b81314249e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathSounds:
+  - {fileID: 8300000, guid: 678b12a824e1e194bb1bbd72e3155099, type: 3}
+  - {fileID: 8300000, guid: c152d68223d527646be7d00c5157d7fe, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 7a80a7d2ac2db2b4589298a3279fe8ad, type: 3}
+  - {fileID: 8300000, guid: 39348d648791c7f4894ec252d575d7aa, type: 3}
+  attackSounds:
+  - {fileID: 8300000, guid: 66b0a715a8bda1d4286abe8dcf7ae12d, type: 3}
+  - {fileID: 8300000, guid: 57ab374fe1667a34eb81d39855f1f774, type: 3}
 --- !u!114 &114000013192277304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,6 +383,7 @@ MonoBehaviour:
   crit: 0
   expBounty: 2000
   waterType: 0
+  hitCD: 0.9
 --- !u!114 &114000014242950772
 MonoBehaviour:
   m_ObjectHideFlags: 1

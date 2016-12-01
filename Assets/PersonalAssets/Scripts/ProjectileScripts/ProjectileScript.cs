@@ -21,6 +21,7 @@ public class ProjectileScript : MonoBehaviour
     public float hitRate;
     [HideInInspector]
     public bool isCrit;
+    private AudioSource audioSourceBurst;
 
     public void Awake()
     {
@@ -30,7 +31,7 @@ public class ProjectileScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        audioSourceBurst = GetComponents<AudioSource>()[1];
     }
 
     // Update is called once per frame
@@ -104,6 +105,7 @@ public class ProjectileScript : MonoBehaviour
         Rigidbody2D rBody = GetComponent<Rigidbody2D>();
         rBody.velocity = new Vector2(0, 0);
         GetComponent<BoxCollider2D>().enabled = false;
+        audioSourceBurst.Play();
     }
 
     private void CheckForDisappearTime()

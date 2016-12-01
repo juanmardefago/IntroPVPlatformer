@@ -13,10 +13,26 @@ public class LootDropScript : MonoBehaviour {
     public GameObject coinPrefab;
     public GameObject genericItemPrefab;
 
+    public GameObject healthPackPrefab;
+    public float dropChanceHealthPack;
+
     public void DropLoot()
     {
         SpawnCoins();
+        SpawnHealthPack();
         SpawnItems();
+    }
+
+    private void SpawnHealthPack()
+    {
+        if (Random.value <= dropChanceHealthPack)
+        {
+            GameObject healthPack = Instantiate(healthPackPrefab);
+            healthPack.transform.position = transform.position;
+            Rigidbody2D rBody = healthPack.GetComponent<Rigidbody2D>();
+            rBody.isKinematic = false;
+            rBody.AddForce(new Vector2(Random.Range(3, -3), 10), ForceMode2D.Impulse);
+        }
     }
 
     private void SpawnCoins()

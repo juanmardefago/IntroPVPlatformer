@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc9db29e999d394d830756bbf450f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 100
+  baseHealth: 60
   awarenessDistance: 5
   playerLayer:
     serializedVersion: 2
@@ -336,11 +336,14 @@ MonoBehaviour:
   - {fileID: 1000010979320268, guid: 84763c3b7da12ca40b8dbc3efe7d3591, type: 2}
   - {fileID: 1000012385268702, guid: 32377aa03e0a35e4bbdec4c2431e4d05, type: 2}
   dropListChance:
-  - 0.1
-  - 0.01
+  - 0.2
+  - 0.2
   coinPrefab: {fileID: 1000012650179460, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
   genericItemPrefab: {fileID: 1000010241121010, guid: d6c9db35638953842b08c47634da67d8,
     type: 2}
+  healthPackPrefab: {fileID: 1000013112612474, guid: f30c7e56163c64e48b4f78fc3eb7a0e4,
+    type: 2}
+  dropChanceHealthPack: 0.4
 --- !u!114 &114000011671695804
 MonoBehaviour:
   m_ObjectHideFlags: 1

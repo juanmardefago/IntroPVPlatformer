@@ -319,11 +319,14 @@ MonoBehaviour:
   - {fileID: 1000013779663168, guid: 4ea4020c32c2a6c449d78de57a599cca, type: 2}
   - {fileID: 1000014259405664, guid: 55ad0c352280dc348b1b489bc670fb1a, type: 2}
   dropListChance:
-  - 0.05
-  - 0.1
+  - 0.2
+  - 0.2
   coinPrefab: {fileID: 1000012650179460, guid: 9131e28469893fe40b78a8a4c5cb32fa, type: 2}
   genericItemPrefab: {fileID: 1000010241121010, guid: d6c9db35638953842b08c47634da67d8,
     type: 2}
+  healthPackPrefab: {fileID: 1000013112612474, guid: f30c7e56163c64e48b4f78fc3eb7a0e4,
+    type: 2}
+  dropChanceHealthPack: 0.4
 --- !u!114 &114000012409055854
 MonoBehaviour:
   m_ObjectHideFlags: 1

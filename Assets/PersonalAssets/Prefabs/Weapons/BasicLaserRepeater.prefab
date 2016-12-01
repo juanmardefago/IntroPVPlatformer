@@ -58,7 +58,7 @@ MonoBehaviour:
   weaponName: Laser Repeater
   weaponPrice: 200
   damage: 0
-  baseDamage: 5
+  baseDamage: 7
   damageIncreasePerLevel: 10
   weaponLevel: 1
   weaponPriceToLevelUp: 30

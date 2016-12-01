@@ -133,6 +133,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyFly (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -231,6 +241,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -272,6 +292,16 @@ Prefab:
     - target: {fileID: 4000010358190912, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
@@ -318,6 +348,16 @@ Prefab:
     - target: {fileID: 1000011988120432, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
       propertyPath: m_Name
       value: EnemyFly (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
@@ -412,6 +452,16 @@ Prefab:
     - target: {fileID: 1000011988120432, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
       propertyPath: m_Name
       value: EnemyFly (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
@@ -578,6 +628,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -624,6 +684,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -669,6 +739,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -757,6 +837,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -864,6 +954,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyFly (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -909,6 +1009,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -956,6 +1066,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -1002,6 +1122,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyFly (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -1047,6 +1177,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -1127,6 +1267,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyFly (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -1178,6 +1328,16 @@ Prefab:
     - target: {fileID: 1000011988120432, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
       propertyPath: m_Name
       value: EnemyFly (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
@@ -1480,6 +1640,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -1530,6 +1700,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -1619,6 +1799,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -1664,6 +1854,16 @@ Prefab:
     - target: {fileID: 1000011988120432, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
       propertyPath: m_Name
       value: EnemyFly (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
@@ -1725,6 +1925,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -1942,6 +2152,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyFly (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -1987,6 +2207,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -2081,6 +2311,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemyFly (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010232896740, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -2133,6 +2373,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -2183,6 +2433,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -2464,6 +2724,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -2514,6 +2784,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -2841,6 +3121,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -2929,6 +3219,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -2974,6 +3274,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -3026,6 +3336,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -3071,6 +3391,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -3174,6 +3504,16 @@ Prefab:
       propertyPath: m_Name
       value: EnemySlime (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -3215,6 +3555,16 @@ Prefab:
     - target: {fileID: 4000014019363858, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_RootOrder
       value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -3261,6 +3611,16 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: maxCoins
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: minCoins
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}

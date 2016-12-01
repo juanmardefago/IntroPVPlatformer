@@ -37,11 +37,14 @@ public class PlayerCombatScript : MonoBehaviour {
     private bool blocking = false;
     private bool canBlock = true;
 
+    private SoundScript soundScript;
+
     // Use this for initialization
     void Start () {
         inventory = GetComponent<Inventory>();
         popup = GetComponent<PopupTextHandler>();
         anim = GetComponent<Animator>();
+        soundScript = GetComponent<SoundScript>();
         movementScript = GetComponent<PlayerMovement>();
         RefreshLevelAndStats();
         totalExpForNextLevel = ExperienceRequiredForNextLevel();
@@ -159,6 +162,7 @@ public class PlayerCombatScript : MonoBehaviour {
 
     private void DoTakeDamage(int damage, Color? color = null)
     {
+        soundScript.PlayHitSound();
         health -= damage;
         if (health <= 0)
         {
@@ -171,7 +175,6 @@ public class PlayerCombatScript : MonoBehaviour {
         {
             Show(damage.ToString());
         }
-
     }
 
     private void Show(string text)
@@ -255,6 +258,6 @@ public class PlayerCombatScript : MonoBehaviour {
             }
             health = maxHealth;
         }
-
+        soundScript.PlayDeathSound();
     }
 }

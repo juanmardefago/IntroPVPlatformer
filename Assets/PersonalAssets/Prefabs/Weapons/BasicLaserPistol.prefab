@@ -58,8 +58,8 @@ MonoBehaviour:
   weaponName: Laser Pistol
   weaponPrice: 50
   damage: 0
-  baseDamage: 5
-  damageIncreasePerLevel: 5
+  baseDamage: 10
+  damageIncreasePerLevel: 10
   weaponLevel: 1
   weaponPriceToLevelUp: 10
   maxBullets: 10
@@ -68,7 +68,7 @@ MonoBehaviour:
   reloadCD: 1
   gems: []
   gemSlots: 3
-  hitRate: 0.8
+  hitRate: 0.85
   critRate: 0.2
 --- !u!212 &212000010902800092
 SpriteRenderer:

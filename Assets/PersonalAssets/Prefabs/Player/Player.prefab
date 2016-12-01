@@ -353,7 +353,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.45
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -467,8 +467,8 @@ MonoBehaviour:
   weaponName: Laser Pistol
   weaponPrice: 50
   damage: 0
-  baseDamage: 5
-  damageIncreasePerLevel: 5
+  baseDamage: 10
+  damageIncreasePerLevel: 10
   weaponLevel: 1
   weaponPriceToLevelUp: 10
   maxBullets: 10
@@ -477,7 +477,7 @@ MonoBehaviour:
   reloadCD: 1
   gems: []
   gemSlots: 3
-  hitRate: 0.8
+  hitRate: 0.85
   critRate: 0.2
 --- !u!114 &114000010168508358
 MonoBehaviour:
@@ -617,8 +617,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4ad7400bb1ee341b703b81314249e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSounds: []
-  hitSounds: []
+  deathSounds:
+  - {fileID: 8300000, guid: c208d36fc975a214e82f2f68d2c46373, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 3a538c36fee2cda4696d629178b07a7c, type: 3}
+  - {fileID: 8300000, guid: ecf9da67ddba0264389dd1c6d9108eed, type: 3}
   attackSounds: []
 --- !u!114 &114000013125526906
 MonoBehaviour:
@@ -666,7 +669,7 @@ MonoBehaviour:
   weaponName: Laser Repeater
   weaponPrice: 200
   damage: 0
-  baseDamage: 5
+  baseDamage: 7
   damageIncreasePerLevel: 10
   weaponLevel: 1
   weaponPriceToLevelUp: 30

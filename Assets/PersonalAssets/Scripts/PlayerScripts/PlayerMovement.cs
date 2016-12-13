@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     private Collider2D playerColl;
     private float hitRecoveryTimer;
     public float hitRecoveryTime;
+    public float mousePositionX;
 
 
 	// Use this for initialization
@@ -36,6 +37,8 @@ public class PlayerMovement : MonoBehaviour {
             CheckForRecoveryAndRecover();
             playerMovementState.KeepStateOnPushback(this);
         }
+        mousePositionX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        CorrectLocalScale(mousePositionX - transform.position.x);
     }
 
     void FixedUpdate () {
@@ -68,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
                 rBody.velocity = new Vector2(0, rBody.velocity.y);
             }
 
-            CorrectLocalScale(moveX);
+            //CorrectLocalScale(moveX);
         }
     }
 

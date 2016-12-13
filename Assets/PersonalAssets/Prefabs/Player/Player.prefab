@@ -554,6 +554,7 @@ MonoBehaviour:
   rBody: {fileID: 0}
   anim: {fileID: 0}
   hitRecoveryTime: 0.15
+  mousePositionX: 0
 --- !u!114 &114000011981191860
 MonoBehaviour:
   m_ObjectHideFlags: 1

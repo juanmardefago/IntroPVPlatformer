@@ -8,7 +8,7 @@ public class SpawnScript : MonoBehaviour {
     public List<GameObject> waterEnemies;
     public bool underwater;
 
-    public void SpawnRandomEnemy()
+    public void SpawnRandomEnemy(int level)
     {
         GameObject newEnemy;
         if (!underwater)
@@ -18,6 +18,9 @@ public class SpawnScript : MonoBehaviour {
         {
             newEnemy = Instantiate(waterEnemies[NextInt(waterEnemies.Count - 1)]);
         }
+        EnemyCombatScript combatScript = newEnemy.GetComponent<EnemyCombatScript>();
+        combatScript.level = level;
+        combatScript.AdjustStatsForLevel();
         newEnemy.transform.position = transform.position;
     }
 

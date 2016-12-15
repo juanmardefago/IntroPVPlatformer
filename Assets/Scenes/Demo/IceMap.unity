@@ -1753,6 +1753,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012876825676, guid: 39c288ce1a9663046b206076ec7d9e8c,
+        type: 2}
+      propertyPath: maxLevel
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39c288ce1a9663046b206076ec7d9e8c, type: 2}
   m_IsPrefabParent: 0
@@ -3335,16 +3340,6 @@ Prefab:
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name
       value: EnemySlime (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
-        type: 2}
-      propertyPath: maxCoins
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011579032370, guid: 75eec9491ed664741ac0b6f375aeb0da,
-        type: 2}
-      propertyPath: minCoins
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}

@@ -59,12 +59,14 @@ public class UpgradeNPCScript : UsableObjectScript
     public override void Interact(PlayerNPCInteraction pi)
     {
         mainCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void CloseShopMenu()
     {
         mainCanvas.SetActive(false);
         ResetPanels();
+        Time.timeScale = 1;
     }
 
     public void OpenBuyWeaponsMenu()

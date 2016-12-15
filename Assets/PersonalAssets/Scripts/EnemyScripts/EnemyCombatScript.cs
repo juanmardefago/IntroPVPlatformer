@@ -3,8 +3,10 @@ using System.Collections;
 
 public class EnemyCombatScript : MonoBehaviour
 {
+    public int level;
     public int baseHealth;
     private int health;
+    private int maxHealth;
     public float awarenessDistance;
     public LayerMask playerLayer;
     protected Animator anim;
@@ -18,14 +20,18 @@ public class EnemyCombatScript : MonoBehaviour
     protected float dieDelay = 2f;
     protected float dieTimer = 0f;
 
+    public int baseDamage;
+    [HideInInspector]
     public int damage;
     [HideInInspector]
     public int deviation;
     public float hitRate;
     public float critRate;
+    [HideInInspector]
     public bool crit;
 
-    public int expBounty;
+    public int baseExpBounty;
+    private int expBounty;
     public bool waterType;
 
     public float hitCD;
@@ -44,7 +50,7 @@ public class EnemyCombatScript : MonoBehaviour
         soundScript = GetComponent<SoundScript>();
         popup = GetComponent<PopupTextHandler>();
         deviation = Mathf.Max((damage / 100) * 5, 1);
-        health = baseHealth;
+        AdjustStatsForLevel();
     }
 
     // Update is called once per frame
@@ -164,6 +170,7 @@ public class EnemyCombatScript : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<LootDropScript>().DropLoot();
         soundScript.PlayDeathSound();
+        GetComponent<EnemyHealthBarHandler>().Disable();
     }
 
     public void NoExpDie()
@@ -173,6 +180,7 @@ public class EnemyCombatScript : MonoBehaviour
         movementScript.MakeKinematic();
         GetComponent<BoxCollider2D>().enabled = false;
         soundScript.PlayDeathSound();
+        GetComponent<EnemyHealthBarHandler>().Disable();
     }
 
     protected void DecreaseAggro()
@@ -250,6 +258,19 @@ public class EnemyCombatScript : MonoBehaviour
                 NoExpDie();
             }
         }
+    }
+
+    public void AdjustStatsForLevel()
+    {
+        health = baseHealth + ((baseHealth / 2) * level);
+        maxHealth = health;
+        damage = baseDamage + ((baseDamage / 3) * level);
+        expBounty = baseExpBounty + ((baseExpBounty / 2) * level);
+    }
+
+    public float HealthPercentage()
+    {
+        return (float) health / maxHealth;
     }
 
     public void OnDrawGizmos()

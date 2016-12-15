@@ -28,6 +28,8 @@ public class LootDropScript : MonoBehaviour {
         if (Random.value <= dropChanceHealthPack)
         {
             GameObject healthPack = Instantiate(healthPackPrefab);
+            HealthPackScript healthScript = healthPack.GetComponent<HealthPackScript>();
+            healthScript.healthToRestore = healthScript.healthToRestore + ((healthScript.healthToRestore / 3) * GetComponent<EnemyCombatScript>().level);
             healthPack.transform.position = transform.position;
             Rigidbody2D rBody = healthPack.GetComponent<Rigidbody2D>();
             rBody.isKinematic = false;

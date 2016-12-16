@@ -3,7 +3,12 @@ using System.Collections;
 
 public class ScaleFixForCanvas : MonoBehaviour {
 
+
+
 	void Update () {
-        transform.localScale = transform.parent.transform.localScale;
+        if((transform.localScale.x > 0 && transform.parent.transform.localScale.x < 0) || (transform.localScale.x < 0 && transform.parent.transform.localScale.x > 0))
+        {
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        } 
 	}
 }

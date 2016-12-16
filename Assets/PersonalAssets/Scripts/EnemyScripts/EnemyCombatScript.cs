@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyCombatScript : MonoBehaviour
 {
+    public string enemyName;
     public int level;
     public int baseHealth;
     private int health;
@@ -171,6 +172,7 @@ public class EnemyCombatScript : MonoBehaviour
         GetComponent<LootDropScript>().DropLoot();
         soundScript.PlayDeathSound();
         GetComponent<EnemyHealthBarHandler>().Disable();
+        GetComponent<EnemyNameHandler>().Disable();
     }
 
     public void NoExpDie()
@@ -181,6 +183,7 @@ public class EnemyCombatScript : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         soundScript.PlayDeathSound();
         GetComponent<EnemyHealthBarHandler>().Disable();
+        GetComponent<EnemyNameHandler>().Disable();
     }
 
     protected void DecreaseAggro()

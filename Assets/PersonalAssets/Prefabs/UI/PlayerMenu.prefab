@@ -3058,11 +3058,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '-------------------------------------------------------------
+  m_Text: '-----------------------------------------------------------
 
     Weapons available to equip
 
-    -------------------------------------------------------------'
+    -----------------------------------------------------------'
 --- !u!114 &114000012202753592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3304,6 +3304,7 @@ MonoBehaviour:
     type: 2}
   weaponRowPrefab: {fileID: 1000011633453074, guid: 0bb5eb50f5cd9c043a9ccfa781b562b7,
     type: 2}
+  equippedWeaponColor: {r: 0.36078432, g: 0.2901961, b: 0.9254902, a: 0.5882353}
 --- !u!114 &114000012424550476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3546,7 +3547,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224000012281246656}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 0.99999964
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5527,7 +5528,7 @@ RectTransform:
   m_Father: {fileID: 224000012879969034}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0.99999964}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

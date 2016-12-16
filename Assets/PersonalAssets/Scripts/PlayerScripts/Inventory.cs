@@ -93,19 +93,19 @@ public class Inventory : MonoBehaviour {
     public List<GameObject> GetWeaponsOwned()
     {
         List<GameObject> res = new List<GameObject>();
-        foreach(GameObject item in items)
+        foreach (GameObject weapon in eqWeapons)
+        {
+            if (weapon != null)
+            {
+                res.Add(weapon);
+            }
+        }
+        foreach (GameObject item in items)
         {
             if(item.tag == "Weapon")
             {
 
                 res.Add(item);
-            }
-        }
-        foreach(GameObject weapon in eqWeapons)
-        {
-            if (weapon != null)
-            {
-                res.Add(weapon);
             }
         }
         return res;
@@ -142,9 +142,10 @@ public class Inventory : MonoBehaviour {
 
     private void UnequipAndPutInBag(GameObject weapon, int index)
     {
+        WeaponScript wScript = weapon.GetComponent<WeaponScript>();
         eqWeapons[index] = null;
         items.Add(weapon);
-        if(weapon.GetComponent<WeaponScript>().weaponName == currentWeapon.weaponName)
+        if(wScript.weaponName == currentWeapon.weaponName)
         {
             ChangeWeapon((index+1) % 2);
         }
@@ -213,5 +214,18 @@ public class Inventory : MonoBehaviour {
     public int GetCurrentWeaponSlot()
     {
         return currentWeaponSlot;
+    }
+
+    public bool IsWeaponEquipped(GameObject weapon)
+    {
+        bool res = false;
+        for(int i = 0; i < 2; i++)
+        {
+            if(eqWeapons[i] == weapon)
+            {
+                res = true;
+            }
+        }
+        return res;
     }
 }

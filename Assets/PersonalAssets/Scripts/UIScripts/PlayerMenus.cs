@@ -34,6 +34,7 @@ public class PlayerMenus : MonoBehaviour
     public Text buyWeaponText;
     public GameObject gemRowPrefab;
     public GameObject weaponRowPrefab;
+    public Color equippedWeaponColor;
 
 
     // Use this for initialization
@@ -100,6 +101,10 @@ public class PlayerMenus : MonoBehaviour
         {
             weaponRow = Instantiate(weaponRowPrefabSingleButton);
             weaponRow.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weapon);
+            if (inventory.IsWeaponEquipped(weapon))
+            {
+                weaponRow.GetComponent<Image>().color = equippedWeaponColor;
+            }
             weaponRow.transform.SetParent(inventoryContent, false);
             weaponRow.transform.localPosition = new Vector3(weaponRow.transform.localPosition.x, offset, weaponRow.transform.localPosition.z);
             offset -= 37;
@@ -304,11 +309,8 @@ public class PlayerMenus : MonoBehaviour
             // Agregarle la funcionalidad al unequipButton
             unequipButton.interactable = true;
             unequipButton.onClick.AddListener(() => Unequip(weapon));
-            // Agrego la foto a la imagen correspondiente, que por la estructura de escena es la 2da del array ([1])
-            weaponHeader.GetComponentsInChildren<Image>()[1].color = Color.white;
-            weaponHeader.GetComponentsInChildren<Image>()[1].sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-            // Agrego el texto del arma
-            weaponHeader.GetComponentInChildren<Text>().text = weapon.GetComponent<WeaponScript>().weaponName;
+            // Refresco el arma que aparece en el header
+            weaponHeader.GetComponent<WeaponShopRowHandler>().RefreshWeapon(weapon);
         }
         else
         {
@@ -384,6 +386,7 @@ public class PlayerMenus : MonoBehaviour
     public void GoBackFromSwapMenu()
     {
         ListEquipedWeapons();
+        ReloadMainPanelWeapons();
         foreach (GameObject row in swapRows)
         {
             Destroy(row);
@@ -392,8 +395,18 @@ public class PlayerMenus : MonoBehaviour
         GoBack();
     }
 
+    private void ReloadMainPanelWeapons()
+    {
+        foreach (GameObject row in rows)
+        {
+            Destroy(row);
+        }
+        ListAllWeapons();
+    }
+
     public void GoBack()
     {
+        ReloadMainPanelWeapons();
         inventoryPanel.SetActive(true);
         swapWeaponPanel.SetActive(false);
         buyPanel.SetActive(false);

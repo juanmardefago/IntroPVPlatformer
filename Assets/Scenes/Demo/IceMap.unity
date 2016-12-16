@@ -573,7 +573,35 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1670416375}
-    - target: {fileID: 1000012670451292, guid: a1d06854da9caa7479abb5d8704d619b, type: 2}
+    - target: {fileID: 1000010381219064, guid: a1d06854da9caa7479abb5d8704d619b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011294013904, guid: a1d06854da9caa7479abb5d8704d619b,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011294013904, guid: a1d06854da9caa7479abb5d8704d619b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011133818490, guid: a1d06854da9caa7479abb5d8704d619b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012281246656, guid: a1d06854da9caa7479abb5d8704d619b,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012281246656, guid: a1d06854da9caa7479abb5d8704d619b,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.99999964
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013031163024, guid: a1d06854da9caa7479abb5d8704d619b, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

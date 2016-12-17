@@ -508,6 +508,8 @@ MonoBehaviour:
   experience: 0
   level: 1
   shield: {fileID: 1000014015967444}
+  shieldCD: 1
+  shieldDuration: 1
 --- !u!114 &114000011446257054
 MonoBehaviour:
   m_ObjectHideFlags: 1

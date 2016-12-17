@@ -34,6 +34,9 @@ public class PlayerCombatScript : MonoBehaviour {
     private PlayerMovement movementScript;
 
     public GameObject shield;
+    public float shieldCD;
+    private float shieldTimerCD;
+    public float shieldDuration;
     private bool blocking = false;
     private bool canBlock = true;
 
@@ -55,8 +58,30 @@ public class PlayerCombatScript : MonoBehaviour {
 	void Update () {
         CheckForShotInput();
         // Probando hacer el Cooldown del block usando yield y coroutines
-        if (canBlock) StartCoroutine(CheckForBlock());
+        if (canBlock && Input.GetButtonDown("Shield")) StartCoroutine(Block());
+        if (shieldTimerCD != 0f) DecreaseShieldTimer();
 	}
+
+    private void DecreaseShieldTimer()
+    {
+        if(shieldTimerCD > Time.deltaTime)
+        {
+            shieldTimerCD -= Time.deltaTime;
+        } else
+        {
+            shieldTimerCD = 0f;
+        }
+    }
+
+    public float ShieldCDFill()
+    {
+        return (shieldCD - shieldTimerCD)/shieldCD;
+    }
+
+    public float ChargedShotCDFill()
+    {
+        return inventory.currentWeapon.ChargedShotCDFill();
+    }
 
     // Hay que checkear !EventSystem.current.IsPointerOverGameObject() para que si estoy en un button no se pueda disparar cuando clickeo los botones
     private void CheckForShotInput()
@@ -71,17 +96,15 @@ public class PlayerCombatScript : MonoBehaviour {
         }
     }
 
-    private IEnumerator CheckForBlock()
+    private IEnumerator Block()
     {
-        if (Input.GetButtonDown("Shield"))
-        {
-            Shield();
-            yield return new WaitForSeconds(1f);
-            Unshield();
-            yield return new WaitForSeconds(1f);
-            shield.SetActive(false);
-            canBlock = true;
-        } 
+        Shield();
+        yield return new WaitForSeconds(shieldDuration);
+        Unshield();
+        shieldTimerCD = shieldCD;
+        yield return new WaitForSeconds(shieldCD);
+        shield.SetActive(false);
+        canBlock = true;
     }
 
     // Acá se le va a avisar al animator del shield que haga la animación de aparecion del escudo

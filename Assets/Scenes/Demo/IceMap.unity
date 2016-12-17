@@ -143,6 +143,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -251,6 +256,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -302,6 +312,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
@@ -722,6 +737,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -876,6 +896,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -992,6 +1017,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -1047,6 +1077,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -1160,6 +1195,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -1215,6 +1255,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -1367,6 +1412,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -1431,6 +1481,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000013761187154, guid: 91d5f6815542e0c4ca8d96d2af14e9ba,
     type: 2}
   m_PrefabInternal: {fileID: 1721086883}
+--- !u!114 &888087382 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010187888212, guid: 91d5f6815542e0c4ca8d96d2af14e9ba,
+    type: 2}
+  m_PrefabInternal: {fileID: 1721086883}
+  m_Script: {fileID: 11500000, guid: 01368501f92fe4741b3929055505a647, type: 3}
 --- !u!1001 &958417682
 Prefab:
   m_ObjectHideFlags: 0
@@ -1678,6 +1734,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -1738,6 +1799,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -1898,6 +1964,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -1968,6 +2039,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -2195,6 +2271,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
   m_IsPrefabParent: 0
@@ -2353,6 +2434,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013719673766, guid: 35bbdd58cd96ccb46846518457282a84,
+        type: 2}
+      propertyPath: level
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35bbdd58cd96ccb46846518457282a84, type: 2}
@@ -2686,21 +2772,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223000011265507446, guid: 793d77536a137a1468c187d551e4ea72,
+    - target: {fileID: 114000012414238012, guid: 793d77536a137a1468c187d551e4ea72,
         type: 2}
-      propertyPath: m_Camera
+      propertyPath: combatScript
       value: 
-      objectReference: {fileID: 1670416375}
-    - target: {fileID: 114000013652116446, guid: 793d77536a137a1468c187d551e4ea72,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 888087378}
+      objectReference: {fileID: 888087382}
     - target: {fileID: 114000012238557692, guid: 793d77536a137a1468c187d551e4ea72,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 888087378}
+    - target: {fileID: 114000013652116446, guid: 793d77536a137a1468c187d551e4ea72,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 888087378}
+    - target: {fileID: 223000011265507446, guid: 793d77536a137a1468c187d551e4ea72,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1670416375}
     - target: {fileID: 114000010035803144, guid: 793d77536a137a1468c187d551e4ea72,
         type: 2}
       propertyPath: playerInventory
@@ -2827,6 +2918,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -3164,6 +3260,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -3261,6 +3362,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
@@ -3425,6 +3531,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -3537,6 +3648,11 @@ Prefab:
       propertyPath: minCoins
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
   m_IsPrefabParent: 0
@@ -3644,6 +3760,11 @@ Prefab:
         type: 2}
       propertyPath: minCoins
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010726150798, guid: 75eec9491ed664741ac0b6f375aeb0da,
+        type: 2}
+      propertyPath: level
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}

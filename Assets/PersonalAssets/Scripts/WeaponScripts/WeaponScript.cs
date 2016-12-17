@@ -213,4 +213,9 @@ public class WeaponScript : MonoBehaviour {
     {
         return gems.Count < gemSlots;
     }
+
+    public float ChargedShotCDFill()
+    {
+        return (chargedShotCD - chargedShotTimer)/chargedShotCD;
+    }
 }

@@ -6,14 +6,22 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/DemoLevel.unity
+    path: Assets/MainMenuDemo.unity
   - enabled: 0
     path: Assets/MainMenuScene.unity
-  - enabled: 1
-    path: Assets/MainMenuDemo.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/IceMap.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/YouDiedDemo.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/YouWonDemo.unity
+  - enabled: 0
+    path: Assets/DemoLevel.unity
+  - enabled: 1
+    path: Assets/Scenes/Demo/MainMenuDemo.unity
+  - enabled: 1
+    path: Assets/Scenes/Demo/IceMap.unity
+  - enabled: 1
+    path: Assets/Scenes/Demo/YouDiedDemo.unity
+  - enabled: 1
+    path: Assets/Scenes/Demo/YouWonDemo.unity

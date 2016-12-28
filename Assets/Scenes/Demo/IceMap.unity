@@ -1671,7 +1671,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010195852958, guid: e77efd3a2b536414c9eaf0527264d335, type: 2}
       propertyPath: m_TagString
-      value: Enemy
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e77efd3a2b536414c9eaf0527264d335, type: 2}

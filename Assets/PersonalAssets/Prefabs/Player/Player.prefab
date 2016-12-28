@@ -510,6 +510,7 @@ MonoBehaviour:
   shield: {fileID: 1000014015967444}
   shieldCD: 1
   shieldDuration: 1
+  shootingSlowCD: 0.3
 --- !u!114 &114000011446257054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -552,11 +553,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4328680d7ebf154c9798f17700ef919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseMovementSpeed: 7
   speed: 8
   rBody: {fileID: 0}
   anim: {fileID: 0}
   hitRecoveryTime: 0.15
   mousePositionX: 0
+  jumpStrength: 20
 --- !u!114 &114000011981191860
 MonoBehaviour:
   m_ObjectHideFlags: 1

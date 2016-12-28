@@ -25,7 +25,7 @@ public class GroundedState : PlayerMovementState {
     public GroundedState()
     {
         wantsToJump = false;
-        jumpStrength = 21f;
+        //jumpStrength = 21f;
     }
 
     public void KeyPressUpdate()
@@ -35,6 +35,7 @@ public class GroundedState : PlayerMovementState {
 
     public void StateDependentUpdate(PlayerMovement pm)
     {
+        jumpStrength = pm.jumpStrength;
         if (wantsToJump)
         {
             //rBody.AddRelativeForce(Vector2.up * jumpStrength, ForceMode2D.Force);

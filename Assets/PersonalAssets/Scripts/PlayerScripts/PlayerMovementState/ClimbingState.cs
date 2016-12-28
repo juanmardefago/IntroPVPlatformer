@@ -22,7 +22,7 @@ public class ClimbingState : PlayerMovementState
     public ClimbingState()
     {
         moveY = 0f;
-        speed = 5f;
+        //speed = 5f;
     }
 
     public void KeyPressUpdate()
@@ -32,6 +32,7 @@ public class ClimbingState : PlayerMovementState
 
     public void StateDependentUpdate(PlayerMovement pm)
     {
+        speed = pm.speed * 0.5f;
         pm.SetColliderStatus(false);
         VerticalMovement(pm.rBody);
         pm.anim.SetFloat("speed", moveY);

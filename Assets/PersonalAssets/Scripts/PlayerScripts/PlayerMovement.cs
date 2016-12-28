@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour {
 
     // Movement-specific variables
     private float moveX;
+    public float baseMovementSpeed;
+    [HideInInspector]
     public float speed;
     private bool isRunning;
     [HideInInspector]
@@ -16,7 +18,9 @@ public class PlayerMovement : MonoBehaviour {
     private Collider2D playerColl;
     private float hitRecoveryTimer;
     public float hitRecoveryTime;
+    [HideInInspector]
     public float mousePositionX;
+    public float jumpStrength;
 
 
 	// Use this for initialization
@@ -25,6 +29,7 @@ public class PlayerMovement : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerMovementState = EmptyState.GetInstance();
         playerColl = GetComponent<BoxCollider2D>();
+        speed = baseMovementSpeed;
 	}
 	
 	void Update () {
@@ -62,7 +67,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 rBody.velocity = new Vector2(moveX * speed, rBody.velocity.y);
                 anim.SetBool("isWalking", true);
-                anim.SetFloat("speed", Mathf.Abs(moveX));
+                anim.SetFloat("speed", Mathf.Abs((moveX * speed)/(moveX * baseMovementSpeed)));
             }
             else
             {

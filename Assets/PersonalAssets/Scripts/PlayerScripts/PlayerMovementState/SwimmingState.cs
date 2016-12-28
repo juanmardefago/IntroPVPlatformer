@@ -23,7 +23,7 @@ public class SwimmingState : PlayerMovementState {
     public SwimmingState()
     {
         moveX = 0;
-        speed = 5f;
+        //speed = 5f;
     }
 
     public void KeyPressUpdate()
@@ -34,6 +34,7 @@ public class SwimmingState : PlayerMovementState {
 
     public void StateDependentUpdate(PlayerMovement pm)
     {
+        speed = pm.speed * 0.5f;
         VerticalMovement(pm.rBody);
         HorizontalMovement(pm.rBody);
         pm.CorrectLocalScale(moveX);

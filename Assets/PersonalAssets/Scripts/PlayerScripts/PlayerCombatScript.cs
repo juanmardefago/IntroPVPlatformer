@@ -42,6 +42,9 @@ public class PlayerCombatScript : MonoBehaviour {
 
     private SoundScript soundScript;
 
+    public float shootingSlowCD;
+    private float shootingSlowTimer;
+
     // Use this for initialization
     void Start () {
         inventory = GetComponent<Inventory>();
@@ -57,10 +60,24 @@ public class PlayerCombatScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckForShotInput();
+        CheckAndDecreaseSlowTimer();
         // Probando hacer el Cooldown del block usando yield y coroutines
         if (canBlock && Input.GetButtonDown("Shield")) StartCoroutine(Block());
         if (shieldTimerCD != 0f) DecreaseShieldTimer();
 	}
+
+    private void CheckAndDecreaseSlowTimer()
+    {
+        if (shootingSlowTimer >= Time.deltaTime)
+        {
+            shootingSlowTimer -= Time.deltaTime;
+        }
+        else if (shootingSlowTimer < Time.deltaTime)
+        {
+            shootingSlowTimer = 0f;
+            movementScript.speed = movementScript.baseMovementSpeed;
+        }
+    }
 
     private void DecreaseShieldTimer()
     {
@@ -88,6 +105,11 @@ public class PlayerCombatScript : MonoBehaviour {
     {
         if (Input.GetButton("Fire1") && !EventSystem.current.IsPointerOverGameObject() && inventory.currentWeapon != null) {
             inventory.currentWeapon.Fire(OffsetForLocalScale());
+            if (!inventory.currentWeapon.Reloading())
+            {
+                movementScript.speed = movementScript.baseMovementSpeed * 0.5f;
+                shootingSlowTimer = shootingSlowCD;
+            }
         } else if (Input.GetButton("Fire2") && !EventSystem.current.IsPointerOverGameObject() && inventory.currentWeapon != null) {
             inventory.currentWeapon.ChargedFire(OffsetForLocalScale());
         } else if (Input.GetButton("Reload") && inventory.currentWeapon != null)

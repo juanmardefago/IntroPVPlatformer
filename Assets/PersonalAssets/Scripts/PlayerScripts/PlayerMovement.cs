@@ -5,8 +5,9 @@ public class PlayerMovement : MonoBehaviour {
 
     // Movement-specific variables
     private float moveX;
+    public float originalMovementSpeed;
     public float baseMovementSpeed;
-    [HideInInspector]
+    //[HideInInspector]
     public float speed;
     private bool isRunning;
     [HideInInspector]
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerMovementState = EmptyState.GetInstance();
         playerColl = GetComponent<BoxCollider2D>();
+        baseMovementSpeed = originalMovementSpeed;
         speed = baseMovementSpeed;
 	}
 	
@@ -67,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 rBody.velocity = new Vector2(moveX * speed, rBody.velocity.y);
                 anim.SetBool("isWalking", true);
-                anim.SetFloat("speed", Mathf.Abs((moveX * speed)/(moveX * baseMovementSpeed)));
+                anim.SetFloat("speed", Mathf.Abs((moveX * speed)/(moveX * originalMovementSpeed)));
             }
             else
             {

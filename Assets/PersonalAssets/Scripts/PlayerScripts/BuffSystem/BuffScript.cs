@@ -8,7 +8,6 @@ public abstract class BuffScript : MonoBehaviour {
     public Image buffImage;
     public string buffName;
     public string buffDescription;
-    [SerializeField]
     protected List<BuffScript> buffList;
 
     public float buffDuration;

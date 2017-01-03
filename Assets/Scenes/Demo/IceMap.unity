@@ -1291,7 +1291,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
 --- !u!4 &741232087 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010345148714, guid: 9eba2d545d6c14845bed68aa028d069c,
@@ -1892,7 +1892,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000014019363858, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1000011486855952, guid: 75eec9491ed664741ac0b6f375aeb0da, type: 2}
       propertyPath: m_Name

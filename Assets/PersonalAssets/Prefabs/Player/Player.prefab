@@ -147,6 +147,7 @@ GameObject:
   - 114: {fileID: 114000011994421996}
   - 114: {fileID: 114000012984652038}
   - 82: {fileID: 82000012558285504}
+  - 114: {fileID: 114000010054804530}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -479,6 +480,18 @@ MonoBehaviour:
   gemSlots: 3
   hitRate: 0.85
   critRate: 0.2
+--- !u!114 &114000010054804530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013761187154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4184c0133bec0d4c9debf6d55cc108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs: []
 --- !u!114 &114000010168508358
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class PlayerCombatScript : MonoBehaviour {
+public class PlayerCombatScript : MonoBehaviour, Damagable {
 
     private int health;
     private int maxHealth;
@@ -303,6 +303,7 @@ public class PlayerCombatScript : MonoBehaviour {
             }
             health = maxHealth;
         }
+        GetComponent<BuffSystem>().ClearBuffs();
         soundScript.PlayDeathSound();
     }
 }

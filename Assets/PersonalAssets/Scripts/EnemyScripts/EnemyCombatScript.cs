@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyCombatScript : MonoBehaviour
+public class EnemyCombatScript : MonoBehaviour, Damagable
 {
     public string enemyName;
     public int level;
@@ -110,22 +110,34 @@ public class EnemyCombatScript : MonoBehaviour
         hitting = false;
     }
 
+    // para que no rompa con la version vieja.
     public void TakeDamage(int damage)
     {
-        Show(damage.ToString());
-        aggro = 3f;
         DoTakeDamage(damage);
+    }
+
+    public void TakeDamage(int damage, Color? color = null)
+    {
+        DoTakeDamage(damage, color);
     }
 
     public void TakeCritDamage(int damage)
     {
-        Show(damage.ToString(), Color.red);
-        aggro = 3f;
-        DoTakeDamage(damage);
+
+        DoTakeDamage(damage, Color.red);
     }
 
-    public void DoTakeDamage(int damage)
+    public void DoTakeDamage(int damage, Color? color = null)
     {
+        if (color != null)
+        {
+            Show(damage.ToString(), (Color)color);
+        }
+        else
+        {
+            Show(damage.ToString());
+        }
+        aggro = 3f;
         soundScript.PlayHitSound();
         anim.SetTrigger("hit");
         health -= damage;
@@ -164,6 +176,7 @@ public class EnemyCombatScript : MonoBehaviour
 
     public void Die()
     {
+        GetComponent<BuffSystem>().ClearBuffs();
         playerTransform.SendMessage("AddExperience", expBounty);
         dieTimer += Time.deltaTime;
         anim.SetTrigger("dying");
@@ -177,6 +190,7 @@ public class EnemyCombatScript : MonoBehaviour
 
     public void NoExpDie()
     {
+        GetComponent<BuffSystem>().ClearBuffs();
         dieTimer += Time.deltaTime;
         anim.SetTrigger("dying");
         movementScript.MakeKinematic();

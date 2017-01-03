@@ -84,6 +84,7 @@ GameObject:
   - 82: {fileID: 82000011265400840}
   - 114: {fileID: 114000012640861264}
   - 114: {fileID: 114000013295826786}
+  - 114: {fileID: 114000011603494884}
   m_Layer: 12
   m_Name: EnemyFly
   m_TagString: Enemy
@@ -346,6 +347,18 @@ MonoBehaviour:
   prefabAnim: {fileID: 95000010527312940, guid: 0c32b2d66d0fefe45982c1c96c8a7d84,
     type: 2}
   canvas: {fileID: 1000010912157192}
+--- !u!114 &114000011603494884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011988120432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4184c0133bec0d4c9debf6d55cc108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs: []
 --- !u!114 &114000011791668262
 MonoBehaviour:
   m_ObjectHideFlags: 1

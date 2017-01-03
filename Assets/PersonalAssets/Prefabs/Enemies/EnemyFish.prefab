@@ -118,6 +118,7 @@ GameObject:
   - 82: {fileID: 82000013386652224}
   - 114: {fileID: 114000013314792398}
   - 114: {fileID: 114000013533074790}
+  - 114: {fileID: 114000012306598048}
   m_Layer: 12
   m_Name: EnemyFish
   m_TagString: Enemy
@@ -410,6 +411,18 @@ MonoBehaviour:
   healthPackPrefab: {fileID: 1000013112612474, guid: f30c7e56163c64e48b4f78fc3eb7a0e4,
     type: 2}
   dropChanceHealthPack: 0.4
+--- !u!114 &114000012306598048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014206883810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4184c0133bec0d4c9debf6d55cc108b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs: []
 --- !u!114 &114000012409055854
 MonoBehaviour:
   m_ObjectHideFlags: 1

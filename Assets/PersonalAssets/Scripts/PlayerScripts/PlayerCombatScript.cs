@@ -97,7 +97,12 @@ public class PlayerCombatScript : MonoBehaviour, Damagable {
 
     public float ChargedShotCDFill()
     {
-        return inventory.currentWeapon.ChargedShotCDFill();
+        float res = 1;
+        if(inventory.currentWeapon != null)
+        {
+            res = inventory.currentWeapon.ChargedShotCDFill();
+        }
+        return res;
     }
 
     // Hay que checkear !EventSystem.current.IsPointerOverGameObject() para que si estoy en un button no se pueda disparar cuando clickeo los botones

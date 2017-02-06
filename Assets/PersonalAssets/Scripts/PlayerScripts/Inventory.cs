@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour {
 
     public List<GameObject> items;
 
-    public GameObject[] eqWeapons;
+    public List<GameObject> eqWeapons;
 
     public WeaponScript currentWeapon;
 
@@ -24,10 +24,19 @@ public class Inventory : MonoBehaviour {
 	void Start () {
         coins = 0;
         items = new List<GameObject>();
-        if(eqWeapons[0] != null)
+        if(eqWeapons.Count > 0)
+        {
+            InitilizeEquippedWeapons();
+        }
+    }
+
+    private void InitilizeEquippedWeapons()
+    {
+        if (eqWeapons[0] != null)
         {
             ChangeWeapon(0);
-        } else if (eqWeapons[1] != null)
+        }
+        else if (eqWeapons[1] != null)
         {
             ChangeWeapon(1);
         }
@@ -111,7 +120,7 @@ public class Inventory : MonoBehaviour {
         return res;
     }
 
-    public GameObject[] GetEquippedWeapons()
+    public List<GameObject> GetEquippedWeapons()
     {
         return eqWeapons;
     }

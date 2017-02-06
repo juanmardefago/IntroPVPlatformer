@@ -274,7 +274,7 @@ public class PlayerMenus : MonoBehaviour
 
     private void ListEquipedWeapons()
     {
-        GameObject[] weaponsEquiped = inventory.GetEquippedWeapons();
+        List<GameObject> weaponsEquiped = inventory.GetEquippedWeapons();
         Button[] buttons = equipPanel.GetComponentsInChildren<Button>();
         // Weapon 1 - Imagen y texto del child (la [0] es la del boton)
         ConfigButtonForEquipWeapon(buttons[0], weaponsEquiped[0], 0);

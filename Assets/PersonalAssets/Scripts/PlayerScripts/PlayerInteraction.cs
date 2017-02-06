@@ -55,10 +55,10 @@ public class PlayerInteraction : MonoBehaviour {
 
     public void SetWeaponActive(bool cond)
     {
-        GameObject weapon = inventory.currentWeapon.gameObject;
+        WeaponScript weapon = inventory.currentWeapon;
         if (weapon != null)
         {
-            weapon.SetActive(cond);
+            weapon.gameObject.SetActive(cond);
         }
     }
 

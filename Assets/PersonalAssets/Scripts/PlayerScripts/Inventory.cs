@@ -11,7 +11,8 @@ public class Inventory : MonoBehaviour {
 
     public List<GameObject> items;
 
-    public List<GameObject> eqWeapons;
+    public GameObject weapon1;
+    public GameObject weapon2;
 
     public WeaponScript currentWeapon;
 
@@ -23,20 +24,18 @@ public class Inventory : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         coins = 0;
+        currentWeaponSlot = -1;
         items = new List<GameObject>();
-        if(eqWeapons.Count > 0)
-        {
-            InitilizeEquippedWeapons();
-        }
+        InitilizeEquippedWeapons();
     }
 
     private void InitilizeEquippedWeapons()
     {
-        if (eqWeapons[0] != null)
+        if (weapon1 != null)
         {
             ChangeWeapon(0);
         }
-        else if (eqWeapons[1] != null)
+        else if (weapon2 != null)
         {
             ChangeWeapon(1);
         }
@@ -44,11 +43,11 @@ public class Inventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Weapon1") && eqWeapons[0] != null)
+        if (Input.GetButtonDown("Weapon1") && weapon1 != currentWeapon)
         {
             ChangeWeapon(0);
         }
-        else if (Input.GetButtonDown("Weapon2") && eqWeapons[1] != null)
+        else if (Input.GetButtonDown("Weapon2") && weapon2 != currentWeapon)
         {
             ChangeWeapon(1);
         }
@@ -69,6 +68,32 @@ public class Inventory : MonoBehaviour {
         items.Add(item);
         item.transform.SetParent(inventoryBag, false);
         item.SetActive(false);
+        WeaponScript possibleWScript = item.GetComponent<WeaponScript>();
+        if(possibleWScript != null)
+        {
+            if(weapon1 == null)
+            {
+                if(currentWeapon != null)
+                {
+                    EquipOrSwapSneaky(item, 0);
+                }
+                else
+                {
+                    EquipOrSwap(item, 0);
+                }
+            }
+            else if (weapon2 == null)
+            {
+                if (currentWeapon != null)
+                {
+                    EquipOrSwapSneaky(item, 1);
+                }
+                else
+                {
+                    EquipOrSwap(item, 1);
+                }
+            }
+        }
     }
 
     public void RemoveItem(GameObject item)
@@ -79,36 +104,61 @@ public class Inventory : MonoBehaviour {
 
     private void ChangeWeapon(int index)
     {
+        // If current weapon is not null then i have to deactivate it, effectively putting it away.
         if (currentWeapon != null)
         {
             currentWeapon.gameObject.SetActive(false);
         }
 
-        if (eqWeapons[index] != null)
+        switch (index)
         {
-            currentWeapon = eqWeapons[index].GetComponent<WeaponScript>();
-            currentWeapon.gameObject.SetActive(true);
-            currentWeaponSlot = index;
-        } else
-        {
-            currentWeapon = null;
-            currentWeaponSlot = -1;
+            case 0:
+                ChangeToWeapon1();
+                break;
+            case 1:
+                ChangeToWeapon2();
+                break;
+            default:
+                break;
         }
 
         bulletHandler.RefreshWeaponBullets();
         weaponImage.RefreshWeaponImage();
     }
 
+    private void ChangeToWeapon1()
+    {
+        if (weapon1 != null)
+        {
+            currentWeapon = weapon1.GetComponent<WeaponScript>();
+            currentWeapon.gameObject.SetActive(true);
+            currentWeaponSlot = 0;
+        }
+        else
+        {
+            currentWeapon = null;
+            currentWeaponSlot = -1;
+        }
+    }
+
+    private void ChangeToWeapon2()
+    {
+        if (weapon2 != null)
+        {
+            currentWeapon = weapon2.GetComponent<WeaponScript>();
+            currentWeapon.gameObject.SetActive(true);
+            currentWeaponSlot = 0;
+        }
+        else
+        {
+            currentWeapon = null;
+            currentWeaponSlot = -1;
+        }
+    }
+
     public List<GameObject> GetWeaponsOwned()
     {
-        List<GameObject> res = new List<GameObject>();
-        foreach (GameObject weapon in eqWeapons)
-        {
-            if (weapon != null)
-            {
-                res.Add(weapon);
-            }
-        }
+        List<GameObject> res = GetEquippedWeapons();
         foreach (GameObject item in items)
         {
             if(item.tag == "Weapon")
@@ -122,7 +172,16 @@ public class Inventory : MonoBehaviour {
 
     public List<GameObject> GetEquippedWeapons()
     {
-        return eqWeapons;
+        List<GameObject> res = new List<GameObject>();
+        if (weapon1 != null)
+        {
+            res.Add(weapon1);
+        }
+        if (weapon2 != null)
+        {
+            res.Add(weapon2);
+        }
+        return res;
     }
 
     public List<GameObject> GetUnequippedWeapons()
@@ -140,19 +199,19 @@ public class Inventory : MonoBehaviour {
 
     public void Unequip(GameObject weaponToUnequip)
     {
-        for(int i = 0; i < 2; i++)
+        if(weapon1 == weaponToUnequip)
         {
-            if(eqWeapons[i] == weaponToUnequip)
-            {
-                UnequipAndPutInBag(eqWeapons[i], i);
-            }
+            UnequipAndPutInBag(weapon1, 0);
+        } else if(weapon2 = weaponToUnequip)
+        {
+            UnequipAndPutInBag(weapon2, 1);
         }
     }
 
     private void UnequipAndPutInBag(GameObject weapon, int index)
     {
         WeaponScript wScript = weapon.GetComponent<WeaponScript>();
-        eqWeapons[index] = null;
+        SetWeaponBySlot(null, index);
         items.Add(weapon);
         if(wScript.weaponName == currentWeapon.weaponName)
         {
@@ -164,14 +223,20 @@ public class Inventory : MonoBehaviour {
 
     public void EquipOrSwap(GameObject weapon, int slot)
     {
-        if(eqWeapons[slot] != null)
+        EquipOrSwapSneaky(weapon, slot);
+        ChangeWeapon(slot);
+    }
+
+
+    public void EquipOrSwapSneaky(GameObject weapon, int slot)
+    {
+        if (GetWeaponBySlot(slot) != null)
         {
-            Unequip(eqWeapons[slot]);
+            Unequip(GetWeaponBySlot(slot));
         }
-        eqWeapons[slot] = weapon;
+        SetWeaponBySlot(weapon, slot);
         weapon.transform.SetParent(transform);
         items.Remove(weapon);
-        ChangeWeapon(slot);
     }
 
     public GameObject GetWeaponWithName(string name)
@@ -184,12 +249,13 @@ public class Inventory : MonoBehaviour {
                 res = item;
             }
         }
-        foreach (GameObject weapon in eqWeapons)
+        if (weapon1 != null && weapon1.GetComponent<WeaponScript>().weaponName == name)
         {
-            if (weapon != null && weapon.GetComponent<WeaponScript>().weaponName == name)
-            {
-                res = weapon;
-            }
+            res = weapon1;
+        }
+        if (weapon2 != null && weapon2.GetComponent<WeaponScript>().weaponName == name)
+        {
+            res = weapon2;
         }
         return res;
     }
@@ -227,14 +293,34 @@ public class Inventory : MonoBehaviour {
 
     public bool IsWeaponEquipped(GameObject weapon)
     {
-        bool res = false;
-        for(int i = 0; i < 2; i++)
+        return weapon1 == weapon || weapon2 == weapon;
+    }
+
+    private GameObject GetWeaponBySlot(int slot)
+    {
+        GameObject res = weapon1;
+        if(slot == 1)
         {
-            if(eqWeapons[i] == weapon)
-            {
-                res = true;
-            }
+            res = weapon2;
+        } else if(slot == -1)
+        {
+            res = null;
         }
         return res;
+    }
+
+    private void SetWeaponBySlot(GameObject weapon, int slot)
+    {
+        switch (slot)
+        {
+            case 0:
+                weapon1 = weapon;
+                break;
+            case 1:
+                weapon2 = weapon;
+                break;
+            default:
+                break;
+        }
     }
 }

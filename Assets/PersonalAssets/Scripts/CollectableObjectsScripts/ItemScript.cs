@@ -8,6 +8,7 @@ public class ItemScript : MonoBehaviour
 
     public void Start()
     {
+        InstantiateItem();
         RefreshItemSprite();
     }
 
@@ -42,5 +43,12 @@ public class ItemScript : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = item.GetComponent<SpriteRenderer>().sprite;
             }
         }
+    }
+
+    private void InstantiateItem()
+    {
+        item = Instantiate(item);
+        item.transform.SetParent(transform, false);
+        item.SetActive(false);
     }
 }

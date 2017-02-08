@@ -548,9 +548,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   items: []
-  eqWeapons:
-  - {fileID: 1000012142698400}
-  - {fileID: 1000010978273422}
+  weapon1: {fileID: 1000012142698400}
+  weapon2: {fileID: 1000010978273422}
   currentWeapon: {fileID: 0}
   bulletHandler: {fileID: 0}
   weaponImage: {fileID: 0}

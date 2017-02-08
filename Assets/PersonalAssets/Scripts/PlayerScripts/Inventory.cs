@@ -147,7 +147,7 @@ public class Inventory : MonoBehaviour {
         {
             currentWeapon = weapon2.GetComponent<WeaponScript>();
             currentWeapon.gameObject.SetActive(true);
-            currentWeaponSlot = 0;
+            currentWeaponSlot = 1;
         }
         else
         {

@@ -3189,11 +3189,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 43
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010187888212, guid: 91d5f6815542e0c4ca8d96d2af14e9ba,
-        type: 2}
-      propertyPath: respawnTransform
-      value: 
-      objectReference: {fileID: 734761901}
     - target: {fileID: 114000011616703094, guid: 91d5f6815542e0c4ca8d96d2af14e9ba,
         type: 2}
       propertyPath: bulletHandler
@@ -3204,6 +3199,11 @@ Prefab:
       propertyPath: weaponImage
       value: 
       objectReference: {fileID: 1374453612}
+    - target: {fileID: 114000010187888212, guid: 91d5f6815542e0c4ca8d96d2af14e9ba,
+        type: 2}
+      propertyPath: respawnTransform
+      value: 
+      objectReference: {fileID: 734761901}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91d5f6815542e0c4ca8d96d2af14e9ba, type: 2}
   m_IsPrefabParent: 0

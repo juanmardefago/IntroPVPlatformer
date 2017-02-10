@@ -7,12 +7,14 @@ public class PlayerNPCInteraction : MonoBehaviour
     public GameObject objectToInteract;
     private PlayerMovement movementScript;
     public bool interacting;
+    private UIFeedback feedbackScript;
 
     // Use this for initialization
     void Start()
     {
         interacting = false;
         movementScript = GetComponentInParent<PlayerMovement>();
+        feedbackScript = GetComponentInParent<UIFeedback>();
     }
 
     // Update is called once per frame
@@ -24,12 +26,14 @@ public class PlayerNPCInteraction : MonoBehaviour
             // avisa que empezo a interactuar y llama al metodo de interaccion del script interactivo del objeto.
             interacting = true;
             objectToInteract.GetComponent<UsableObjectScript>().Interact(this);
+            feedbackScript.ResetImage();
         }
         else if (Input.GetButtonDown("Use") && interacting)
         {
             // Si estaba interactuando entonces avisa al script de desinteraccion del objeto.
             interacting = false;
             objectToInteract.GetComponent<UsableObjectScript>().DeInteract(this);
+            feedbackScript.ShowNPCFeedback();
         }
     }
 
@@ -50,6 +54,10 @@ public class PlayerNPCInteraction : MonoBehaviour
         if(other.tag == "NPC")
         {
             objectToInteract = other.gameObject;
+            if (!interacting)
+            {
+                feedbackScript.ShowNPCFeedback();
+            }
         }
     }
 
@@ -63,6 +71,7 @@ public class PlayerNPCInteraction : MonoBehaviour
                 interacting = false;
             }
             objectToInteract = null;
+            feedbackScript.ResetImage();
         }
     }
 }

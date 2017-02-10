@@ -6,12 +6,14 @@ public class StateDetection : MonoBehaviour
 
     private PlayerMovement movementScript;
     private PlayerInteraction interactionScript;
+    private UIFeedback feedbackScript;
 
     // Use this for initialization
     void Start()
     {
         movementScript = GetComponentInParent<PlayerMovement>();
         interactionScript = GetComponentInParent<PlayerInteraction>();
+        feedbackScript = GetComponentInParent<UIFeedback>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -65,6 +67,7 @@ public class StateDetection : MonoBehaviour
         else if (IsTagged("Rope", other))
         {
             interactionScript.objectToInteract = other.gameObject;
+            feedbackScript.ShowRopeFeedback();
         }
         // Si el collider tiene tag Water, reseteamos las animaciones, cambiamos el estado a Swimming y
         // le avisamos al animatorController que se esta nadando.
@@ -73,9 +76,10 @@ public class StateDetection : MonoBehaviour
             ResetAnims();
             movementScript.SwapState(SwimmingState.GetInstance());
             movementScript.anim.SetBool("isSwimming", true);
-        }
-        else if (IsTagged("TeleportInteracter", other)) {
+        } else if (IsTagged("TeleportInteracter", other))
+        {
             interactionScript.objectToInteract = other.gameObject;
+            feedbackScript.ShowDoorFeedback();
         }
     }
 
@@ -92,6 +96,7 @@ public class StateDetection : MonoBehaviour
         else if (IsTagged("Rope", other) || IsTagged("TeleportInteracter", other))
         {
             interactionScript.objectToInteract = null;
+            feedbackScript.ResetImage();
         }
     }
 

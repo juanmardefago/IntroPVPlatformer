@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour {
     public Stack<Vector3> goBackPositionStack;
     public Inventory inventory;
     public ObjectInteractionScript interactingScript;
+    private UIFeedback feedbackScript;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class PlayerInteraction : MonoBehaviour {
         movementScript = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
         goBackPositionStack = new Stack<Vector3>();
+        feedbackScript = GetComponent<UIFeedback>();
 	}
 	
 	// Update is called once per frame
@@ -31,6 +33,7 @@ public class PlayerInteraction : MonoBehaviour {
             // avisa que empezo a interactuar y llama al metodo de interaccion del script interactivo del objeto.
             interactingScript = objectToInteract.GetComponent<ObjectInteractionScript>();
             interactingScript.Interact(this, movementScript);
+            feedbackScript.ResetImage();
         } else if(Input.GetButtonDown("Jump") && Interacting())
         {
             // Si estaba interactuando entonces avisa al script de desinteraccion del objeto.

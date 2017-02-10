@@ -65,6 +65,7 @@ GameObject:
   - 114: {fileID: 114000012939585254}
   - 114: {fileID: 114000013931037866}
   - 82: {fileID: 82000010647980978}
+  - 114: {fileID: 114000010698147656}
   m_Layer: 10
   m_Name: PlayerNoWeapons
   m_TagString: Player
@@ -118,6 +119,23 @@ GameObject:
   - 114: {fileID: 114000010528254452}
   m_Layer: 5
   m_Name: PlayerWSCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013140967350
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 224000012961569576}
+  - 222: {fileID: 222000012468451934}
+  - 114: {fileID: 114000011584405456}
+  m_Layer: 5
+  m_Name: InteractFeedbackImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,6 +450,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c43e9a996460cb4ca342e4e60c126ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000010698147656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011624180070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdcb0db7dd619b4fbd9b7cbefc757fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedbackImage: {fileID: 114000011584405456}
+  ropeFeedback: {fileID: 21300000, guid: 395b546b68627dc4fbb313bff5870f97, type: 3}
+  doorFeedback: {fileID: 21300000, guid: 3e7991f2751763646b348e4e09d0bb54, type: 3}
+  npcFeedback: {fileID: 21300000, guid: 553101c11d39f994a97c6facef8361d0, type: 3}
+  treasureFeedback: {fileID: 21300000, guid: 635dd1c24ee2bc449b47fc69d764f69a, type: 3}
 --- !u!114 &114000010865869202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,6 +501,33 @@ MonoBehaviour:
   hitRecoveryTime: 0.15
   mousePositionX: 0
   jumpStrength: 20
+--- !u!114 &114000011584405456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013140967350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114000012096143014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,7 +569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   items: []
-  eqWeapons: []
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
   currentWeapon: {fileID: 0}
   bulletHandler: {fileID: 0}
   weaponImage: {fileID: 0}
@@ -645,6 +707,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!222 &222000012468451934
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013140967350}
 --- !u!223 &223000014003760808
 Canvas:
   m_ObjectHideFlags: 1
@@ -674,11 +742,30 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 224000012961569576}
   m_Father: {fileID: 4000011346094414}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0.4}
   m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224000012961569576
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013140967350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 224000012305076254}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}

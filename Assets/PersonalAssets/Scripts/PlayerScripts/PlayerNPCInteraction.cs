@@ -30,10 +30,14 @@ public class PlayerNPCInteraction : MonoBehaviour
         }
         else if (Input.GetButtonDown("Use") && interacting)
         {
+            if (objectToInteract.transform.tag == "NPC")
+            {
+                feedbackScript.ShowNPCFeedback();
+            }
             // Si estaba interactuando entonces avisa al script de desinteraccion del objeto.
             interacting = false;
             objectToInteract.GetComponent<UsableObjectScript>().DeInteract(this);
-            feedbackScript.ShowNPCFeedback();
+
         }
     }
 
@@ -58,12 +62,19 @@ public class PlayerNPCInteraction : MonoBehaviour
             {
                 feedbackScript.ShowNPCFeedback();
             }
+        } else if(other.tag == "Treasure")
+        {
+            objectToInteract = other.gameObject;
+            if (!interacting)
+            {
+                feedbackScript.ShowTreasureFeedback();
+            }
         }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "NPC")
+        if(other.tag == "NPC" || other.tag == "Treasure")
         {
             if (interacting)
             {

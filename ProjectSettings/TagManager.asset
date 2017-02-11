@@ -14,6 +14,7 @@ TagManager:
   - Coin
   - Gem
   - Spawn
+  - Treasure
   layers:
   - Default
   - TransparentFX
